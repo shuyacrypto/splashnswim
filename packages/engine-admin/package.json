@@ -1,0 +1,7 @@
+{
+  "name": "@swim-engine/engine-admin",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The constrained, generic-branded admin panel. Built in build-order step 3 (not yet implemented).",
+  "type": "module"
+}

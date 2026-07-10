@@ -1,0 +1,7 @@
+{
+  "name": "@swim-engine/engine-booking",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Optional booking/billing module (lane / class_slot / bed inventory). Built in build-order step 6 (not yet implemented).",
+  "type": "module"
+}

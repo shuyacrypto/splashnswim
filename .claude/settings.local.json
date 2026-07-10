@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm --version)",
+      "Bash(git --version)",
+      "Bash(corepack enable *)",
+      "Bash(corepack prepare *)",
+      "PowerShell(\\(Get-Command pnpm\\).Source; pnpm help | Select-Object -First 3)",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "PowerShell(pnpm typecheck 2>&1)"
+    ]
+  }
+}
