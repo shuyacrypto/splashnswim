@@ -54,8 +54,8 @@ function renderBlock(block: Block, variant: RichVariant) {
       const photo = block.backgroundImage?.src ? block.backgroundImage : null;
       return (
         <>
-          <div className="relative overflow-hidden bg-gradient-to-b from-foam to-surface">
-            <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.03fr_0.97fr] lg:gap-16">
+          <div className="relative overflow-hidden bg-gradient-to-b from-foam via-surface to-aqua/40">
+            <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-32 pt-16 sm:px-8 sm:pb-44 sm:pt-24 lg:grid-cols-[1.03fr_0.97fr] lg:gap-16">
               {/* Left: message */}
               <div>
                 <p className="rise text-xs font-bold uppercase tracking-eyebrow text-ocean-deep">
@@ -117,6 +117,7 @@ function renderBlock(block: Block, variant: RichVariant) {
                 </div>
               </div>
             </div>
+            <Waves colorClass="text-surface" />
           </div>
           <TrustRow />
         </>
