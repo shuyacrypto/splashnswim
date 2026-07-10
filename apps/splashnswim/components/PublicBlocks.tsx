@@ -43,19 +43,43 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 function renderBlock(block: Block, variant: RichVariant) {
   switch (block.type) {
-    case "hero":
+    case "hero": {
+      // Photo-ready: when a hero image is set in the admin it becomes a
+      // full-bleed photo hero with a readable scrim; otherwise the branded
+      // underwater gradient with the mascot stands.
+      const photo = block.backgroundImage?.src ? block.backgroundImage : null;
       return (
         <>
           <div className="relative overflow-hidden bg-gradient-to-b from-ocean-deep via-ocean-deep to-navy">
-            <LightRays />
-            <Bubbles />
-            {/* sunlit surface glow */}
+            {photo ? (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-tr from-navy/90 via-navy/65 to-navy/30"
+                />
+              </>
+            ) : (
+              <>
+                <LightRays />
+                <Bubbles />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -top-32 left-1/2 h-80 w-[52rem] max-w-[95%] -translate-x-1/2 rounded-full bg-white/25 blur-3xl"
+                />
+              </>
+            )}
             <div
-              aria-hidden
-              className="pointer-events-none absolute -top-32 left-1/2 h-80 w-[52rem] max-w-[95%] -translate-x-1/2 rounded-full bg-white/25 blur-3xl"
-            />
-            <div className="relative mx-auto grid w-full max-w-5xl items-center gap-10 px-5 pb-24 pt-20 md:grid-cols-[1.05fr_0.95fr]">
-              <div className="reveal">
+              className={`relative mx-auto grid w-full max-w-5xl items-center gap-10 px-5 pb-24 pt-20 ${
+                photo ? "" : "md:grid-cols-[1.05fr_0.95fr]"
+              }`}
+            >
+              <div className="reveal max-w-2xl">
                 <span className="inline-block rounded-full bg-white/15 px-4 py-1 text-sm font-bold text-surface ring-1 ring-white/30 backdrop-blur">
                   Premium 1-to-1 swimming · Essex
                 </span>
@@ -90,21 +114,24 @@ function renderBlock(block: Block, variant: RichVariant) {
                   Eastwood &middot; Benfleet &middot; Rochford
                 </p>
               </div>
-              <div className="relative flex justify-center md:justify-end">
-                <div aria-hidden className="absolute inset-4 rounded-full bg-blossom/30 blur-3xl" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/brand/axolotl-goggles.png"
-                  alt="The SplashNSwim axolotl mascot swimming in goggles and armbands"
-                  className="relative w-full max-w-lg animate-float drop-shadow-2xl"
-                />
-              </div>
+              {photo ? null : (
+                <div className="relative flex justify-center md:justify-end">
+                  <div aria-hidden className="absolute inset-4 rounded-full bg-blossom/30 blur-3xl" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/brand/axolotl-goggles.png"
+                    alt="The SplashNSwim axolotl mascot swimming in goggles and armbands"
+                    className="relative w-full max-w-lg animate-float drop-shadow-2xl"
+                  />
+                </div>
+              )}
             </div>
             <Wave fillClass="fill-surface" />
           </div>
           <TrustStrip />
         </>
       );
+    }
 
     case "rich_text":
       if (variant === "deep") {

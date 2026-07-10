@@ -39,7 +39,8 @@
       "PowerShell(python \"C:\\\\Users\\\\44737\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"children swim school premium playful warm family service landing page\" --design-system -p \"SplashNSwim\" 2>&1)",
       "Bash(grep -iE \"\\\\.html$|_flat|/sn\\\\.\")",
       "Bash(curl -s -o /dev/null -w \"home %{http_code}\\\\n\" http://localhost:3007/)",
-      "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 5; Write-Output \"EXIT=$LASTEXITCODE\")"
+      "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 5; Write-Output \"EXIT=$LASTEXITCODE\")",
+      "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 8; Write-Output \"EXIT=$LASTEXITCODE\")"
     ]
   }
 }
