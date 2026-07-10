@@ -86,7 +86,7 @@ function renderBlock(block: Block, variant: RichVariant) {
                   ) : null}
                 </div>
                 <p className="mt-8 text-sm font-semibold text-surface/70">
-                  Eastwood &middot; Benfleet &middot; Rochford
+                  Eastwood &middot; Benfleet &middot; Ashingdon
                 </p>
               </div>
 

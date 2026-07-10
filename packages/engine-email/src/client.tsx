@@ -11,12 +11,31 @@ export interface EmailConfig {
   fromEmail: string;
   /** The name shown as the sender, usually the school name. */
   fromName: string;
+  /**
+   * Optional brand colour for the email header (any CSS colour). Defaults to a
+   * neutral slate so the engine stays design-agnostic; skins pass their token.
+   */
+  brandColor?: string;
+  /** Optional accent colour for small highlights. Defaults to the brand colour. */
+  accentColor?: string;
+  /** Optional Reply-To for acknowledgements, usually the school inbox. */
+  replyTo?: string;
+}
+
+/** One labelled detail shown in an enquiry email, for example a preferred pool. */
+export interface EnquiryField {
+  label: string;
+  value: string;
 }
 
 export interface EnquiryDetails {
   name: string;
   email: string;
   message: string;
+  /** Optional phone number. */
+  phone?: string;
+  /** Optional extra details the school's form collected, shown as rows. */
+  fields?: EnquiryField[];
 }
 
 export interface BroadcastResult {
@@ -47,17 +66,24 @@ const BATCH_SIZE = 100;
 export function createEmailer(config: EmailConfig): Emailer {
   const resend = new Resend(config.apiKey);
   const from = `${config.fromName} <${config.fromEmail}>`;
+  const brand = { brandColor: config.brandColor, accentColor: config.accentColor };
 
   async function sendEnquiryAcknowledgement(
     enquiry: EnquiryDetails,
   ): Promise<void> {
     const html = await render(
-      <EnquiryReceivedEmail schoolName={config.fromName} name={enquiry.name} />,
+      <EnquiryReceivedEmail
+        schoolName={config.fromName}
+        name={enquiry.name}
+        fields={enquiry.fields}
+        {...brand}
+      />,
     );
     const { error } = await resend.emails.send({
       from,
       to: enquiry.email,
-      subject: "We have received your enquiry",
+      replyTo: config.replyTo,
+      subject: `We have received your enquiry, ${enquiry.name}`,
       html,
     });
     if (error) throw new Error(error.message);
@@ -73,11 +99,16 @@ export function createEmailer(config: EmailConfig): Emailer {
         name={enquiry.name}
         email={enquiry.email}
         message={enquiry.message}
+        phone={enquiry.phone}
+        fields={enquiry.fields}
+        {...brand}
       />,
     );
     const { error } = await resend.emails.send({
       from,
       to: notifyEmail,
+      // Replies go straight to the person who enquired.
+      replyTo: enquiry.email,
       subject: `New website enquiry from ${enquiry.name}`,
       html,
     });
@@ -95,7 +126,7 @@ export function createEmailer(config: EmailConfig): Emailer {
     if (unique.length === 0) return { sent: 0 };
 
     const html = await render(
-      <BroadcastEmail schoolName={config.fromName} message={message} />,
+      <BroadcastEmail schoolName={config.fromName} message={message} {...brand} />,
     );
 
     let sent = 0;

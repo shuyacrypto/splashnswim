@@ -1,7 +1,7 @@
 /** A bright band of reassurances under the hero. Factual, brand-level. */
 const ITEMS = [
   { label: "One to one, always", sub: "Never a group lesson" },
-  { label: "Private pools", sub: "Eastwood, Benfleet, Rochford" },
+  { label: "Private pools", sub: "Eastwood, Benfleet, Ashingdon" },
   { label: "Every age and ability", sub: "First splash to stroke work" },
   { label: "Additional needs welcome", sub: "Calm, patient teaching" },
 ];

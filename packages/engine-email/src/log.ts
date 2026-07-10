@@ -25,8 +25,12 @@ export function createLogEmailer(): Emailer {
       line("enquiry notification");
       console.log(`To: ${notifyEmail}`);
       console.log(`Subject: New website enquiry from ${enquiry.name}`);
-      console.log(`From: ${enquiry.name} <${enquiry.email}>`);
-      console.log(`Message: ${enquiry.message}`);
+      console.log(`Reply-To: ${enquiry.name} <${enquiry.email}>`);
+      if (enquiry.phone) console.log(`Phone: ${enquiry.phone}`);
+      for (const field of enquiry.fields ?? []) {
+        console.log(`${field.label}: ${field.value}`);
+      }
+      if (enquiry.message) console.log(`Message: ${enquiry.message}`);
     },
 
     async sendBroadcast(

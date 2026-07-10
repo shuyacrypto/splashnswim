@@ -17,7 +17,7 @@ const body = Nunito({
 export const metadata = {
   title: "SplashNSwim | Private 1-to-1 swimming lessons in Essex",
   description:
-    "Premium one-to-one swimming lessons at private pools in Eastwood, Benfleet and Rochford. Warm, expert teaching that builds confidence fast.",
+    "Premium one-to-one swimming lessons at private pools in Eastwood, Benfleet and Ashingdon. Warm, expert teaching that builds confidence fast.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

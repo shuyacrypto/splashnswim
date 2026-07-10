@@ -11,6 +11,7 @@ export type {
   Emailer,
   EmailConfig,
   EnquiryDetails,
+  EnquiryField,
   BroadcastResult,
 } from "./client.js";
 
