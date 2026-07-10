@@ -2,6 +2,29 @@
   "name": "@swim-engine/engine-cms",
   "version": "0.0.0",
   "private": true,
-  "description": "Block model, content read/write API and validation. Built in build-order step 3 (not yet implemented).",
-  "type": "module"
+  "description": "Content read/write API with validation. The only sanctioned way to read or change content. Depends on engine-contracts and engine-db.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@swim-engine/engine-contracts": "workspace:*",
+    "@swim-engine/engine-db": "workspace:*",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
 }

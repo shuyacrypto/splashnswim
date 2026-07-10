@@ -19,7 +19,21 @@ importers:
 
   packages/engine-booking: {}
 
-  packages/engine-cms: {}
+  packages/engine-cms:
+    dependencies:
+      '@swim-engine/engine-contracts':
+        specifier: workspace:*
+        version: link:../engine-contracts
+      '@swim-engine/engine-db':
+        specifier: workspace:*
+        version: link:../engine-db
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
   packages/engine-contracts:
     dependencies:

@@ -12,7 +12,9 @@
       "Bash(echo \"name:  $\\(git config user.name\\)\")",
       "Bash(echo \"email: $\\(git config user.email\\)\")",
       "Bash(git commit *)",
-      "PowerShell(pnpm install 2>&1)"
+      "PowerShell(pnpm install 2>&1)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m ' *)"
     ]
   }
 }
