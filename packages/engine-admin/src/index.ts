@@ -14,6 +14,7 @@ export { PagesScreen } from "./components/PagesScreen.js";
 export { PageEditorScreen } from "./components/PageEditorScreen.js";
 export { SettingsScreen } from "./components/SettingsScreen.js";
 export { MediaScreen } from "./components/MediaScreen.js";
+export { BroadcastScreen } from "./components/BroadcastScreen.js";
 export { BlockEditor } from "./components/BlockEditor.js";
 
 export { BLOCK_LABELS, createBlock } from "./labels.js";
@@ -24,6 +25,7 @@ export type {
   PageEditorScreenProps,
   SettingsScreenProps,
   MediaScreenProps,
+  BroadcastScreenProps,
   Block,
   Page,
   SiteSettings,

@@ -40,3 +40,11 @@ export interface MediaScreenProps {
   onUpload: (file: File) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
 }
+
+export interface BroadcastScreenProps {
+  /** How many people the broadcast will reach. */
+  recipientCount: number;
+  /** Who the recipients are, for example "parents". */
+  audienceLabel: string;
+  onSend: (subject: string, message: string) => Promise<void>;
+}

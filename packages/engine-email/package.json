@@ -2,6 +2,35 @@
   "name": "@swim-engine/engine-email",
   "version": "0.0.0",
   "private": true,
-  "description": "Resend wrapper, React Email templates and parent broadcast. Built in build-order step 4 (not yet implemented).",
-  "type": "module"
+  "description": "Resend wrapper, React Email templates and parent broadcast sending.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19"
+  },
+  "dependencies": {
+    "@react-email/components": "^0.0.32",
+    "@react-email/render": "^1.0.6",
+    "resend": "^4.5.1",
+    "@swim-engine/engine-contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.9.3"
+  }
 }
