@@ -1,26 +1,26 @@
-/** Shared SplashNSwim brand pieces: the wordmark and the wave divider. */
+/** Shared SplashNSwim brand pieces: the logo, a text wordmark, and waves. */
+
+/** The real SplashNSwim logo (wordmark + axolotl). Used on light backgrounds. */
+export function Logo({ className = "" }: { className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/brand/logo.png"
+      alt="SplashNSwim"
+      className={`w-auto ${className}`}
+    />
+  );
+}
 
 /**
- * The SplashNSwim wordmark, recreated as text so it stays crisp at any size:
- * ocean "Splash", navy "N", coral "Swim". The "light" tone is for dark
- * backgrounds (the footer).
+ * A text wordmark for dark backgrounds (the logo's navy parts would vanish
+ * there): "Splash" and "N" in white, "Swim" in coral.
  */
-export function Wordmark({
-  tone = "brand",
-  className = "",
-}: {
-  tone?: "brand" | "light";
-  className?: string;
-}) {
-  const splash = tone === "light" ? "text-surface" : "text-ocean";
-  const n = tone === "light" ? "text-surface" : "text-navy";
+export function WordmarkLight({ className = "" }: { className?: string }) {
   return (
-    <span
-      className={`font-display font-bold tracking-tight ${className}`}
-      aria-label="SplashNSwim"
-    >
-      <span className={splash}>Splash</span>
-      <span className={n}>N</span>
+    <span className={`font-display font-bold tracking-tight ${className}`} aria-label="SplashNSwim">
+      <span className="text-surface">Splash</span>
+      <span className="text-surface">N</span>
       <span className="text-coral">Swim</span>
     </span>
   );
@@ -28,7 +28,7 @@ export function Wordmark({
 
 /**
  * A soft wave divider between sections, echoing water. `fillClass` sets the
- * colour of the wave (the section it flows into); `flip` points it upward.
+ * colour the wave flows into; `flip` points it upward.
  */
 export function Wave({
   fillClass = "fill-surface",
@@ -44,7 +44,7 @@ export function Wave({
       viewBox="0 0 1440 48"
       preserveAspectRatio="none"
       aria-hidden
-      className={`block h-8 w-full ${flip ? "rotate-180" : ""} ${className}`}
+      className={`block h-8 w-full sm:h-12 ${flip ? "rotate-180" : ""} ${className}`}
     >
       <path
         className={fillClass}

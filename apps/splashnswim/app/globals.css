@@ -3,21 +3,20 @@
 @tailwind utilities;
 
 /*
- * SplashNSwim design tokens. This is the one place brand colours live.
- * Components use the semantic Tailwind names (bg-ocean, text-coral, bg-navy,
- * and so on) that map to these values; they never use raw hex. The palette is
- * taken from the real logo: ocean-blue "Splash", navy "N", coral "Swim", plus
- * the pink axolotl mascot and its sunshine armbands.
+ * SplashNSwim design tokens. One place for brand colours, taken from the real
+ * logo: ocean-blue "Splash", navy "N", coral "Swim", the pink axolotl mascot
+ * and its sunshine armbands. Components use the semantic Tailwind names
+ * (bg-ocean, text-coral, ...) and never raw hex.
  */
 :root {
-  --color-ocean: #2f9bd8;      /* "Splash" blue: primary, links */
-  --color-ocean-deep: #1f7fb8; /* hover / deeper water */
-  --color-navy: #21324b;       /* the "N", outlines, body text */
-  --color-coral: #f4796b;      /* "Swim" coral: calls to action */
-  --color-coral-deep: #e26254; /* coral hover */
-  --color-blossom: #f8aeb4;    /* axolotl pink: soft accents */
-  --color-sunshine: #f7a83c;   /* armband orange: small highlights */
-  --color-sky: #dcf1fb;        /* pale water: section backgrounds */
+  --color-ocean: #2f9bd8;
+  --color-ocean-deep: #1e7cb4;
+  --color-navy: #21324b;
+  --color-coral: #f4796b;
+  --color-coral-deep: #e15f51;
+  --color-blossom: #f8aeb4;
+  --color-sunshine: #f6a93b;
+  --color-sky: #e7f4fb;
   --color-surface: #ffffff;
 }
 
@@ -31,16 +30,32 @@ h1, h2, h3, .font-display {
   font-family: var(--font-display), ui-rounded, "Segoe UI", system-ui, sans-serif;
 }
 
-/* Gentle bob for the hero mascot; stilled for reduced-motion users. */
+/* Keyboard focus is always visible. */
+:focus-visible {
+  outline: 3px solid var(--color-ocean);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Motion: a gentle mascot bob, rising bubbles, and a soft load reveal. */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
 }
-.animate-float {
-  animation: float 5s ease-in-out infinite;
+@keyframes rise {
+  0% { transform: translateY(10px); opacity: 0; }
+  15% { opacity: 0.7; }
+  100% { transform: translateY(-130px); opacity: 0; }
 }
+@keyframes fadeUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-rise { animation: rise 7s ease-in infinite; }
+.reveal { animation: fadeUp 0.7s ease-out both; }
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-float {
-    animation: none;
-  }
+  .animate-float, .animate-rise, .reveal { animation: none; }
 }
