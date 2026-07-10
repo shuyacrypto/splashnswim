@@ -34,7 +34,7 @@ export function PublicBlocks({ blocks }: { blocks: Block[] }) {
 }
 
 function Container({ children }: { children: React.ReactNode }) {
-  return <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">{children}</div>;
+  return <div className="mx-auto max-w-5xl px-5 py-20 sm:py-28">{children}</div>;
 }
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
@@ -165,13 +165,12 @@ function renderBlock(block: Block, variant: RichVariant) {
       }
       return (
         <Container>
-          <div className="relative max-w-3xl">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -left-10 -top-10 h-28 w-28 rounded-full bg-coral/10 blur-2xl"
-            />
-            {block.heading ? <SectionHeading>{block.heading}</SectionHeading> : null}
-            <p className="mt-4 whitespace-pre-wrap text-lg leading-relaxed text-navy/75">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="mx-auto mb-6 block h-1.5 w-12 rounded-full bg-coral" aria-hidden />
+            {block.heading ? (
+              <h2 className="text-3xl font-bold text-navy sm:text-4xl">{block.heading}</h2>
+            ) : null}
+            <p className="mx-auto mt-6 max-w-2xl whitespace-pre-wrap text-xl leading-relaxed text-navy/80">
               {block.content}
             </p>
           </div>

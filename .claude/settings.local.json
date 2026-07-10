@@ -40,7 +40,8 @@
       "Bash(grep -iE \"\\\\.html$|_flat|/sn\\\\.\")",
       "Bash(curl -s -o /dev/null -w \"home %{http_code}\\\\n\" http://localhost:3007/)",
       "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 5; Write-Output \"EXIT=$LASTEXITCODE\")",
-      "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 8; Write-Output \"EXIT=$LASTEXITCODE\")"
+      "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 8; Write-Output \"EXIT=$LASTEXITCODE\")",
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 3007 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Sort-Object -Unique | ForEach-Object { try { Stop-Process -Id $_ -Force -ErrorAction Stop; \"killed $_\" } catch {} } } else { \"no listener on 3007\" })"
     ]
   }
 }

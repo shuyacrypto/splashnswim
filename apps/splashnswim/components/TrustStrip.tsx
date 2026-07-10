@@ -15,8 +15,19 @@ export function TrustStrip() {
       <div className="grid gap-4 rounded-3xl border-2 border-sky bg-surface p-6 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
         {ITEMS.map((item) => (
           <div key={item.label} className="flex items-start gap-3">
-            <span className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-ocean/10 text-sm font-bold text-ocean">
-              ✓
+            <span className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-ocean/10 text-ocean">
+              <svg
+                viewBox="0 0 20 20"
+                aria-hidden
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 10.5l4 4 8-9" />
+              </svg>
             </span>
             <div>
               <p className="font-display text-sm font-bold text-navy">{item.label}</p>
