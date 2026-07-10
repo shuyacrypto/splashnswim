@@ -4,34 +4,28 @@ import { useState } from "react";
 import type { Block } from "@swim-engine/engine-contracts";
 import { BLOCK_LABELS, createBlock } from "../labels.js";
 import { BlockFields } from "./blocks/editors.js";
-import { Button, Card, ErrorText, SelectField } from "./ui.js";
+import { Button, Card, SelectField } from "./ui.js";
 import { move, removeAt, replaceAt } from "../array.js";
-import { errorMessages } from "../helpers.js";
 
 const BLOCK_TYPE_OPTIONS = (
   Object.keys(BLOCK_LABELS) as Block["type"][]
 ).map((type) => ({ value: type, label: BLOCK_LABELS[type] }));
 
+/**
+ * A controlled editor for a page's content blocks. The parent owns the block
+ * list and saving, so the whole page saves with a single action.
+ */
 export function BlockEditor({
-  initialBlocks,
-  onSave,
+  blocks,
+  onChange,
 }: {
-  initialBlocks: Block[];
-  onSave: (blocks: Block[]) => Promise<void>;
+  blocks: Block[];
+  onChange: (blocks: Block[]) => void;
 }) {
-  const [blocks, setBlocks] = useState<Block[]>(initialBlocks);
   const [newType, setNewType] = useState<Block["type"]>("hero");
-  const [errors, setErrors] = useState<string[]>([]);
-  const [busy, setBusy] = useState(false);
-  const [savedMessage, setSavedMessage] = useState("");
-
-  function update(next: Block[]) {
-    setBlocks(next);
-    setSavedMessage("");
-  }
 
   function addBlock() {
-    update([...blocks, createBlock(newType, crypto.randomUUID())]);
+    onChange([...blocks, createBlock(newType, crypto.randomUUID())]);
   }
 
   function deleteBlock(index: number) {
@@ -39,20 +33,7 @@ export function BlockEditor({
     if (!window.confirm(`Remove this "${label}" block? This cannot be undone once saved.`)) {
       return;
     }
-    update(removeAt(blocks, index));
-  }
-
-  async function save() {
-    setErrors([]);
-    setBusy(true);
-    try {
-      await onSave(blocks);
-      setSavedMessage("Saved.");
-    } catch (error) {
-      setErrors(errorMessages(error));
-    } finally {
-      setBusy(false);
-    }
+    onChange(removeAt(blocks, index));
   }
 
   return (
@@ -60,21 +41,21 @@ export function BlockEditor({
       {blocks.map((block, index) => (
         <Card key={block.id}>
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-slate-800">
+            <span className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">
               {BLOCK_LABELS[block.type]}
             </span>
             <div className="flex gap-2">
               <Button
                 variant="secondary"
                 disabled={index === 0}
-                onClick={() => update(move(blocks, index, index - 1))}
+                onClick={() => onChange(move(blocks, index, index - 1))}
               >
                 Move up
               </Button>
               <Button
                 variant="secondary"
                 disabled={index === blocks.length - 1}
-                onClick={() => update(move(blocks, index, index + 1))}
+                onClick={() => onChange(move(blocks, index, index + 1))}
               >
                 Move down
               </Button>
@@ -85,13 +66,13 @@ export function BlockEditor({
           </div>
           <BlockFields
             block={block}
-            onChange={(next) => update(replaceAt(blocks, index, next))}
+            onChange={(next) => onChange(replaceAt(blocks, index, next))}
           />
         </Card>
       ))}
 
       {blocks.length === 0 ? (
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-[var(--admin-muted,#64748b)]">
           This page has no content blocks yet. Add one below.
         </p>
       ) : null}
@@ -111,17 +92,6 @@ export function BlockEditor({
           </Button>
         </div>
       </Card>
-
-      <ErrorText messages={errors} />
-
-      <div className="flex items-center gap-3">
-        <Button onClick={save} disabled={busy}>
-          {busy ? "Saving..." : "Save content"}
-        </Button>
-        {savedMessage ? (
-          <span className="text-sm text-green-700">{savedMessage}</span>
-        ) : null}
-      </div>
     </div>
   );
 }

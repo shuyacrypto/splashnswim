@@ -44,31 +44,37 @@ export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-lg font-semibold">Site settings</h1>
+      <h1 className="font-display text-2xl font-bold text-[var(--admin-text,#0f172a)]">Site settings</h1>
 
       <ErrorText messages={errors} />
 
       <Card>
-        <h2 className="text-sm font-semibold text-slate-800">School details</h2>
+        <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">School details</h2>
         <TextField label="School name" value={schoolName} onChange={setSchoolName} />
         <TextField label="Contact email" type="email" value={contactEmail} onChange={setContactEmail} />
         <TextField label="Contact phone (optional)" value={contactPhone} onChange={setContactPhone} />
       </Card>
 
       <Card>
-        <h2 className="text-sm font-semibold text-slate-800">Social links (optional)</h2>
+        <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Social links (optional)</h2>
         <TextField label="Facebook" type="url" value={facebook} onChange={setFacebook} />
         <TextField label="Instagram" type="url" value={instagram} onChange={setInstagram} />
         <TextField label="TikTok" type="url" value={tiktok} onChange={setTiktok} />
       </Card>
 
       <Card>
-        <h2 className="text-sm font-semibold text-slate-800">Modules</h2>
+        <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Modules</h2>
         <Toggle
           label="Enable booking and billing"
           checked={bookingEnabled}
           onChange={setBookingEnabled}
         />
+        <p className="text-sm text-[var(--admin-muted,#64748b)]">
+          Booking and billing is an optional add-on set up separately for your
+          school. When it is switched on, the booking screens appear in the
+          admin. If nothing changes after enabling it, the module is not set up
+          for your school yet.
+        </p>
       </Card>
 
       <div className="flex items-center gap-3">

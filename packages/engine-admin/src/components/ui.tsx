@@ -4,17 +4,20 @@ import type { ReactNode } from "react";
 import type { Cta, Image } from "@swim-engine/engine-contracts";
 
 /**
- * Generic admin UI primitives. The admin panel is deliberately plain and
- * identical for every school, so these use a fixed neutral style and are
- * never themed per client.
+ * Generic admin UI primitives. Layout, spacing and shape are fixed and the
+ * same for every school. Colours are driven by CSS variables with neutral
+ * fallbacks, so the engine stays design-agnostic by default while a consuming
+ * app may theme its own admin by setting the --admin-* variables.
  */
 
 type ButtonVariant = "primary" | "secondary" | "danger";
 
 const BUTTON_STYLES: Record<ButtonVariant, string> = {
-  primary: "bg-slate-900 text-white hover:bg-slate-700",
-  secondary: "border border-slate-300 bg-white text-slate-900 hover:bg-slate-50",
-  danger: "border border-red-300 bg-white text-red-700 hover:bg-red-50",
+  primary:
+    "bg-[var(--admin-primary,#0f172a)] text-[var(--admin-on-primary,#ffffff)] hover:bg-[var(--admin-primary-hover,#334155)] shadow-sm",
+  secondary:
+    "border border-[var(--admin-border,#e2e8f0)] bg-[var(--admin-surface,#ffffff)] text-[var(--admin-text,#0f172a)] hover:bg-[var(--admin-bg,#f8fafc)]",
+  danger: "border border-red-200 bg-white text-red-600 hover:bg-red-50",
 };
 
 export function Button({
@@ -35,12 +38,16 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${BUTTON_STYLES[variant]}`}
+      className={`inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${BUTTON_STYLES[variant]}`}
     >
       {children}
     </button>
   );
 }
+
+const INPUT_CLASS =
+  "block w-full rounded-xl border border-[var(--admin-border,#e2e8f0)] bg-[var(--admin-surface,#ffffff)] px-3.5 py-2.5 text-sm text-[var(--admin-text,#0f172a)] transition-colors focus:border-[var(--admin-primary,#0f172a)] focus:outline-none focus:ring-1 focus:ring-[var(--admin-primary,#0f172a)]";
+const LABEL_CLASS = "text-sm font-medium text-[var(--admin-muted,#64748b)]";
 
 export function TextField({
   label,
@@ -56,14 +63,14 @@ export function TextField({
   type?: "text" | "email" | "url" | "time";
 }) {
   return (
-    <label className="block space-y-1">
-      <span className="text-sm font-medium text-slate-700">{label}</span>
+    <label className="block space-y-1.5">
+      <span className={LABEL_CLASS}>{label}</span>
       <input
         type={type}
         value={value}
         placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
-        className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none"
+        className={INPUT_CLASS}
       />
     </label>
   );
@@ -81,13 +88,13 @@ export function TextAreaField({
   rows?: number;
 }) {
   return (
-    <label className="block space-y-1">
-      <span className="text-sm font-medium text-slate-700">{label}</span>
+    <label className="block space-y-1.5">
+      <span className={LABEL_CLASS}>{label}</span>
       <textarea
         value={value}
         rows={rows}
         onChange={(event) => onChange(event.target.value)}
-        className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none"
+        className={INPUT_CLASS}
       />
     </label>
   );
@@ -105,12 +112,12 @@ export function SelectField({
   options: { value: string; label: string }[];
 }) {
   return (
-    <label className="block space-y-1">
-      <span className="text-sm font-medium text-slate-700">{label}</span>
+    <label className="block space-y-1.5">
+      <span className={LABEL_CLASS}>{label}</span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none"
+        className={INPUT_CLASS}
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -132,21 +139,21 @@ export function Toggle({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex items-center gap-2">
+    <label className="flex items-center gap-2.5">
       <input
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="h-4 w-4 rounded border-slate-300"
+        className="h-5 w-5 rounded-md border-[var(--admin-border,#e2e8f0)] accent-[var(--admin-primary,#0f172a)]"
       />
-      <span className="text-sm text-slate-700">{label}</span>
+      <span className="text-sm font-medium text-[var(--admin-text,#0f172a)]">{label}</span>
     </label>
   );
 }
 
 export function Card({ children }: { children: ReactNode }) {
   return (
-    <div className="space-y-3 rounded-lg border border-slate-200 bg-white p-4">
+    <div className="space-y-3.5 rounded-2xl border border-[var(--admin-border,#e2e8f0)] bg-[var(--admin-surface,#ffffff)] p-5 shadow-sm">
       {children}
     </div>
   );
@@ -155,7 +162,7 @@ export function Card({ children }: { children: ReactNode }) {
 export function ErrorText({ messages }: { messages: string[] }) {
   if (messages.length === 0) return null;
   return (
-    <ul className="list-disc space-y-1 rounded-md bg-red-50 py-2 pl-8 pr-3 text-sm text-red-700">
+    <ul className="list-disc space-y-1 rounded-xl bg-red-50 py-2 pl-8 pr-3 text-sm text-red-700">
       {messages.map((message, index) => (
         <li key={index}>{message}</li>
       ))}
@@ -190,7 +197,7 @@ export function Row({
   onRemove: () => void;
 }) {
   return (
-    <div className="space-y-2 rounded-md border border-slate-200 p-3">
+    <div className="space-y-2 rounded-xl border border-[var(--admin-border,#e2e8f0)] p-3">
       <div className="flex justify-end">
         <button
           type="button"
@@ -225,8 +232,8 @@ export function CtaFields({
     );
   };
   return (
-    <fieldset className="space-y-2 rounded-md border border-slate-200 p-3">
-      <legend className="px-1 text-xs font-medium text-slate-500">{legend}</legend>
+    <fieldset className="space-y-2 rounded-xl border border-[var(--admin-border,#e2e8f0)] p-3">
+      <legend className="px-1 text-xs font-medium text-[var(--admin-muted,#64748b)]">{legend}</legend>
       <TextField label="Button label" value={label} onChange={(v) => update(v, href)} />
       <TextField label="Button link" value={href} onChange={(v) => update(label, v)} />
     </fieldset>

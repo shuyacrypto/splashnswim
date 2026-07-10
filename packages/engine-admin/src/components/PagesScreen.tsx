@@ -44,12 +44,12 @@ export function PagesScreen({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-lg font-semibold">Pages</h1>
+      <h1 className="font-display text-2xl font-bold text-[var(--admin-text,#0f172a)]">Pages</h1>
 
       <ErrorText messages={errors} />
 
       <Card>
-        <h2 className="text-sm font-semibold text-slate-800">Create a new page</h2>
+        <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Create a new page</h2>
         <TextField
           label="Title"
           value={title}
@@ -77,11 +77,11 @@ export function PagesScreen({
                 <div>
                   <a
                     href={editHref(page.id)}
-                    className="text-sm font-semibold text-slate-900 hover:underline"
+                    className="text-sm font-semibold text-[var(--admin-text,#0f172a)] hover:underline"
                   >
                     {page.title}
                   </a>
-                  <p className="text-xs text-slate-500">/{page.slug}</p>
+                  <p className="text-xs text-[var(--admin-muted,#64748b)]">/{page.slug}</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <span

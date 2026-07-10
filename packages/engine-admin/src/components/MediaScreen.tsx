@@ -41,12 +41,12 @@ export function MediaScreen({ items, publicUrl, onUpload, onDelete }: MediaScree
 
   return (
     <div className="space-y-6">
-      <h1 className="text-lg font-semibold">Images</h1>
+      <h1 className="font-display text-2xl font-bold text-[var(--admin-text,#0f172a)]">Images</h1>
 
       <ErrorText messages={errors} />
 
       <Card>
-        <h2 className="text-sm font-semibold text-slate-800">Upload an image</h2>
+        <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Upload an image</h2>
         <input
           ref={fileInput}
           type="file"
