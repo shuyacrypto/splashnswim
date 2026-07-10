@@ -46,7 +46,7 @@ function renderBlock(block: Block, variant: RichVariant) {
     case "hero":
       return (
         <>
-          <div className="relative flex min-h-[86vh] flex-col justify-center overflow-hidden bg-gradient-to-b from-ocean-deep via-ocean-deep to-navy">
+          <div className="relative overflow-hidden bg-gradient-to-b from-ocean-deep via-ocean-deep to-navy">
             <LightRays />
             <Bubbles />
             {/* sunlit surface glow */}
