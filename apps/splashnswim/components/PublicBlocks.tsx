@@ -54,54 +54,57 @@ function renderBlock(block: Block, variant: RichVariant) {
       const photo = block.backgroundImage?.src ? block.backgroundImage : null;
       return (
         <>
-          <div className="relative overflow-hidden bg-gradient-to-b from-foam via-surface to-aqua/40">
-            <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-32 pt-16 sm:px-8 sm:pb-44 sm:pt-24 lg:grid-cols-[1.03fr_0.97fr] lg:gap-16">
+          <div className="relative overflow-hidden bg-gradient-to-b from-ocean via-ocean-deep to-abyss">
+            <Caustics />
+            <Bubbles />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-abyss/70 via-abyss/15 to-transparent" />
+            <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-32 pt-16 sm:px-8 sm:pb-44 sm:pt-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
               {/* Left: message */}
               <div>
-                <p className="rise text-xs font-bold uppercase tracking-eyebrow text-ocean-deep">
+                <p className="rise inline-block rounded-full bg-surface/15 px-4 py-1.5 text-xs font-bold uppercase tracking-eyebrow text-surface ring-1 ring-surface/25 backdrop-blur">
                   Private 1-to-1 tuition &middot; Essex
                 </p>
-                <h1 className="rise-2 mt-5 text-balance font-display text-4xl font-bold leading-[1.05] text-ink sm:text-5xl lg:text-6xl">
+                <h1 className="rise-2 mt-6 text-balance font-display text-4xl font-bold leading-[1.05] text-surface drop-shadow-md sm:text-5xl lg:text-6xl">
                   {block.heading}
                 </h1>
                 <span className="rise-2 mt-5 block h-2 w-24 rounded-full bg-coral" aria-hidden />
                 {block.subheading ? (
-                  <p className="rise-3 mt-6 max-w-md text-lg leading-relaxed text-slate">
+                  <p className="rise-3 mt-6 max-w-md text-lg leading-relaxed text-surface/85">
                     {block.subheading}
                   </p>
                 ) : null}
                 <div className="rise-3 mt-8 flex flex-wrap items-center gap-4">
                   {block.primaryCta ? (
-                    <a href={block.primaryCta.href} className="rounded-full bg-coral px-7 py-3.5 font-bold text-ink shadow-lg shadow-coral/20 transition-all hover:-translate-y-0.5 hover:bg-coral-deep hover:text-surface">
+                    <a href={block.primaryCta.href} className="rounded-full bg-coral px-7 py-3.5 font-bold text-ink shadow-lg transition-all hover:-translate-y-0.5 hover:bg-coral-deep hover:text-surface">
                       {block.primaryCta.label}
                     </a>
                   ) : null}
                   {block.secondaryCta ? (
-                    <a href={block.secondaryCta.href} className="rounded-full border-2 border-ocean px-7 py-3.5 font-bold text-ocean-deep transition-colors hover:bg-ocean hover:text-surface">
+                    <a href={block.secondaryCta.href} className="rounded-full bg-surface/10 px-7 py-3.5 font-bold text-surface ring-1 ring-surface/40 backdrop-blur transition-colors hover:bg-surface/20">
                       {block.secondaryCta.label}
                     </a>
                   ) : null}
                 </div>
-                <p className="mt-8 text-sm font-semibold text-slate">
+                <p className="mt-8 text-sm font-semibold text-surface/70">
                   Eastwood &middot; Benfleet &middot; Rochford
                 </p>
               </div>
 
               {/* Right: framed pool panel (holds a photo when one is set) */}
               <div className="rise-3 relative">
-                <div aria-hidden className="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-coral/20 blur-2xl" />
-                <div aria-hidden className="absolute -bottom-8 -left-8 h-44 w-44 rounded-full bg-aqua/30 blur-2xl" />
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-ink/10">
+                <div aria-hidden className="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-coral/25 blur-2xl" />
+                <div aria-hidden className="absolute -bottom-8 -left-8 h-44 w-44 rounded-full bg-aqua/40 blur-2xl" />
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-surface/20">
                   {photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={photo.src} alt={photo.alt} className="absolute inset-0 h-full w-full object-cover" />
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-aqua via-ocean to-abyss">
+                    <div className="absolute inset-0 bg-gradient-to-br from-aqua via-ocean to-ocean-deep">
                       <Caustics />
                       <Bubbles />
-                      <div aria-hidden className="absolute inset-y-0 left-[30%] w-px bg-surface/20" />
-                      <div aria-hidden className="absolute inset-y-0 left-[55%] w-px bg-surface/15" />
-                      <div aria-hidden className="absolute inset-y-0 left-[78%] w-px bg-surface/10" />
+                      <div aria-hidden className="absolute inset-y-0 left-[30%] w-px bg-surface/25" />
+                      <div aria-hidden className="absolute inset-y-0 left-[55%] w-px bg-surface/20" />
+                      <div aria-hidden className="absolute inset-y-0 left-[78%] w-px bg-surface/15" />
                     </div>
                   )}
                 </div>

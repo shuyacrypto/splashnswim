@@ -38,31 +38,31 @@ values (
     {
       "id": "home_prices",
       "type": "pricing_table",
-      "heading": "Our lessons",
+      "heading": "Private lessons by pool",
       "tiers": [
         {
-          "name": "Children 1-to-1",
-          "price": "£99.99 / month",
-          "description": "Private weekly lessons for ages 4 and up.",
-          "features": ["A dedicated teacher every week", "Choice of Eastwood, Benfleet or Rochford", "A plan tailored to your child", "Calm, distraction-free private pool"],
+          "name": "Rochford",
+          "price": "£100 / month",
+          "description": "One-to-one lessons at our Rochford pool.",
+          "features": ["A dedicated teacher every week", "Weekly private lessons", "A plan tailored to your swimmer", "Calm, distraction-free pool"],
+          "highlighted": false,
+          "cta": { "label": "Book at Rochford", "href": "https://octoswim.co.uk/book/splashnswim" }
+        },
+        {
+          "name": "Benfleet",
+          "price": "£110 / month",
+          "description": "One-to-one lessons at our Benfleet pool.",
+          "features": ["A dedicated teacher every week", "Weekly private lessons", "A plan tailored to your swimmer", "Calm, distraction-free pool"],
           "highlighted": true,
-          "cta": { "label": "Book a lesson", "href": "https://octoswim.co.uk/book/splashnswim" }
+          "cta": { "label": "Book at Benfleet", "href": "https://octoswim.co.uk/book/splashnswim" }
         },
         {
-          "name": "Adult 1-to-1",
-          "price": "£99.99 / month",
-          "description": "Evening lessons for ages 16 and up.",
-          "features": ["One-to-one with your own teacher", "Evenings, 7pm to 8pm", "Build confidence, technique or stamina", "Available at all three pools"],
+          "name": "Eastwood",
+          "price": "£120 / month",
+          "description": "One-to-one lessons at our Eastwood pool.",
+          "features": ["A dedicated teacher every week", "Weekly private lessons", "A plan tailored to your swimmer", "Calm, distraction-free pool"],
           "highlighted": false,
-          "cta": { "label": "Book a lesson", "href": "https://octoswim.co.uk/book/splashnswim" }
-        },
-        {
-          "name": "Additional needs 1-to-1",
-          "price": "From £99.99 / month",
-          "description": "Patient, fully tailored teaching.",
-          "features": ["Understanding, experienced teachers", "A quiet, private pool", "Lessons that move at your pace", "A calm, familiar routine"],
-          "highlighted": false,
-          "cta": { "label": "Book a lesson", "href": "https://octoswim.co.uk/book/splashnswim" }
+          "cta": { "label": "Book at Eastwood", "href": "https://octoswim.co.uk/book/splashnswim" }
         }
       ]
     },
