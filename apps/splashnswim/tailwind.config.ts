@@ -10,15 +10,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        ocean: "var(--color-ocean)",
-        "ocean-deep": "var(--color-ocean-deep)",
-        navy: "var(--color-navy)",
-        coral: "var(--color-coral)",
-        "coral-deep": "var(--color-coral-deep)",
-        blossom: "var(--color-blossom)",
-        sunshine: "var(--color-sunshine)",
-        sky: "var(--color-sky)",
-        surface: "var(--color-surface)",
+        ocean: "rgb(var(--color-ocean) / <alpha-value>)",
+        "ocean-deep": "rgb(var(--color-ocean-deep) / <alpha-value>)",
+        navy: "rgb(var(--color-navy) / <alpha-value>)",
+        coral: "rgb(var(--color-coral) / <alpha-value>)",
+        "coral-deep": "rgb(var(--color-coral-deep) / <alpha-value>)",
+        blossom: "rgb(var(--color-blossom) / <alpha-value>)",
+        sunshine: "rgb(var(--color-sunshine) / <alpha-value>)",
+        sky: "rgb(var(--color-sky) / <alpha-value>)",
+        surface: "rgb(var(--color-surface) / <alpha-value>)",
       },
       fontFamily: {
         display: ["var(--font-display)", "ui-rounded", "system-ui", "sans-serif"],

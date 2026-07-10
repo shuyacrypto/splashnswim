@@ -32,7 +32,9 @@
       "mcp__plugin_context-mode_context-mode__ctx_fetch_and_index",
       "Bash(rm -f s3007.css s3007.html s3007_flat.css splash.css splash_flat.css splash_home.html home.html s2.html)",
       "Bash(rm -f apps/splashnswim/s2.css apps/splashnswim/s2.html apps/splashnswim/s2_flat.css)",
-      "mcp__plugin_context-mode_context-mode__ctx_execute"
+      "mcp__plugin_context-mode_context-mode__ctx_execute",
+      "Bash(curl -s -o /dev/null -w \"home HTTP %{http_code}\\\\n\" http://localhost:3007/)",
+      "Bash(grep -iE \"\\\\.html$|_flat|sn\\\\.css\")"
     ]
   }
 }

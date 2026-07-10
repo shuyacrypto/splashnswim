@@ -3,26 +3,27 @@
 @tailwind utilities;
 
 /*
- * SplashNSwim design tokens. One place for brand colours, taken from the real
- * logo: ocean-blue "Splash", navy "N", coral "Swim", the pink axolotl mascot
- * and its sunshine armbands. Components use the semantic Tailwind names
- * (bg-ocean, text-coral, ...) and never raw hex.
+ * SplashNSwim design tokens, from the real logo: ocean-blue "Splash", navy
+ * "N", coral "Swim", the pink axolotl and its sunshine armbands. Stored as
+ * RGB channels (not hex) so Tailwind opacity modifiers like bg-blossom/20
+ * work. Components use the semantic Tailwind names (bg-ocean, text-coral, ...)
+ * and never raw hex.
  */
 :root {
-  --color-ocean: #2f9bd8;
-  --color-ocean-deep: #1e7cb4;
-  --color-navy: #21324b;
-  --color-coral: #f4796b;
-  --color-coral-deep: #e15f51;
-  --color-blossom: #f8aeb4;
-  --color-sunshine: #f6a93b;
-  --color-sky: #e7f4fb;
-  --color-surface: #ffffff;
+  --color-ocean: 47 155 216;
+  --color-ocean-deep: 30 124 180;
+  --color-navy: 33 50 75;
+  --color-coral: 244 121 107;
+  --color-coral-deep: 225 95 81;
+  --color-blossom: 248 174 180;
+  --color-sunshine: 246 169 59;
+  --color-sky: 231 244 251;
+  --color-surface: 255 255 255;
 }
 
 body {
-  background-color: var(--color-surface);
-  color: var(--color-navy);
+  background-color: rgb(var(--color-surface));
+  color: rgb(var(--color-navy));
   font-family: var(--font-body), ui-rounded, "Segoe UI", system-ui, sans-serif;
 }
 
@@ -32,7 +33,7 @@ h1, h2, h3, .font-display {
 
 /* Keyboard focus is always visible. */
 :focus-visible {
-  outline: 3px solid var(--color-ocean);
+  outline: 3px solid rgb(var(--color-ocean));
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -54,7 +55,7 @@ h1, h2, h3, .font-display {
 
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-rise { animation: rise 7s ease-in infinite; }
-.reveal { animation: fadeUp 0.7s ease-out both; }
+.reveal { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-float, .animate-rise, .reveal { animation: none; }
