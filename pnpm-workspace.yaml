@@ -1,3 +1,14 @@
 packages:
   - "packages/*"
   - "apps/*"
+
+# sharp is Next's native image optimiser. Approving its build clears pnpm's
+# build-script gate.
+onlyBuiltDependencies:
+  - sharp
+
+# Pin one Supabase client version across every package. It must match the
+# @supabase/ssr helper's expected client type; the newest 2.11x line changed
+# that shape, so we hold at a compatible 2.45 build.
+overrides:
+  "@supabase/supabase-js": "2.45.4"

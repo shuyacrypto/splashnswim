@@ -14,10 +14,11 @@ out/
 # TypeScript build info
 *.tsbuildinfo
 
-# Environment files (never commit secrets)
+# Environment files (never commit secrets).
+# Real env files are ignored anywhere in the repo; *.example files are kept.
 .env
-.env.*
-!.env.example
+.env.local
+.env.*.local
 
 # Logs
 *.log

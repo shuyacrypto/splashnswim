@@ -6,6 +6,7 @@
  */
 
 export { createEmailer } from "./client.js";
+export { createLogEmailer } from "./log.js";
 export type {
   Emailer,
   EmailConfig,

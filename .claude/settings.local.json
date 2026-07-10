@@ -14,7 +14,21 @@
       "Bash(git commit *)",
       "PowerShell(pnpm install 2>&1)",
       "Bash(git add *)",
-      "Bash(git commit -q -m ' *)"
+      "Bash(git commit -q -m ' *)",
+      "Bash(git check-ignore *)",
+      "Bash(sed 's#.*/##')",
+      "Bash(pnpm why *)",
+      "PowerShell(pnpm typecheck 2>&1 | Select-String -Pattern \"error TS|Tasks:|Failed\" | Select-Object -Last 10; Write-Output \"EXITCODE=$LASTEXITCODE\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3210/login)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3210/)",
+      "Bash(curl -s http://localhost:3210/login)",
+      "Bash(grep -iE 'error|relation|does not exist|PGRST|table|pages' __TRACKED_VAR__/next-dev.log)",
+      "Bash(curl -s http://localhost:3210/)",
+      "Bash(grep -ivE 'Watchpack|DumpStack|swapfile|pagefile|Starting|Ready|Local:|Network:|Environments|Next.js|▲|^\\\\s*-|^\\\\s*✓' __TRACKED_VAR__/next-dev.log)",
+      "Bash(curl -s -o /dev/null -w \"/login -> HTTP %{http_code}\\\\n\" http://localhost:3210/login)",
+      "Bash(curl -s -o /dev/null -w \"/       -> HTTP %{http_code}\\\\n\" http://localhost:3210/)",
+      "Bash(grep -iE 'Could not find the table|does not exist|schema cache|PGRST|Module not found' __TRACKED_VAR__/next-dev.log)",
+      "PowerShell($conns = Get-NetTCPConnection -LocalPort 3210 -State Listen -ErrorAction SilentlyContinue; if \\($conns\\) { $conns.OwningProcess | Sort-Object -Unique | ForEach-Object { try { Stop-Process -Id $_ -Force -ErrorAction Stop; Write-Output \"stopped pid $_\" } catch {} } } else { Write-Output \"no listener on 3210\" })"
     ]
   }
 }
