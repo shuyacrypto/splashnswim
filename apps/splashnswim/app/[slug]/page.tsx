@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPageBySlug, getSiteSettings } from "@swim-engine/engine-cms";
+import { getPageBySlug } from "@swim-engine/engine-cms";
 import { getPublicClient } from "@/lib/supabase/public";
 import { PublicShell } from "@/components/PublicShell";
 import { PublicBlocks } from "@/components/PublicBlocks";
@@ -13,15 +13,12 @@ export default async function MarketingPage({
 }) {
   const { slug } = await params;
   const client = getPublicClient();
-  const [page, settings] = await Promise.all([
-    getPageBySlug(client, slug),
-    getSiteSettings(client),
-  ]);
+  const page = await getPageBySlug(client, slug);
 
   if (!page) notFound();
 
   return (
-    <PublicShell schoolName={settings?.schoolName ?? "SplashNSwim"}>
+    <PublicShell>
       <PublicBlocks blocks={page.blocks} />
     </PublicShell>
   );

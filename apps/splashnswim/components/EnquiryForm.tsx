@@ -29,14 +29,14 @@ export function EnquiryForm() {
 
   if (status === "sent") {
     return (
-      <p className="rounded-xl bg-accent-soft px-4 py-3 text-sm font-medium text-accent">
+      <p className="rounded-xl bg-blossom/50 px-4 py-3 text-sm font-bold text-coral-deep">
         Thank you. Your enquiry has been sent.
       </p>
     );
   }
 
   const fieldClasses =
-    "block w-full rounded-xl border border-aqua/60 bg-surface px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none";
+    "block w-full rounded-xl border-2 border-sky bg-surface px-3 py-2 text-sm text-navy focus:border-ocean focus:outline-none";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
@@ -67,7 +67,7 @@ export function EnquiryForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-surface transition-colors hover:bg-accent/90 disabled:opacity-50"
+        className="rounded-full bg-coral px-5 py-2.5 text-sm font-bold text-surface transition-colors hover:bg-coral-deep disabled:opacity-50"
       >
         {status === "sending" ? "Sending..." : "Send enquiry"}
       </button>

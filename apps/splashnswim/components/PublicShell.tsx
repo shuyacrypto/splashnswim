@@ -1,41 +1,33 @@
 import type { ReactNode } from "react";
+import { Wave, Wordmark } from "./Brand";
 
 const BOOK_URL = "https://octoswim.co.uk/book/splashnswim";
 
-/** The bespoke SplashNSwim page frame: branded header and footer. */
-export function PublicShell({
-  schoolName,
-  children,
-}: {
-  schoolName: string;
-  children: ReactNode;
-}) {
+/** The bespoke SplashNSwim page frame: branded header and a wavy navy footer. */
+export function PublicShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen">
-      <header className="sticky top-0 z-10 border-b border-aqua/40 bg-surface/90 backdrop-blur">
+    <div className="min-h-screen bg-surface">
+      <header className="sticky top-0 z-20 border-b border-sky bg-surface/95 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
           <a href="/" className="flex items-center gap-2">
-            <span
+            <img
+              src="/brand/axolotl-hero.png"
+              alt=""
+              className="h-9 w-9 object-contain"
               aria-hidden
-              className="grid h-9 w-9 place-items-center rounded-full bg-accent text-lg text-surface shadow-sm"
-            >
-              {/* Axolotl mascot stand-in */}
-              🦎
-            </span>
-            <span className="text-xl font-extrabold tracking-tight text-primary">
-              {schoolName}
-            </span>
+            />
+            <Wordmark className="text-2xl" />
           </a>
-          <nav className="flex items-center gap-5 text-sm font-semibold text-ink">
-            <a href="/" className="hover:text-primary">
+          <nav className="flex items-center gap-6 text-sm font-bold text-navy">
+            <a href="/" className="hover:text-ocean">
               Home
             </a>
-            <a href="/about" className="hover:text-primary">
+            <a href="/about" className="hover:text-ocean">
               About
             </a>
             <a
               href={BOOK_URL}
-              className="rounded-full bg-accent px-4 py-2 text-surface shadow-sm transition-colors hover:bg-accent/90"
+              className="rounded-full bg-coral px-5 py-2.5 text-surface shadow-sm transition-colors hover:bg-coral-deep"
             >
               Book now
             </a>
@@ -45,32 +37,33 @@ export function PublicShell({
 
       <main>{children}</main>
 
-      <footer className="mt-16 border-t border-aqua/40 bg-surface">
-        <div className="mx-auto grid max-w-5xl gap-6 px-5 py-10 sm:grid-cols-3">
+      <footer className="mt-4 bg-navy text-surface">
+        <Wave fillClass="fill-navy" flip />
+        <div className="mx-auto grid max-w-5xl gap-8 px-5 py-12 sm:grid-cols-3">
           <div>
-            <p className="text-lg font-extrabold text-primary">{schoolName}</p>
-            <p className="mt-1 text-sm text-muted">
+            <Wordmark tone="light" className="text-2xl" />
+            <p className="mt-2 text-sm text-sky/80">
               Premium one-to-one swimming lessons.
             </p>
           </div>
-          <div className="text-sm text-muted">
-            <p className="font-semibold text-ink">Our pools</p>
-            <p className="mt-1">Eastwood</p>
-            <p>Benfleet</p>
-            <p>Rochford</p>
+          <div className="text-sm">
+            <p className="font-display font-semibold text-sky">Our pools</p>
+            <p className="mt-2 text-surface/80">Eastwood</p>
+            <p className="text-surface/80">Benfleet</p>
+            <p className="text-surface/80">Rochford</p>
           </div>
-          <div className="text-sm text-muted">
-            <p className="font-semibold text-ink">Get started</p>
-            <a href={BOOK_URL} className="mt-1 block text-primary hover:underline">
+          <div className="text-sm">
+            <p className="font-display font-semibold text-sky">Get started</p>
+            <a href={BOOK_URL} className="mt-2 block text-coral hover:underline">
               Book a lesson
             </a>
-            <a href="/admin" className="mt-1 block hover:text-primary">
+            <a href="/admin" className="mt-1 block text-surface/80 hover:text-surface">
               Admin
             </a>
           </div>
         </div>
-        <div className="border-t border-aqua/30 py-4 text-center text-xs text-muted">
-          &copy; {schoolName}. Made with care in Essex.
+        <div className="border-t border-white/10 py-4 text-center text-xs text-surface/60">
+          &copy; SplashNSwim. Made with care in Essex.
         </div>
       </footer>
     </div>

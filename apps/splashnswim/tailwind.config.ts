@@ -10,19 +10,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "var(--color-ink)",
-        muted: "var(--color-muted)",
+        ocean: "var(--color-ocean)",
+        "ocean-deep": "var(--color-ocean-deep)",
+        navy: "var(--color-navy)",
+        coral: "var(--color-coral)",
+        "coral-deep": "var(--color-coral-deep)",
+        blossom: "var(--color-blossom)",
+        sunshine: "var(--color-sunshine)",
+        sky: "var(--color-sky)",
         surface: "var(--color-surface)",
-        "surface-muted": "var(--color-surface-muted)",
-        primary: "var(--color-primary)",
-        "primary-dark": "var(--color-primary-dark)",
-        accent: "var(--color-accent)",
-        "accent-soft": "var(--color-accent-soft)",
-        aqua: "var(--color-aqua)",
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "ui-rounded", "system-ui", "sans-serif"],
+        body: ["var(--font-body)", "ui-rounded", "system-ui", "sans-serif"],
       },
       borderRadius: {
         xl: "1rem",
         "2xl": "1.5rem",
+        "3xl": "2rem",
       },
     },
   },
