@@ -8,7 +8,11 @@
       "PowerShell(\\(Get-Command pnpm\\).Source; pnpm help | Select-Object -First 3)",
       "Bash(git init *)",
       "Bash(git config *)",
-      "PowerShell(pnpm typecheck 2>&1)"
+      "PowerShell(pnpm typecheck 2>&1)",
+      "Bash(echo \"name:  $\\(git config user.name\\)\")",
+      "Bash(echo \"email: $\\(git config user.email\\)\")",
+      "Bash(git commit *)",
+      "PowerShell(pnpm install 2>&1)"
     ]
   }
 }
