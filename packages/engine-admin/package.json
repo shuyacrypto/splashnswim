@@ -2,6 +2,36 @@
   "name": "@swim-engine/engine-admin",
   "version": "0.0.0",
   "private": true,
-  "description": "The constrained, generic-branded admin panel. Built in build-order step 3 (not yet implemented).",
-  "type": "module"
+  "description": "The constrained, generic-branded admin panel as a kit of React screens. Prop-driven; wired to engine-cms by the consuming app.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
+  },
+  "dependencies": {
+    "@swim-engine/engine-contracts": "workspace:*",
+    "@swim-engine/engine-cms": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.9.3"
+  }
 }
