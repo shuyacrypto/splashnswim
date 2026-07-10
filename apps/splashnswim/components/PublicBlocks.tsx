@@ -2,6 +2,7 @@ import type { Block } from "@swim-engine/engine-contracts";
 import { EnquiryForm } from "./EnquiryForm";
 import { Waves, Bubbles, Caustics } from "./Brand";
 import { TrustRow } from "./TrustStrip";
+import { IconCheck, IconShield } from "./Icons";
 
 type RichVariant = "light" | "deep";
 
@@ -40,11 +41,12 @@ function Heading({ children, className = "" }: { children: React.ReactNode; clas
   return <h2 className={`text-balance text-3xl font-bold leading-tight sm:text-4xl ${className}`}>{children}</h2>;
 }
 
-function Check({ className = "text-aqua" }: { className?: string }) {
+/** A premium marker for feature lists: a fine check in a soft aqua disc. */
+function FeatureMarker() {
   return (
-    <svg viewBox="0 0 20 20" aria-hidden className={`mt-0.5 h-5 w-5 flex-none ${className}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 10.5l4 4 8-9" />
-    </svg>
+    <span className="mt-0.5 grid h-5 w-5 flex-none place-items-center rounded-full bg-aqua/20 text-ocean-deep">
+      <IconCheck className="h-3 w-3" />
+    </span>
   );
 }
 
@@ -111,11 +113,11 @@ function renderBlock(block: Block, variant: RichVariant) {
                 {/* floating credibility badge */}
                 <div className="absolute -bottom-5 left-4 flex items-center gap-3 rounded-2xl bg-surface p-4 shadow-xl ring-1 ring-ink/5 sm:-left-6">
                   <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-coral/15 text-coral-deep">
-                    <svg viewBox="0 0 20 20" aria-hidden className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 10.5l4 4 8-9" /></svg>
+                    <IconShield className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="font-display text-sm font-bold text-ink">One to one, always</p>
-                    <p className="text-xs text-slate">Every lesson is private</p>
+                    <p className="font-display text-sm font-bold text-ink">Qualified and safe</p>
+                    <p className="text-xs text-slate">STA, DBS checked, first aid</p>
                   </div>
                 </div>
               </div>
@@ -166,10 +168,15 @@ function renderBlock(block: Block, variant: RichVariant) {
       return (
         <Container>
           {block.heading ? <Heading className="mb-8 text-center text-ink">{block.heading}</Heading> : null}
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
             {block.images.map((image, index) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={index} src={image.src} alt={image.alt} className="aspect-[4/5] w-full rounded-2xl object-cover shadow-sm" />
+              <figure key={index}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={image.src} alt={image.alt} className="aspect-[4/3] w-full rounded-2xl object-cover shadow-sm" />
+                {image.caption ? (
+                  <figcaption className="mt-3 text-center font-display text-base font-bold text-ink">{image.caption}</figcaption>
+                ) : null}
+              </figure>
             ))}
           </div>
         </Container>
@@ -218,7 +225,7 @@ function renderBlock(block: Block, variant: RichVariant) {
                   <p className="mt-5 font-display text-4xl font-bold text-ocean">{tier.price}</p>
                   <ul className="mt-6 flex-1 space-y-3 text-sm text-ink">
                     {tier.features.map((feature, i) => (
-                      <li key={i} className="flex gap-3"><Check /><span>{feature}</span></li>
+                      <li key={i} className="flex gap-3"><FeatureMarker /><span>{feature}</span></li>
                     ))}
                   </ul>
                   {tier.cta ? (

@@ -55,7 +55,7 @@ values (
           "price": "£100 / month",
           "description": "One-to-one lessons at our Ashingdon pool.",
           "features": ["A dedicated teacher every week", "Priced on four lessons a month", "Adjusted for closures or five-week months", "A plan tailored to your swimmer"],
-          "highlighted": false,
+          "highlighted": true,
           "cta": { "label": "Book at Ashingdon", "href": "https://octoswim.co.uk/book/splashnswim" }
         },
         {
@@ -201,7 +201,7 @@ values (
           "price": "£100 / month",
           "description": "One-to-one lessons at our Ashingdon pool.",
           "features": ["A dedicated teacher every week", "Priced on four lessons a month", "Adjusted for closures or five-week months", "Children, Adult and SEN lessons"],
-          "highlighted": false,
+          "highlighted": true,
           "cta": { "label": "Book at Ashingdon", "href": "https://octoswim.co.uk/book/splashnswim" }
         },
         {
@@ -270,28 +270,16 @@ values (
       "type": "gallery",
       "heading": "Our three pools",
       "images": [
-        { "src": "/venue-ashingdon.jpg", "alt": "SplashNSwim Ashingdon pool" },
-        { "src": "/venue-benfleet.jpg", "alt": "SplashNSwim Benfleet pool" },
-        { "src": "/venue-eastwood.jpg", "alt": "SplashNSwim Eastwood pool" }
+        { "src": "/venue-ashingdon.jpg", "alt": "SplashNSwim Ashingdon pool", "caption": "Ashingdon · from £100 a month" },
+        { "src": "/venue-benfleet.jpg", "alt": "SplashNSwim Benfleet pool", "caption": "Benfleet · from £110 a month" },
+        { "src": "/venue-eastwood.jpg", "alt": "SplashNSwim Eastwood pool", "caption": "Eastwood · from £120 a month" }
       ]
     },
     {
-      "id": "venues_ashingdon",
+      "id": "venues_detail",
       "type": "rich_text",
-      "heading": "Ashingdon",
-      "content": "Our Ashingdon pool is a calm, welcoming place to learn, with one to one lessons from £100 a month. It is ideal for first lessons and for building early confidence in a gentle setting."
-    },
-    {
-      "id": "venues_benfleet",
-      "type": "rich_text",
-      "heading": "Benfleet",
-      "content": "Our Benfleet pool offers warm, private one to one lessons from £110 a month, for children, adults and SEN swimmers, on weekdays and weekends."
-    },
-    {
-      "id": "venues_eastwood",
-      "type": "rich_text",
-      "heading": "Eastwood",
-      "content": "Our Eastwood pool provides one to one lessons from £120 a month, with evening slots for adults and flexible times for children and SEN swimmers."
+      "heading": "Warm, private and close to home",
+      "content": "Every pool is warm, private and free of crowds, so lessons feel calm from the very first splash. All three offer one to one lessons for children, adults and swimmers with additional needs. Ashingdon is a gentle place to begin, while Benfleet and Eastwood add weekend slots and evening sessions for adults from 7pm to 8pm. Choose whichever is easiest for you, the teaching is the same wherever you swim."
     },
     {
       "id": "venues_cta",

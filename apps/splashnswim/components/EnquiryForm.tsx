@@ -18,6 +18,8 @@ export function EnquiryForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
   const [sentToEmail, setSentToEmail] = useState("");
+  // Honeypot: a field humans never see. If it is filled, a bot did it.
+  const [company, setCompany] = useState("");
 
   // Preselect the taster option when arriving from a "Book a taster" link.
   useEffect(() => {
@@ -27,6 +29,12 @@ export function EnquiryForm() {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    if (company.trim() !== "") {
+      // Honeypot tripped: accept quietly without sending anything.
+      setSentToEmail(email.trim());
+      setStatus("sent");
+      return;
+    }
     setStatus("sending");
     setError("");
     try {
@@ -75,6 +83,19 @@ export function EnquiryForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Honeypot: hidden from people, tempting to bots. Do not remove. */}
+      <div className="hidden" aria-hidden="true">
+        <label>
+          Company
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+          />
+        </label>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className={label}>Your name</span>
