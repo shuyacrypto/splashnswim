@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPageBySlug } from "@swim-engine/engine-cms";
 import { getPublicClient } from "@/lib/supabase/public";
@@ -5,6 +6,20 @@ import { PublicShell } from "@/components/PublicShell";
 import { PublicBlocks } from "@/components/PublicBlocks";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const page = await getPageBySlug(getPublicClient(), slug);
+  if (!page) return {};
+  return {
+    title: page.metaTitle ?? page.title,
+    description: page.metaDescription,
+  };
+}
 
 export default async function MarketingPage({
   params,
