@@ -3,60 +3,55 @@
 @tailwind utilities;
 
 /*
- * SplashNSwim design tokens, from the real logo: ocean-blue "Splash", navy
- * "N", coral "Swim", the pink axolotl and its sunshine armbands. Stored as
- * RGB channels (not hex) so Tailwind opacity modifiers like bg-blossom/20
- * work. Components use the semantic Tailwind names (bg-ocean, text-coral, ...)
- * and never raw hex.
+ * SplashNSwim premium design tokens. Restrained palette: deep navy ink, a cool
+ * near-white paper, hairline greys, and a single coral accent used sparingly.
+ * Stored as RGB channels so Tailwind opacity modifiers work. Components use the
+ * semantic names (bg-ink, text-slate, border-line, ...) and never raw hex.
  */
 :root {
-  --color-ocean: 47 155 216;
-  --color-ocean-deep: 30 124 180;
-  --color-navy: 33 50 75;
-  --color-coral: 244 121 107;
-  --color-coral-deep: 225 95 81;
-  --color-blossom: 248 174 180;
-  --color-sunshine: 246 169 59;
-  --color-sky: 231 244 251;
-  --color-surface: 255 255 255;
+  --color-ink: 19 29 51;        /* deep navy: headings, dark sections */
+  --color-ink-deep: 11 19 36;   /* deepest navy: hero, footer */
+  --color-slate: 90 105 129;    /* muted body text */
+  --color-paper: 250 251 253;   /* base background, cool near-white */
+  --color-surface: 255 255 255; /* cards, panels */
+  --color-mist: 238 242 247;    /* alternate sections */
+  --color-line: 224 230 238;    /* hairlines, borders */
+  --color-accent: 233 106 92;   /* coral: the single accent */
+  --color-accent-deep: 205 82 68;
 }
 
 body {
-  background-color: rgb(var(--color-surface));
-  color: rgb(var(--color-navy));
-  font-family: var(--font-body), ui-rounded, "Segoe UI", system-ui, sans-serif;
+  background-color: rgb(var(--color-paper));
+  color: rgb(var(--color-ink));
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, .font-display {
-  font-family: var(--font-display), ui-rounded, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-weight: 400;
 }
 
-/* Keyboard focus is always visible. */
+::selection {
+  background-color: rgb(var(--color-accent) / 0.25);
+}
+
 :focus-visible {
-  outline: 3px solid rgb(var(--color-ocean));
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline: 2px solid rgb(var(--color-ink));
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-/* Motion: a gentle mascot bob, rising bubbles, and a soft load reveal. */
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-14px) rotate(1deg); }
-}
-@keyframes rise {
-  0% { transform: translateY(10px); opacity: 0; }
-  15% { opacity: 0.7; }
-  100% { transform: translateY(-130px); opacity: 0; }
-}
-@keyframes fadeUp {
-  from { transform: translateY(16px); opacity: 0; }
+/* A single, quiet entrance for above-the-fold content. Never gates visibility
+   of below-fold sections. */
+@keyframes riseIn {
+  from { transform: translateY(14px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
-
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-rise { animation: rise 7s ease-in infinite; }
-.reveal { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rise { animation: riseIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rise-2 { animation: riseIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+.rise-3 { animation: riseIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-float, .animate-rise, .reveal { animation: none; }
+  .rise, .rise-2, .rise-3 { animation: none; }
 }

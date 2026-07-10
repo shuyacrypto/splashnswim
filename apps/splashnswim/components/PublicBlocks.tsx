@@ -1,17 +1,14 @@
 import type { Block } from "@swim-engine/engine-contracts";
 import { EnquiryForm } from "./EnquiryForm";
-import { Wave } from "./Brand";
-import { Bubbles } from "./Bubbles";
-import { LightRays } from "./LightRays";
-import { TrustStrip } from "./TrustStrip";
+import { Ripples } from "./Brand";
+import { TrustRow } from "./TrustStrip";
 
 type RichVariant = "light" | "deep";
 
 /**
- * The bespoke SplashNSwim rendering of the ten engine block types. Same data,
- * same engine. The skin gives the page an "above and below the water" rhythm:
- * an immersive underwater hero, then sections that alternate between bright
- * surface, warm blossom, and deep navy so it never reads as one flat wash.
+ * Premium SplashNSwim rendering of the ten engine block types. Restrained,
+ * editorial, responsive. Distinctiveness comes from typography, deep-navy and
+ * coral, and generous space, not from illustration.
  */
 export function PublicBlocks({ blocks }: { blocks: Block[] }) {
   let richCount = 0;
@@ -33,70 +30,62 @@ export function PublicBlocks({ blocks }: { blocks: Block[] }) {
   );
 }
 
+const BOOK_URL = "https://octoswim.co.uk/book/splashnswim";
+
 function Container({ children }: { children: React.ReactNode }) {
-  return <div className="mx-auto max-w-5xl px-5 py-20 sm:py-28">{children}</div>;
+  return <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">{children}</div>;
 }
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-3xl font-bold text-navy sm:text-4xl">{children}</h2>;
+function Heading({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <h2 className={`text-balance text-3xl leading-tight text-ink sm:text-4xl ${className}`}>
+      {children}
+    </h2>
+  );
+}
+
+function Check() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden className="mt-1 h-4 w-4 flex-none text-accent" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 10.5l4 4 8-9" />
+    </svg>
+  );
 }
 
 function renderBlock(block: Block, variant: RichVariant) {
   switch (block.type) {
     case "hero": {
-      // Photo-ready: when a hero image is set in the admin it becomes a
-      // full-bleed photo hero with a readable scrim; otherwise the branded
-      // underwater gradient with the mascot stands.
       const photo = block.backgroundImage?.src ? block.backgroundImage : null;
       return (
         <>
-          <div className="relative overflow-hidden bg-gradient-to-b from-ocean-deep via-ocean-deep to-navy">
+          <div className="relative overflow-hidden bg-ink-deep">
             {photo ? (
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-tr from-navy/90 via-navy/65 to-navy/30"
-                />
+                <img src={photo.src} alt={photo.alt} className="absolute inset-0 h-full w-full object-cover" />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-tr from-ink-deep/95 via-ink-deep/70 to-ink-deep/40" />
               </>
             ) : (
-              <>
-                <LightRays />
-                <Bubbles />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -top-32 left-1/2 h-80 w-[52rem] max-w-[95%] -translate-x-1/2 rounded-full bg-white/25 blur-3xl"
-                />
-              </>
+              <Ripples className="pointer-events-none absolute inset-0 h-full w-full text-surface/25" />
             )}
-            <div
-              className={`relative mx-auto grid w-full max-w-5xl items-center gap-10 px-5 pb-24 pt-20 ${
-                photo ? "" : "md:grid-cols-[1.05fr_0.95fr]"
-              }`}
-            >
-              <div className="reveal max-w-2xl">
-                <span className="inline-block rounded-full bg-white/15 px-4 py-1 text-sm font-bold text-surface ring-1 ring-white/30 backdrop-blur">
-                  Premium 1-to-1 swimming · Essex
-                </span>
-                <h1 className="mt-5 text-5xl font-bold leading-[1.02] text-surface drop-shadow-md sm:text-6xl lg:text-7xl">
+            <div className="relative mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32 lg:py-40">
+              <div className="max-w-2xl">
+                <p className="rise text-xs font-semibold uppercase tracking-eyebrow text-accent">
+                  Private 1-to-1 tuition &middot; Essex
+                </p>
+                <h1 className="rise-2 mt-6 text-balance font-display text-4xl leading-[1.08] text-surface sm:text-6xl lg:text-7xl">
                   {block.heading}
                 </h1>
-                <span className="mt-4 block h-2 w-32 rounded-full bg-coral" aria-hidden />
                 {block.subheading ? (
-                  <p className="mt-6 max-w-md text-lg text-white/90 drop-shadow-sm">
+                  <p className="rise-3 mt-6 max-w-xl text-lg leading-relaxed text-surface/70">
                     {block.subheading}
                   </p>
                 ) : null}
-                <div className="mt-9 flex flex-wrap gap-3">
+                <div className="rise-3 mt-10 flex flex-wrap items-center gap-4">
                   {block.primaryCta ? (
                     <a
                       href={block.primaryCta.href}
-                      className="rounded-full bg-coral px-8 py-4 font-bold text-surface shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-coral-deep"
+                      className="rounded-full bg-accent px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-accent-deep hover:text-surface"
                     >
                       {block.primaryCta.label}
                     </a>
@@ -104,31 +93,16 @@ function renderBlock(block: Block, variant: RichVariant) {
                   {block.secondaryCta ? (
                     <a
                       href={block.secondaryCta.href}
-                      className="rounded-full border-2 border-white/70 px-8 py-4 font-bold text-surface backdrop-blur transition-colors hover:bg-white/10"
+                      className="rounded-full border border-white/30 px-7 py-3.5 font-semibold text-surface transition-colors hover:bg-white/10"
                     >
                       {block.secondaryCta.label}
                     </a>
                   ) : null}
                 </div>
-                <p className="mt-7 text-sm font-semibold text-white/75">
-                  Eastwood &middot; Benfleet &middot; Rochford
-                </p>
               </div>
-              {photo ? null : (
-                <div className="relative flex justify-center md:justify-end">
-                  <div aria-hidden className="absolute inset-4 rounded-full bg-blossom/30 blur-3xl" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/brand/axolotl-goggles.png"
-                    alt="The SplashNSwim axolotl mascot swimming in goggles and armbands"
-                    className="relative w-full max-w-lg animate-float drop-shadow-2xl"
-                  />
-                </div>
-              )}
             </div>
-            <Wave fillClass="fill-surface" />
           </div>
-          <TrustStrip />
+          <TrustRow />
         </>
       );
     }
@@ -136,41 +110,24 @@ function renderBlock(block: Block, variant: RichVariant) {
     case "rich_text":
       if (variant === "deep") {
         return (
-          <div className="relative overflow-hidden bg-navy text-surface">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-ocean/30 blur-3xl"
-            />
-            <div className="relative mx-auto grid max-w-5xl items-center gap-10 px-5 py-20 md:grid-cols-2">
-              <div>
-                {block.heading ? (
-                  <h2 className="text-3xl font-bold sm:text-4xl">{block.heading}</h2>
-                ) : null}
-                <p className="mt-5 whitespace-pre-wrap text-lg leading-relaxed text-sky">
-                  {block.content}
-                </p>
-              </div>
-              <div className="flex justify-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/brand/axolotl-ring.png"
-                  alt=""
-                  aria-hidden
-                  className="w-64 animate-float drop-shadow-xl sm:w-80"
-                />
-              </div>
+          <div className="bg-ink text-surface">
+            <div className="mx-auto max-w-3xl px-5 py-24 text-center sm:px-8 sm:py-32">
+              {block.heading ? (
+                <h2 className="text-balance font-display text-3xl leading-tight sm:text-4xl">{block.heading}</h2>
+              ) : null}
+              <p className="mx-auto mt-6 max-w-prose whitespace-pre-wrap text-lg leading-relaxed text-surface/70">
+                {block.content}
+              </p>
             </div>
           </div>
         );
       }
       return (
         <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="mx-auto mb-6 block h-1.5 w-12 rounded-full bg-coral" aria-hidden />
-            {block.heading ? (
-              <h2 className="text-3xl font-bold text-navy sm:text-4xl">{block.heading}</h2>
-            ) : null}
-            <p className="mx-auto mt-6 max-w-2xl whitespace-pre-wrap text-xl leading-relaxed text-navy/80">
+          <div className="max-w-3xl">
+            <span className="mb-7 block h-px w-16 bg-accent" aria-hidden />
+            {block.heading ? <Heading>{block.heading}</Heading> : null}
+            <p className="mt-6 max-w-prose whitespace-pre-wrap text-lg leading-relaxed text-slate">
               {block.content}
             </p>
           </div>
@@ -181,26 +138,19 @@ function renderBlock(block: Block, variant: RichVariant) {
       return (
         <Container>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={block.image.src} alt={block.image.alt} className="w-full rounded-3xl shadow-sm" />
-          {block.image.caption ? (
-            <p className="mt-2 text-sm text-navy/60">{block.image.caption}</p>
-          ) : null}
+          <img src={block.image.src} alt={block.image.alt} className="w-full rounded-lg" />
+          {block.image.caption ? <p className="mt-3 text-sm text-slate">{block.image.caption}</p> : null}
         </Container>
       );
 
     case "gallery":
       return (
         <Container>
-          {block.heading ? <SectionHeading>{block.heading}</SectionHeading> : null}
-          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {block.heading ? <Heading className="mb-8">{block.heading}</Heading> : null}
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
             {block.images.map((image, index) => (
               // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={index}
-                src={image.src}
-                alt={image.alt}
-                className="aspect-square w-full rounded-2xl object-cover shadow-sm"
-              />
+              <img key={index} src={image.src} alt={image.alt} className="aspect-[4/5] w-full rounded-lg object-cover" />
             ))}
           </div>
         </Container>
@@ -209,26 +159,24 @@ function renderBlock(block: Block, variant: RichVariant) {
     case "timetable":
       return (
         <Container>
-          {block.heading ? <SectionHeading>{block.heading}</SectionHeading> : null}
-          <div className="mt-6 overflow-hidden rounded-3xl border-2 border-sky bg-surface shadow-sm">
+          {block.heading ? <Heading className="mb-8">{block.heading}</Heading> : null}
+          <div className="overflow-hidden rounded-lg border border-line">
             <table className="w-full text-left text-sm">
-              <thead className="bg-ocean text-surface">
+              <thead className="border-b border-line bg-mist text-xs uppercase tracking-eyebrow text-slate">
                 <tr>
-                  <th className="px-4 py-3 font-display">Day</th>
-                  <th className="px-4 py-3 font-display">Time</th>
-                  <th className="px-4 py-3 font-display">Lesson</th>
-                  <th className="px-4 py-3 font-display">Level</th>
+                  <th className="px-5 py-4 font-semibold">Day</th>
+                  <th className="px-5 py-4 font-semibold">Time</th>
+                  <th className="px-5 py-4 font-semibold">Lesson</th>
+                  <th className="px-5 py-4 font-semibold">Level</th>
                 </tr>
               </thead>
               <tbody>
                 {block.sessions.map((session, index) => (
-                  <tr key={index} className="border-t border-sky">
-                    <td className="px-4 py-3 capitalize">{session.day}</td>
-                    <td className="px-4 py-3">
-                      {session.startTime} to {session.endTime}
-                    </td>
-                    <td className="px-4 py-3">{session.title}</td>
-                    <td className="px-4 py-3">{session.level ?? ""}</td>
+                  <tr key={index} className="border-b border-line last:border-0">
+                    <td className="px-5 py-4 capitalize text-ink">{session.day}</td>
+                    <td className="px-5 py-4 text-slate">{session.startTime} to {session.endTime}</td>
+                    <td className="px-5 py-4 text-ink">{session.title}</td>
+                    <td className="px-5 py-4 text-slate">{session.level ?? ""}</td>
                   </tr>
                 ))}
               </tbody>
@@ -239,35 +187,32 @@ function renderBlock(block: Block, variant: RichVariant) {
 
     case "pricing_table":
       return (
-        <div className="bg-blossom/20">
+        <div className="bg-mist">
           <Container>
-            {block.heading ? (
-              <h2 className="text-center text-3xl font-bold text-navy sm:text-4xl">
-                {block.heading}
-              </h2>
-            ) : null}
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-semibold uppercase tracking-eyebrow text-slate">Lessons</p>
+              {block.heading ? <Heading className="mt-4">{block.heading}</Heading> : null}
+            </div>
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
               {block.tiers.map((tier, index) => (
                 <div
                   key={index}
-                  className={`relative flex flex-col rounded-3xl bg-surface p-7 shadow-md transition-all duration-200 hover:-translate-y-1.5 ${
-                    tier.highlighted ? "border-2 border-coral ring-4 ring-coral/15" : "border-2 border-sky hover:border-coral"
+                  className={`flex flex-col rounded-lg bg-surface p-8 ${
+                    tier.highlighted ? "border border-accent shadow-[0_20px_60px_-30px_rgba(19,29,51,0.35)]" : "border border-line"
                   }`}
                 >
                   {tier.highlighted ? (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-sunshine px-3 py-0.5 text-xs font-bold text-navy shadow-sm">
-                      Most loved
+                    <span className="mb-4 inline-block self-start rounded-full bg-accent px-3 py-1 text-xs font-semibold text-ink">
+                      Recommended
                     </span>
                   ) : null}
-                  <h3 className="font-display text-lg font-bold text-navy">{tier.name}</h3>
-                  <p className="mt-1 text-3xl font-bold text-ocean">{tier.price}</p>
-                  {tier.description ? (
-                    <p className="mt-2 text-sm text-navy/70">{tier.description}</p>
-                  ) : null}
-                  <ul className="mt-5 flex-1 space-y-2.5 text-sm text-navy">
-                    {tier.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-2.5">
-                        <span className="mt-1 h-2 w-2 flex-none rounded-full bg-coral" aria-hidden />
+                  <h3 className="font-display text-xl text-ink">{tier.name}</h3>
+                  {tier.description ? <p className="mt-2 text-sm text-slate">{tier.description}</p> : null}
+                  <p className="mt-6 font-display text-4xl text-ink">{tier.price}</p>
+                  <ul className="mt-6 flex-1 space-y-3 text-sm text-slate">
+                    {tier.features.map((feature, i) => (
+                      <li key={i} className="flex gap-3">
+                        <Check />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -275,10 +220,10 @@ function renderBlock(block: Block, variant: RichVariant) {
                   {tier.cta ? (
                     <a
                       href={tier.cta.href}
-                      className={`mt-6 rounded-full px-4 py-3 text-center font-bold transition-transform hover:-translate-y-0.5 ${
+                      className={`mt-8 rounded-full px-5 py-3 text-center font-semibold transition-colors ${
                         tier.highlighted
-                          ? "bg-coral text-surface hover:bg-coral-deep"
-                          : "bg-navy text-surface hover:bg-ocean-deep"
+                          ? "bg-accent text-ink hover:bg-accent-deep hover:text-surface"
+                          : "border border-ink/20 text-ink hover:bg-ink hover:text-surface"
                       }`}
                     >
                       {tier.cta.label}
@@ -294,19 +239,21 @@ function renderBlock(block: Block, variant: RichVariant) {
     case "faq":
       return (
         <Container>
-          {block.heading ? <SectionHeading>{block.heading}</SectionHeading> : null}
-          <div className="mt-6 space-y-3">
-            {block.items.map((item, index) => (
-              <div key={index} className="rounded-2xl border-2 border-sky bg-surface p-5 shadow-sm">
-                <p className="flex items-center gap-3 font-display font-bold text-navy">
-                  <span className="grid h-7 w-7 flex-none place-items-center rounded-full bg-blossom/60 text-sm text-coral-deep">
-                    ?
-                  </span>
-                  {item.question}
-                </p>
-                <p className="mt-2 pl-10 text-navy/75">{item.answer}</p>
-              </div>
-            ))}
+          <div className="mx-auto max-w-3xl">
+            {block.heading ? <Heading className="mb-8 text-center">{block.heading}</Heading> : null}
+            <div className="border-t border-line">
+              {block.items.map((item, index) => (
+                <details key={index} className="group border-b border-line">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg text-ink [&::-webkit-details-marker]:hidden">
+                    {item.question}
+                    <span className="grid h-6 w-6 flex-none place-items-center text-xl text-accent transition-transform duration-200 group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="max-w-prose pb-6 text-slate">{item.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </Container>
       );
@@ -314,19 +261,19 @@ function renderBlock(block: Block, variant: RichVariant) {
     case "team":
       return (
         <Container>
-          {block.heading ? <SectionHeading>{block.heading}</SectionHeading> : null}
-          <div className="mt-6 grid gap-6 sm:grid-cols-3">
+          {block.heading ? <Heading className="mb-10 text-center">{block.heading}</Heading> : null}
+          <div className="grid gap-8 sm:grid-cols-3">
             {block.members.map((member, index) => (
-              <div key={index} className="rounded-3xl border-2 border-sky bg-surface p-6 text-center shadow-sm">
+              <div key={index} className="text-center">
                 {member.photo ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={member.photo.src} alt={member.photo.alt} className="mx-auto h-24 w-24 rounded-full object-cover" />
+                  <img src={member.photo.src} alt={member.photo.alt} className="mx-auto h-40 w-40 rounded-full object-cover" />
                 ) : (
-                  <div className="mx-auto grid h-24 w-24 place-items-center rounded-full bg-blossom/50 text-3xl">🐣</div>
+                  <div className="mx-auto h-40 w-40 rounded-full bg-mist" />
                 )}
-                <p className="mt-3 font-display font-bold text-navy">{member.name}</p>
-                <p className="text-sm text-navy/70">{member.role}</p>
-                {member.bio ? <p className="mt-2 text-sm text-navy/70">{member.bio}</p> : null}
+                <p className="mt-5 font-display text-xl text-ink">{member.name}</p>
+                <p className="mt-1 text-sm text-slate">{member.role}</p>
+                {member.bio ? <p className="mt-3 text-sm text-slate">{member.bio}</p> : null}
               </div>
             ))}
           </div>
@@ -335,56 +282,55 @@ function renderBlock(block: Block, variant: RichVariant) {
 
     case "cta_banner":
       return (
-        <Container>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-coral to-coral-deep p-10 text-navy shadow-lg sm:p-14">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-sunshine/40 blur-3xl"
-            />
-            <div className="relative z-10 max-w-lg">
-              <h2 className="text-3xl font-bold sm:text-4xl">{block.heading}</h2>
-              {block.body ? <p className="mt-3 text-lg text-navy/80">{block.body}</p> : null}
-              <a
-                href={block.cta.href}
-                className="mt-7 inline-block rounded-full bg-navy px-8 py-4 font-bold text-surface shadow-sm transition-transform hover:-translate-y-0.5 hover:bg-navy/90"
-              >
-                {block.cta.label}
-              </a>
-            </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand/axolotl-armbands.png"
-              alt=""
-              aria-hidden
-              className="pointer-events-none absolute -bottom-6 right-0 hidden w-64 opacity-95 lg:block"
-            />
+        <div className="bg-ink-deep">
+          <div className="mx-auto max-w-4xl px-5 py-24 text-center sm:px-8 sm:py-28">
+            <h2 className="text-balance font-display text-3xl leading-tight text-surface sm:text-5xl">
+              {block.heading}
+            </h2>
+            {block.body ? <p className="mx-auto mt-5 max-w-xl text-lg text-surface/70">{block.body}</p> : null}
+            <a
+              href={block.cta.href}
+              className="mt-10 inline-block rounded-full bg-accent px-8 py-4 font-semibold text-ink transition-colors hover:bg-accent-deep hover:text-surface"
+            >
+              {block.cta.label}
+            </a>
           </div>
-        </Container>
+        </div>
       );
 
     case "contact":
       return (
-        <div className="bg-sky/70">
+        <div className="bg-mist">
           <Container>
-            <div className="rounded-3xl border-2 border-surface bg-surface p-8 shadow-md sm:p-10">
-              {block.heading ? <SectionHeading>{block.heading}</SectionHeading> : null}
-              <div className="mt-6 grid gap-8 sm:grid-cols-2">
-                <div className="space-y-3 text-navy/75">
-                  {block.address ? <p className="font-semibold text-navy">{block.address}</p> : null}
+            <div className="grid gap-12 md:grid-cols-2">
+              <div>
+                {block.heading ? <Heading>{block.heading}</Heading> : null}
+                <div className="mt-6 space-y-2 text-slate">
+                  {block.address ? <p className="text-ink">{block.address}</p> : null}
                   {block.phone ? <p>{block.phone}</p> : null}
                   {block.email ? (
                     <p>
-                      <a href={`mailto:${block.email}`} className="font-bold text-ocean hover:underline">
+                      <a href={`mailto:${block.email}`} className="text-ink underline decoration-accent decoration-2 underline-offset-4">
                         {block.email}
                       </a>
                     </p>
                   ) : null}
-                  <p className="text-sm text-navy/60">
-                    Prefer to book straight away? Use the Book a lesson button and pick a time that suits you.
-                  </p>
                 </div>
-                {block.showEnquiryForm ? <EnquiryForm /> : null}
+                <p className="mt-8 max-w-prose text-sm text-slate">
+                  Prefer to book straight away? Choose a pool and a time on our booking page.
+                </p>
+                <a
+                  href={BOOK_URL}
+                  className="mt-4 inline-block rounded-full border border-ink/20 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-surface"
+                >
+                  Book a lesson
+                </a>
               </div>
+              {block.showEnquiryForm ? (
+                <div className="rounded-lg border border-line bg-surface p-6 sm:p-8">
+                  <EnquiryForm />
+                </div>
+              ) : null}
             </div>
           </Container>
         </div>

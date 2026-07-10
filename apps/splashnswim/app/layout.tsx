@@ -1,24 +1,24 @@
 import type { ReactNode } from "react";
-import { Fredoka, Nunito } from "next/font/google";
+import { Marcellus, Manrope } from "next/font/google";
 import "./globals.css";
 
-// Fredoka is rounded and bubbly, echoing the SplashNSwim wordmark.
-const display = Fredoka({
+// Marcellus: a calm, classical roman that reads premium without shouting.
+const display = Marcellus({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400"],
   variable: "--font-display",
 });
 
-const body = Nunito({
+const body = Manrope({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
 });
 
 export const metadata = {
-  title: "SplashNSwim | Premium 1-to-1 swimming lessons",
+  title: "SplashNSwim | Private 1-to-1 swimming lessons in Essex",
   description:
-    "Premium one-to-one swimming lessons at private pools in Eastwood, Benfleet and Rochford. Helping every swimmer progress faster.",
+    "Premium one-to-one swimming lessons at private pools in Eastwood, Benfleet and Rochford. Calm, expert teaching for every swimmer.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

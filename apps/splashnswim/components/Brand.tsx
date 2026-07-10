@@ -1,55 +1,45 @@
-/** Shared SplashNSwim brand pieces: the logo, a text wordmark, and waves. */
+/** Shared SplashNSwim brand pieces. */
 
-/** The real SplashNSwim logo (wordmark + axolotl). Used on light backgrounds. */
+/** The real SplashNSwim logo. Used on light backgrounds. */
 export function Logo({ className = "" }: { className?: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src="/brand/logo.png"
-      alt="SplashNSwim"
-      className={`w-auto ${className}`}
-    />
+    <img src="/brand/logo.png" alt="SplashNSwim" className={`w-auto ${className}`} />
   );
 }
 
-/**
- * A text wordmark for dark backgrounds (the logo's navy parts would vanish
- * there): "Splash" and "N" in white, "Swim" in coral.
- */
+/** Elegant text wordmark for dark backgrounds (footer). */
 export function WordmarkLight({ className = "" }: { className?: string }) {
   return (
-    <span className={`font-display font-bold tracking-tight ${className}`} aria-label="SplashNSwim">
-      <span className="text-surface">Splash</span>
-      <span className="text-surface">N</span>
-      <span className="text-coral">Swim</span>
+    <span className={`font-display ${className}`} aria-label="SplashNSwim">
+      <span className="text-surface">SplashN</span>
+      <span className="text-accent">Swim</span>
     </span>
   );
 }
 
 /**
- * A soft wave divider between sections, echoing water. `fillClass` sets the
- * colour the wave flows into; `flip` points it upward.
+ * A quiet water-ripple motif: a few thin horizontal curves. Sits low-opacity
+ * behind the hero to give depth without illustration or cartoon.
  */
-export function Wave({
-  fillClass = "fill-surface",
-  flip = false,
-  className = "",
-}: {
-  fillClass?: string;
-  flip?: boolean;
-  className?: string;
-}) {
+export function Ripples({ className = "" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 1440 48"
-      preserveAspectRatio="none"
       aria-hidden
-      className={`block h-8 w-full sm:h-12 ${flip ? "rotate-180" : ""} ${className}`}
+      viewBox="0 0 1440 600"
+      preserveAspectRatio="xMidYMid slice"
+      className={className}
+      fill="none"
     >
-      <path
-        className={fillClass}
-        d="M0,24 C180,48 360,4 540,12 C760,22 980,48 1200,30 C1320,20 1400,14 1440,18 L1440,48 L0,48 Z"
-      />
+      {[0, 70, 140, 210, 280, 350, 420, 490].map((y, i) => (
+        <path
+          key={i}
+          d={`M-40 ${120 + y} C 240 ${90 + y}, 480 ${150 + y}, 760 ${120 + y} S 1240 ${90 + y}, 1480 ${120 + y}`}
+          stroke="currentColor"
+          strokeWidth="1"
+          opacity={0.5 - i * 0.045}
+        />
+      ))}
     </svg>
   );
 }

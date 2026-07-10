@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { submitEnquiry } from "@/lib/actions";
 
-/** A plain contact form that sends an enquiry (logged to the terminal). */
+/** A premium contact form that sends an enquiry (logged to the terminal in dev). */
 export function EnquiryForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,47 +29,41 @@ export function EnquiryForm() {
 
   if (status === "sent") {
     return (
-      <p className="rounded-xl bg-blossom/50 px-4 py-3 text-sm font-bold text-coral-deep">
-        Thank you. Your enquiry has been sent.
+      <p className="rounded-lg border border-line bg-mist px-4 py-3 text-sm text-ink">
+        Thank you. Your enquiry has been sent, and we will be in touch soon.
       </p>
     );
   }
 
-  const fieldClasses =
-    "block w-full rounded-xl border-2 border-sky bg-surface px-3 py-2 text-sm text-navy focus:border-ocean focus:outline-none";
+  const field =
+    "mt-1.5 block w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-slate/60 focus:border-ink focus:outline-none";
+  const label = "text-sm font-medium text-ink";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <input
-        aria-label="Your name"
-        placeholder="Your name"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        className={fieldClasses}
-      />
-      <input
-        aria-label="Your email"
-        type="email"
-        placeholder="Your email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        className={fieldClasses}
-      />
-      <textarea
-        aria-label="Your message"
-        placeholder="Your message"
-        rows={4}
-        value={message}
-        onChange={(event) => setMessage(event.target.value)}
-        className={fieldClasses}
-      />
-      {error ? <p className="text-sm text-red-700">{error}</p> : null}
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <label className="block">
+        <span className={label}>Your name</span>
+        <input value={name} onChange={(e) => setName(e.target.value)} className={field} autoComplete="name" />
+      </label>
+      <label className="block">
+        <span className={label}>Your email</span>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={field} autoComplete="email" />
+      </label>
+      <label className="block">
+        <span className={label}>Your message</span>
+        <textarea rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className={field} />
+      </label>
+      {error ? (
+        <p role="alert" className="text-sm text-accent-deep">
+          {error}
+        </p>
+      ) : null}
       <button
         type="submit"
         disabled={status === "sending"}
-        className="rounded-full bg-coral px-5 py-2.5 text-sm font-bold text-surface transition-colors hover:bg-coral-deep disabled:opacity-50"
+        className="w-full rounded-full bg-ink px-5 py-3 text-sm font-semibold text-surface transition-colors hover:bg-ink-deep disabled:opacity-50"
       >
-        {status === "sending" ? "Sending..." : "Send enquiry"}
+        {status === "sending" ? "Sending" : "Send enquiry"}
       </button>
     </form>
   );

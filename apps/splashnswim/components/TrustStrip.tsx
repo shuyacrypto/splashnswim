@@ -1,38 +1,25 @@
 /**
- * A slim band of reassurances shown under the hero. These are brand-level and
- * factual (drawn from SplashNSwim's own description), not invented reviews.
+ * A quiet band of reassurances under the hero. Factual and brand-level, set as
+ * an elegant divided row rather than a card.
  */
 const ITEMS = [
-  { label: "1-to-1 only", sub: "Every lesson is private" },
-  { label: "Calm private pools", sub: "Eastwood, Benfleet, Rochford" },
-  { label: "All ages & abilities", sub: "From babies to adults" },
-  { label: "Additional needs welcome", sub: "Patient, tailored teaching" },
+  { label: "One to one, always", sub: "Never a group lesson" },
+  { label: "Private pools", sub: "Eastwood, Benfleet, Rochford" },
+  { label: "Every age and ability", sub: "First splash to stroke work" },
+  { label: "Additional needs welcome", sub: "Calm, patient teaching" },
 ];
 
-export function TrustStrip() {
+export function TrustRow() {
   return (
-    <div className="mx-auto -mt-8 max-w-5xl px-5">
-      <div className="grid gap-4 rounded-3xl border-2 border-sky bg-surface p-6 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
+    <div className="border-b border-line bg-paper">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 sm:grid-cols-4">
         {ITEMS.map((item) => (
-          <div key={item.label} className="flex items-start gap-3">
-            <span className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-ocean/10 text-ocean">
-              <svg
-                viewBox="0 0 20 20"
-                aria-hidden
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M4 10.5l4 4 8-9" />
-              </svg>
-            </span>
-            <div>
-              <p className="font-display text-sm font-bold text-navy">{item.label}</p>
-              <p className="text-xs text-navy/60">{item.sub}</p>
-            </div>
+          <div
+            key={item.label}
+            className="border-line px-5 py-6 [&:not(:last-child)]:border-b sm:px-8 sm:py-8 sm:[&:not(:last-child)]:border-b-0 sm:[&:not(:last-child)]:border-r"
+          >
+            <p className="font-display text-base text-ink">{item.label}</p>
+            <p className="mt-1 text-sm text-slate">{item.sub}</p>
           </div>
         ))}
       </div>
