@@ -34,7 +34,10 @@
       "Bash(rm -f apps/splashnswim/s2.css apps/splashnswim/s2.html apps/splashnswim/s2_flat.css)",
       "mcp__plugin_context-mode_context-mode__ctx_execute",
       "Bash(curl -s -o /dev/null -w \"home HTTP %{http_code}\\\\n\" http://localhost:3007/)",
-      "Bash(grep -iE \"\\\\.html$|_flat|sn\\\\.css\")"
+      "Bash(grep -iE \"\\\\.html$|_flat|sn\\\\.css\")",
+      "PowerShell(python --version)",
+      "PowerShell(python \"C:\\\\Users\\\\44737\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"children swim school premium playful warm family service landing page\" --design-system -p \"SplashNSwim\" 2>&1)",
+      "Bash(grep -iE \"\\\\.html$|_flat|/sn\\\\.\")"
     ]
   }
 }

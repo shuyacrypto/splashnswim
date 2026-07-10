@@ -46,7 +46,7 @@ function renderBlock(block: Block, variant: RichVariant) {
     case "hero":
       return (
         <>
-          <div className="relative flex min-h-[86vh] flex-col justify-center overflow-hidden bg-gradient-to-b from-ocean via-ocean-deep to-navy">
+          <div className="relative flex min-h-[86vh] flex-col justify-center overflow-hidden bg-gradient-to-b from-ocean-deep via-ocean-deep to-navy">
             <LightRays />
             <Bubbles />
             {/* sunlit surface glow */}
@@ -64,7 +64,7 @@ function renderBlock(block: Block, variant: RichVariant) {
                 </h1>
                 <span className="mt-4 block h-2 w-32 rounded-full bg-coral" aria-hidden />
                 {block.subheading ? (
-                  <p className="mt-6 max-w-md text-lg text-sky drop-shadow-sm">
+                  <p className="mt-6 max-w-md text-lg text-white/90 drop-shadow-sm">
                     {block.subheading}
                   </p>
                 ) : null}
@@ -86,7 +86,7 @@ function renderBlock(block: Block, variant: RichVariant) {
                     </a>
                   ) : null}
                 </div>
-                <p className="mt-7 text-sm font-semibold text-white/60">
+                <p className="mt-7 text-sm font-semibold text-white/75">
                   Eastwood &middot; Benfleet &middot; Rochford
                 </p>
               </div>
@@ -224,8 +224,8 @@ function renderBlock(block: Block, variant: RichVariant) {
               {block.tiers.map((tier, index) => (
                 <div
                   key={index}
-                  className={`relative flex flex-col rounded-3xl bg-surface p-7 shadow-md transition-transform hover:-translate-y-1.5 ${
-                    tier.highlighted ? "border-2 border-coral ring-4 ring-coral/15" : "border-2 border-white"
+                  className={`relative flex flex-col rounded-3xl bg-surface p-7 shadow-md transition-all duration-200 hover:-translate-y-1.5 ${
+                    tier.highlighted ? "border-2 border-coral ring-4 ring-coral/15" : "border-2 border-sky hover:border-coral"
                   }`}
                 >
                   {tier.highlighted ? (
@@ -310,17 +310,17 @@ function renderBlock(block: Block, variant: RichVariant) {
     case "cta_banner":
       return (
         <Container>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-coral to-coral-deep p-10 text-surface shadow-lg sm:p-14">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-coral to-coral-deep p-10 text-navy shadow-lg sm:p-14">
             <div
               aria-hidden
               className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-sunshine/40 blur-3xl"
             />
             <div className="relative z-10 max-w-lg">
               <h2 className="text-3xl font-bold sm:text-4xl">{block.heading}</h2>
-              {block.body ? <p className="mt-3 text-lg text-white/90">{block.body}</p> : null}
+              {block.body ? <p className="mt-3 text-lg text-navy/80">{block.body}</p> : null}
               <a
                 href={block.cta.href}
-                className="mt-7 inline-block rounded-full bg-surface px-8 py-4 font-bold text-coral-deep shadow-sm transition-transform hover:-translate-y-0.5"
+                className="mt-7 inline-block rounded-full bg-navy px-8 py-4 font-bold text-surface shadow-sm transition-transform hover:-translate-y-0.5 hover:bg-navy/90"
               >
                 {block.cta.label}
               </a>
