@@ -168,7 +168,7 @@ function renderBlock(block: Block, variant: RichVariant) {
       return (
         <Container>
           {block.heading ? <Heading className="mb-8 text-center text-ink">{block.heading}</Heading> : null}
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             {block.images.map((image, index) => (
               <figure key={index}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
