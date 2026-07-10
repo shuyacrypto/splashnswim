@@ -29,14 +29,14 @@ export function EnquiryForm() {
 
   if (status === "sent") {
     return (
-      <p className="rounded-lg border border-line bg-mist px-4 py-3 text-sm text-ink">
+      <p className="rounded-xl border-2 border-foam bg-foam px-4 py-3 text-sm font-semibold text-ink">
         Thank you. Your enquiry has been sent, and we will be in touch soon.
       </p>
     );
   }
 
   const field =
-    "mt-1.5 block w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-slate/60 focus:border-ink focus:outline-none";
+    "mt-1.5 block w-full rounded-xl border-2 border-foam bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-slate/60 focus:border-ocean focus:outline-none";
   const label = "text-sm font-medium text-ink";
 
   return (
@@ -54,14 +54,14 @@ export function EnquiryForm() {
         <textarea rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className={field} />
       </label>
       {error ? (
-        <p role="alert" className="text-sm text-accent-deep">
+        <p role="alert" className="text-sm text-coral-deep">
           {error}
         </p>
       ) : null}
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-full bg-ink px-5 py-3 text-sm font-semibold text-surface transition-colors hover:bg-ink-deep disabled:opacity-50"
+        className="w-full rounded-full bg-ocean px-5 py-3 text-sm font-bold text-surface transition-colors hover:bg-ocean-deep disabled:opacity-50"
       >
         {status === "sending" ? "Sending" : "Send enquiry"}
       </button>

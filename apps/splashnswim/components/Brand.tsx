@@ -1,6 +1,5 @@
-/** Shared SplashNSwim brand pieces. */
+/** Shared SplashNSwim brand + animated water pieces. */
 
-/** The real SplashNSwim logo. Used on light backgrounds. */
 export function Logo({ className = "" }: { className?: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -8,38 +7,71 @@ export function Logo({ className = "" }: { className?: string }) {
   );
 }
 
-/** Elegant text wordmark for dark backgrounds (footer). */
 export function WordmarkLight({ className = "" }: { className?: string }) {
   return (
-    <span className={`font-display ${className}`} aria-label="SplashNSwim">
+    <span className={`font-display font-bold tracking-tight ${className}`} aria-label="SplashNSwim">
       <span className="text-surface">SplashN</span>
-      <span className="text-accent">Swim</span>
+      <span className="text-aqua">Swim</span>
     </span>
   );
 }
 
+const WAVE =
+  "M0,70 C 180,30 540,110 720,70 C 900,30 1260,110 1440,70 C 1620,30 1980,110 2160,70 C 2340,30 2700,110 2880,70 L2880,140 L0,140 Z";
+
 /**
- * A quiet water-ripple motif: a few thin horizontal curves. Sits low-opacity
- * behind the hero to give depth without illustration or cartoon.
+ * Animated waves that sit at the bottom of a coloured section and flow into
+ * the next one. Two layers drift in opposite directions for depth.
  */
-export function Ripples({ className = "" }: { className?: string }) {
+export function Waves({ colorClass = "text-surface", className = "" }: { colorClass?: string; className?: string }) {
   return (
-    <svg
-      aria-hidden
-      viewBox="0 0 1440 600"
-      preserveAspectRatio="xMidYMid slice"
-      className={className}
-      fill="none"
-    >
-      {[0, 70, 140, 210, 280, 350, 420, 490].map((y, i) => (
-        <path
+    <div className={`pointer-events-none absolute inset-x-0 bottom-0 h-16 overflow-hidden sm:h-24 ${colorClass} ${className}`} aria-hidden>
+      <svg className="wave-b absolute bottom-0 left-0 h-full w-[200%]" viewBox="0 0 2880 140" preserveAspectRatio="none" fill="currentColor" opacity="0.55">
+        <path d={WAVE} />
+      </svg>
+      <svg className="wave-a absolute bottom-0 left-0 h-full w-[200%]" viewBox="0 0 2880 140" preserveAspectRatio="none" fill="currentColor">
+        <path d={WAVE} />
+      </svg>
+    </div>
+  );
+}
+
+/** Bubbles drifting up. Ambient. */
+const BUBBLES = [
+  { left: "8%", size: 14, delay: "0s", dur: "7s" },
+  { left: "18%", size: 8, delay: "1.4s", dur: "6s" },
+  { left: "30%", size: 6, delay: "2.6s", dur: "7.5s" },
+  { left: "44%", size: 11, delay: "0.6s", dur: "8s" },
+  { left: "60%", size: 7, delay: "2s", dur: "6.5s" },
+  { left: "72%", size: 15, delay: "1s", dur: "8.5s" },
+  { left: "85%", size: 9, delay: "3.2s", dur: "7s" },
+  { left: "93%", size: 6, delay: "0.9s", dur: "6s" },
+];
+
+export function Bubbles() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {BUBBLES.map((b, i) => (
+        <span
           key={i}
-          d={`M-40 ${120 + y} C 240 ${90 + y}, 480 ${150 + y}, 760 ${120 + y} S 1240 ${90 + y}, 1480 ${120 + y}`}
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity={0.5 - i * 0.045}
+          className="animate-bubble absolute bottom-24 rounded-full bg-surface/25 ring-1 ring-surface/20"
+          style={{ left: b.left, width: b.size, height: b.size, animationDelay: b.delay, animationDuration: b.dur }}
         />
       ))}
-    </svg>
+    </div>
+  );
+}
+
+/** Shifting caustic light, like sun through water. */
+export function Caustics() {
+  return (
+    <div
+      aria-hidden
+      className="animate-caustic pointer-events-none absolute inset-0 opacity-70"
+      style={{
+        background:
+          "radial-gradient(50% 42% at 80% 12%, rgb(var(--color-aqua) / 0.38), transparent 62%), radial-gradient(42% 38% at 60% 34%, rgb(var(--color-surface) / 0.12), transparent 58%)",
+      }}
+    />
   );
 }

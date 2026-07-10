@@ -9,26 +9,28 @@ export default {
   theme: {
     extend: {
       colors: {
+        ocean: "rgb(var(--color-ocean) / <alpha-value>)",
+        "ocean-deep": "rgb(var(--color-ocean-deep) / <alpha-value>)",
+        abyss: "rgb(var(--color-abyss) / <alpha-value>)",
+        aqua: "rgb(var(--color-aqua) / <alpha-value>)",
+        foam: "rgb(var(--color-foam) / <alpha-value>)",
         ink: "rgb(var(--color-ink) / <alpha-value>)",
-        "ink-deep": "rgb(var(--color-ink-deep) / <alpha-value>)",
         slate: "rgb(var(--color-slate) / <alpha-value>)",
-        paper: "rgb(var(--color-paper) / <alpha-value>)",
+        coral: "rgb(var(--color-coral) / <alpha-value>)",
+        "coral-deep": "rgb(var(--color-coral-deep) / <alpha-value>)",
+        sunshine: "rgb(var(--color-sunshine) / <alpha-value>)",
         surface: "rgb(var(--color-surface) / <alpha-value>)",
-        mist: "rgb(var(--color-mist) / <alpha-value>)",
-        line: "rgb(var(--color-line) / <alpha-value>)",
-        accent: "rgb(var(--color-accent) / <alpha-value>)",
-        "accent-deep": "rgb(var(--color-accent-deep) / <alpha-value>)",
       },
       fontFamily: {
-        display: ["var(--font-display)", "Georgia", "serif"],
-        body: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "ui-rounded", "system-ui", "sans-serif"],
+        body: ["var(--font-body)", "ui-rounded", "system-ui", "sans-serif"],
       },
-      letterSpacing: {
-        eyebrow: "0.22em",
+      borderRadius: {
+        xl: "1rem",
+        "2xl": "1.5rem",
+        "3xl": "2rem",
       },
-      maxWidth: {
-        prose: "60ch",
-      },
+      letterSpacing: { eyebrow: "0.18em" },
     },
   },
   plugins: [],

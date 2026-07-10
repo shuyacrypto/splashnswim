@@ -3,55 +3,73 @@
 @tailwind utilities;
 
 /*
- * SplashNSwim premium design tokens. Restrained palette: deep navy ink, a cool
- * near-white paper, hairline greys, and a single coral accent used sparingly.
- * Stored as RGB channels so Tailwind opacity modifiers work. Components use the
- * semantic names (bg-ink, text-slate, border-line, ...) and never raw hex.
+ * SplashNSwim - vibrant water design system. Bright ocean blues and turquoise,
+ * warm coral and sunshine accents. Tokens are RGB channels so opacity
+ * modifiers work. Components use semantic names (bg-ocean, text-coral, ...).
  */
 :root {
-  --color-ink: 19 29 51;        /* deep navy: headings, dark sections */
-  --color-ink-deep: 11 19 36;   /* deepest navy: hero, footer */
-  --color-slate: 90 105 129;    /* muted body text */
-  --color-paper: 250 251 253;   /* base background, cool near-white */
-  --color-surface: 255 255 255; /* cards, panels */
-  --color-mist: 238 242 247;    /* alternate sections */
-  --color-line: 224 230 238;    /* hairlines, borders */
-  --color-accent: 233 106 92;   /* coral: the single accent */
-  --color-accent-deep: 205 82 68;
+  --color-ocean: 20 146 200;      /* vibrant swimming-pool blue */
+  --color-ocean-deep: 12 82 120;  /* deeper water */
+  --color-abyss: 8 45 72;         /* deepest: hero base, footer */
+  --color-aqua: 74 200 219;       /* bright turquoise */
+  --color-foam: 224 247 251;      /* pale aqua background */
+  --color-ink: 14 42 59;          /* deep teal text */
+  --color-slate: 74 106 125;      /* muted text */
+  --color-coral: 255 118 98;      /* warm accent */
+  --color-coral-deep: 231 92 74;
+  --color-sunshine: 255 193 74;   /* warm pop */
+  --color-surface: 255 255 255;
 }
 
 body {
-  background-color: rgb(var(--color-paper));
+  background-color: rgb(var(--color-surface));
   color: rgb(var(--color-ink));
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body), ui-rounded, "Segoe UI", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, .font-display {
-  font-family: var(--font-display), Georgia, "Times New Roman", serif;
-  font-weight: 400;
+  font-family: var(--font-display), ui-rounded, "Segoe UI", system-ui, sans-serif;
 }
 
-::selection {
-  background-color: rgb(var(--color-accent) / 0.25);
-}
+::selection { background-color: rgb(var(--color-aqua) / 0.35); }
 
 :focus-visible {
-  outline: 2px solid rgb(var(--color-ink));
-  outline-offset: 3px;
-  border-radius: 2px;
+  outline: 3px solid rgb(var(--color-ocean));
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
-/* A single, quiet entrance for above-the-fold content. Never gates visibility
-   of below-fold sections. */
-@keyframes riseIn {
-  from { transform: translateY(14px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+/* ---- Motion ---------------------------------------------------------- */
+@keyframes waveA { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes waveB { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes bubbleRise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  15% { opacity: 0.8; }
+  100% { transform: translateY(-160px) scale(0.7); opacity: 0; }
 }
+@keyframes caustic { 0%, 100% { opacity: 0.2; transform: translate(0, 0); } 50% { opacity: 0.45; transform: translate(-2%, 1%); } }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes riseIn { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.wave-a { animation: waveA 16s linear infinite; }
+.wave-b { animation: waveB 24s linear infinite; }
+.animate-bubble { animation: bubbleRise linear infinite; }
+.animate-caustic { animation: caustic 9s ease-in-out infinite; }
+.animate-floaty { animation: floaty 6s ease-in-out infinite; }
 .rise { animation: riseIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.rise-2 { animation: riseIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
-.rise-3 { animation: riseIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+.rise-2 { animation: riseIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both; }
+.rise-3 { animation: riseIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both; }
+
+/* Scroll reveal as progressive enhancement: if unsupported, content just
+   shows (never gated blank). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: riseIn linear both; animation-timeline: view(); animation-range: entry 0% cover 22%; }
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
+  .wave-a, .wave-b, .animate-bubble, .animate-caustic, .animate-floaty,
   .rise, .rise-2, .rise-3 { animation: none; }
 }
