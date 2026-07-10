@@ -226,7 +226,7 @@ values (
       "id": "pricing_extras",
       "type": "rich_text",
       "heading": "Tasters and discounts",
-      "content": "New to us? Book a one to one taster lesson for £20 before you commit. It is the easiest way to meet your teacher and try the pool.\n\nBringing more than one child? The first child pays the full monthly fee and every additional sibling gets 10% off their fee.\n\nAbout the monthly fee: each fee covers four lessons a month. When a month has five weeks, or a lesson is affected by a closure, your fee is adjusted so you only pay for the lessons that take place."
+      "content": "New to us? Book a one to one taster lesson for £20 before you commit. It is the easiest way to meet your teacher and try the pool.\n\nBringing more than one child? The first child pays the full monthly fee and every additional sibling gets 10% off their fee.\n\nAbout the monthly fee: each fee covers four lessons a month. When a month has five weeks, or a lesson is affected by a closure, your fee is adjusted so you only pay for the lessons that take place.\n\nDeposit and notice: when you join we take a one month deposit, the same as your monthly fee. It is not an extra cost. We hold it and put it towards your final month when you decide to stop, as long as you give one month of notice."
     },
     {
       "id": "pricing_faq",
@@ -237,6 +237,8 @@ values (
         { "question": "What happens in a five-week month or if there is a closure?", "answer": "Your fee is adjusted to match the lessons that actually take place, so you are never charged for a lesson that does not happen." },
         { "question": "How much is a taster?", "answer": "A one to one taster lesson is £20." },
         { "question": "How does the sibling discount work?", "answer": "The first child pays the full fee for their pool, and each additional sibling gets 10% off their monthly fee." },
+        { "question": "Is there a deposit?", "answer": "Yes. When you join we take a deposit the same as one month of fees. We hold it and use it for your final month, so it is never money you lose." },
+        { "question": "How do I stop lessons?", "answer": "Just give one month of notice. Your deposit covers that final month, so there is nothing more to pay." },
         { "question": "How do I pay and book?", "answer": "Choose Book a lesson to book through our booking system, or send an enquiry and we will help you get set up." }
       ]
     },

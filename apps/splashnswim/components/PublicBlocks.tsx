@@ -216,7 +216,7 @@ function renderBlock(block: Block, variant: RichVariant) {
             </div>
             <div className="reveal mt-14 grid gap-6 md:grid-cols-3">
               {block.tiers.map((tier, index) => (
-                <div key={index} className={`relative flex flex-col rounded-3xl bg-surface p-8 shadow-sm transition-transform hover:-translate-y-1.5 ${tier.highlighted ? "border-2 border-coral ring-4 ring-coral/15" : "border-2 border-foam"}`}>
+                <div key={index} className={`relative flex flex-col items-center rounded-3xl bg-surface p-8 text-center shadow-sm transition-transform hover:-translate-y-1.5 ${tier.highlighted ? "border-2 border-coral ring-4 ring-coral/15" : "border-2 border-foam"}`}>
                   {tier.highlighted ? (
                     <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-coral px-3 py-1 text-xs font-bold text-ink shadow-sm">Most loved</span>
                   ) : null}
@@ -229,7 +229,7 @@ function renderBlock(block: Block, variant: RichVariant) {
                     ))}
                   </ul>
                   {tier.cta ? (
-                    <a href={tier.cta.href} className={`mt-8 rounded-full px-5 py-3 text-center font-bold transition-all hover:-translate-y-0.5 ${tier.highlighted ? "bg-coral text-ink hover:bg-coral-deep hover:text-surface" : "bg-ocean text-surface hover:bg-ocean-deep"}`}>{tier.cta.label}</a>
+                    <a href={tier.cta.href} className={`mt-8 w-full rounded-full px-5 py-3 text-center font-bold transition-all hover:-translate-y-0.5 ${tier.highlighted ? "bg-coral text-ink hover:bg-coral-deep hover:text-surface" : "bg-ocean text-surface hover:bg-ocean-deep"}`}>{tier.cta.label}</a>
                   ) : null}
                 </div>
               ))}
