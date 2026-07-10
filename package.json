@@ -7,6 +7,11 @@
   "engines": {
     "node": ">=20"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  },
   "scripts": {
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
