@@ -54,49 +54,69 @@ function renderBlock(block: Block, variant: RichVariant) {
       const photo = block.backgroundImage?.src ? block.backgroundImage : null;
       return (
         <>
-          <div className="relative overflow-hidden bg-gradient-to-b from-aqua via-ocean to-abyss">
-            {photo ? (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={photo.src} alt={photo.alt} className="absolute inset-0 h-full w-full object-cover" />
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-tr from-abyss/95 via-ocean-deep/70 to-ocean/30" />
-              </>
-            ) : (
-              <>
-                <Caustics />
-                <Bubbles />
-              </>
-            )}
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-abyss/70 via-abyss/25 to-transparent" />
-            <div className="relative mx-auto max-w-6xl px-5 pb-32 pt-20 sm:px-8 sm:pb-40 sm:pt-28">
-              <div className="max-w-2xl">
-                <p className="rise inline-block rounded-full bg-surface/15 px-4 py-1.5 text-xs font-bold uppercase tracking-eyebrow text-surface ring-1 ring-surface/25 backdrop-blur">
+          <div className="relative overflow-hidden bg-gradient-to-b from-foam to-surface">
+            <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.03fr_0.97fr] lg:gap-16">
+              {/* Left: message */}
+              <div>
+                <p className="rise text-xs font-bold uppercase tracking-eyebrow text-ocean-deep">
                   Private 1-to-1 tuition &middot; Essex
                 </p>
-                <h1 className="rise-2 mt-6 text-balance font-display text-5xl font-bold leading-[1.03] text-surface drop-shadow-md sm:text-6xl lg:text-7xl">
+                <h1 className="rise-2 mt-5 text-balance font-display text-4xl font-bold leading-[1.05] text-ink sm:text-5xl lg:text-6xl">
                   {block.heading}
                 </h1>
-                <span className="rise-2 mt-5 block h-2 w-28 rounded-full bg-coral" aria-hidden />
+                <span className="rise-2 mt-5 block h-2 w-24 rounded-full bg-coral" aria-hidden />
                 {block.subheading ? (
-                  <p className="rise-3 mt-6 max-w-xl text-lg leading-relaxed text-surface/85 sm:text-xl">
+                  <p className="rise-3 mt-6 max-w-md text-lg leading-relaxed text-slate">
                     {block.subheading}
                   </p>
                 ) : null}
-                <div className="rise-3 mt-9 flex flex-wrap items-center gap-4">
+                <div className="rise-3 mt-8 flex flex-wrap items-center gap-4">
                   {block.primaryCta ? (
-                    <a href={block.primaryCta.href} className="rounded-full bg-coral px-8 py-4 font-bold text-ink shadow-lg transition-all hover:-translate-y-0.5 hover:bg-coral-deep hover:text-surface">
+                    <a href={block.primaryCta.href} className="rounded-full bg-coral px-7 py-3.5 font-bold text-ink shadow-lg shadow-coral/20 transition-all hover:-translate-y-0.5 hover:bg-coral-deep hover:text-surface">
                       {block.primaryCta.label}
                     </a>
                   ) : null}
                   {block.secondaryCta ? (
-                    <a href={block.secondaryCta.href} className="rounded-full bg-surface/10 px-8 py-4 font-bold text-surface ring-1 ring-surface/40 backdrop-blur transition-colors hover:bg-surface/20">
+                    <a href={block.secondaryCta.href} className="rounded-full border-2 border-ocean px-7 py-3.5 font-bold text-ocean-deep transition-colors hover:bg-ocean hover:text-surface">
                       {block.secondaryCta.label}
                     </a>
                   ) : null}
                 </div>
+                <p className="mt-8 text-sm font-semibold text-slate">
+                  Eastwood &middot; Benfleet &middot; Rochford
+                </p>
+              </div>
+
+              {/* Right: framed pool panel (holds a photo when one is set) */}
+              <div className="rise-3 relative">
+                <div aria-hidden className="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-coral/20 blur-2xl" />
+                <div aria-hidden className="absolute -bottom-8 -left-8 h-44 w-44 rounded-full bg-aqua/30 blur-2xl" />
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-ink/10">
+                  {photo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={photo.src} alt={photo.alt} className="absolute inset-0 h-full w-full object-cover" />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-aqua via-ocean to-abyss">
+                      <Caustics />
+                      <Bubbles />
+                      <div aria-hidden className="absolute inset-y-0 left-[30%] w-px bg-surface/20" />
+                      <div aria-hidden className="absolute inset-y-0 left-[55%] w-px bg-surface/15" />
+                      <div aria-hidden className="absolute inset-y-0 left-[78%] w-px bg-surface/10" />
+                    </div>
+                  )}
+                </div>
+                {/* floating credibility badge */}
+                <div className="absolute -bottom-5 left-4 flex items-center gap-3 rounded-2xl bg-surface p-4 shadow-xl ring-1 ring-ink/5 sm:-left-6">
+                  <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-coral/15 text-coral-deep">
+                    <svg viewBox="0 0 20 20" aria-hidden className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 10.5l4 4 8-9" /></svg>
+                  </span>
+                  <div>
+                    <p className="font-display text-sm font-bold text-ink">One to one, always</p>
+                    <p className="text-xs text-slate">Every lesson is private</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <Waves colorClass="text-surface" />
           </div>
           <TrustRow />
         </>

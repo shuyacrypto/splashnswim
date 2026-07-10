@@ -43,7 +43,8 @@
       "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 8; Write-Output \"EXIT=$LASTEXITCODE\")",
       "PowerShell($c = Get-NetTCPConnection -LocalPort 3007 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Sort-Object -Unique | ForEach-Object { try { Stop-Process -Id $_ -Force -ErrorAction Stop; \"killed $_\" } catch {} } } else { \"no listener on 3007\" })",
       "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 15; Write-Output \"EXIT=$LASTEXITCODE\")",
-      "PowerShell($c = Get-NetTCPConnection -LocalPort 3007 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Sort-Object -Unique | ForEach-Object { try { Stop-Process -Id $_ -Force -ErrorAction Stop } catch {} } }; Write-Output \"port clear\")"
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 3007 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Sort-Object -Unique | ForEach-Object { try { Stop-Process -Id $_ -Force -ErrorAction Stop } catch {} } }; Write-Output \"port clear\")",
+      "PowerShell(pnpm --filter splashnswim typecheck 2>&1 | Select-String -Pattern \"error TS\" | Select-Object -First 10; Write-Output \"EXIT=$LASTEXITCODE\")"
     ]
   }
 }
