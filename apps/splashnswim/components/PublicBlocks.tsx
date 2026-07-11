@@ -172,7 +172,7 @@ function renderBlock(block: Block, variant: RichVariant) {
             {block.images.map((image, index) => (
               <figure key={index}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={image.src} alt={image.alt} className="aspect-[4/3] w-full rounded-2xl object-cover shadow-sm" />
+                <img src={image.src} alt={image.alt} className="aspect-square w-full rounded-2xl object-cover shadow-sm" />
                 {image.caption ? (
                   <figcaption className="mt-3 text-center font-display text-base font-bold text-ink">{image.caption}</figcaption>
                 ) : null}
