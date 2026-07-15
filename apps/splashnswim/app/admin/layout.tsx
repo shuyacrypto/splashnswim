@@ -42,7 +42,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
   return (
     <div style={ADMIN_THEME}>
-      <AdminShell nav={nav} brand={<Logo className="h-8" />}>
+      <AdminShell nav={nav} brand={<Logo className="h-11" />}>
         <div className="flex justify-end">
           <button
             type="button"

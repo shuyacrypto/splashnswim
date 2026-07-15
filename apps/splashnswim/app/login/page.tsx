@@ -34,7 +34,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-foam px-5 py-16">
       <div className="w-full max-w-sm">
         <div className="mb-8 flex justify-center">
-          <Logo className="h-11" />
+          <Logo className="h-16" />
         </div>
         <div className="rounded-3xl border border-ocean/10 bg-surface p-8 shadow-lg">
           <h1 className="font-display text-xl font-bold text-ink">Admin sign in</h1>

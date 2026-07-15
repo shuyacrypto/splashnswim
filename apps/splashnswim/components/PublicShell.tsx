@@ -24,7 +24,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b border-foam bg-surface/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
           <a href="/" aria-label="SplashNSwim home">
-            <Logo className="h-9 sm:h-10" />
+            <Logo className="h-12 sm:h-14" />
           </a>
 
           {/* Desktop navigation */}

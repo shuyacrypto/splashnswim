@@ -16,9 +16,9 @@
   --color-foam: 223 243 251;      /* pale aqua background */
   --color-ink: 18 59 109;         /* Deep Pool Blue text #123B6D */
   --color-slate: 90 112 137;      /* muted blue-grey text */
-  --color-coral: 233 105 145;     /* Gill Pink #E96991 (accent) */
-  --color-coral-deep: 209 78 120; /* deeper gill pink */
-  --color-sunshine: 246 167 189;  /* Axolotl Pink #F6A7BD (soft pop) */
+  --color-coral: 246 167 189;     /* Axolotl Pink #F6A7BD (accent / CTAs) */
+  --color-coral-deep: 233 105 145;/* Gill Pink #E96991 (hover + accent text on light) */
+  --color-sunshine: 246 167 189;  /* Axolotl Pink #F6A7BD */
   --color-surface: 255 255 255;
 }
 

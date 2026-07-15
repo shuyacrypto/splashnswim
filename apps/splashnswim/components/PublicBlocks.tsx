@@ -254,7 +254,7 @@ function renderBlock(block: Block, variant: RichVariant) {
                 <details key={index} className="group border-b border-foam">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
                     {item.question}
-                    <span className="grid h-7 w-7 flex-none place-items-center rounded-full bg-foam text-xl text-coral transition-transform duration-200 group-open:rotate-45">+</span>
+                    <span className="grid h-7 w-7 flex-none place-items-center rounded-full bg-foam text-xl text-coral-deep transition-transform duration-200 group-open:rotate-45">+</span>
                   </summary>
                   <p className="max-w-2xl pb-6 text-slate">{item.answer}</p>
                 </details>
