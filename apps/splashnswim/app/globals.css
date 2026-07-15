@@ -3,21 +3,22 @@
 @tailwind utilities;
 
 /*
- * SplashNSwim - vibrant water design system. Bright ocean blues and turquoise,
- * warm coral and sunshine accents. Tokens are RGB channels so opacity
- * modifiers work. Components use semantic names (bg-ocean, text-coral, ...).
+ * SplashNSwim - official brand palette (asset pack v1.1). Tokens are RGB
+ * channels so opacity modifiers work. Components use semantic names
+ * (bg-ocean, text-coral, ...); the values below map those names to the brand:
+ * Splash Blue, Aqua, Gill Pink, Deep Pool Blue, Axolotl Pink.
  */
 :root {
-  --color-ocean: 20 146 200;      /* vibrant swimming-pool blue */
-  --color-ocean-deep: 12 82 120;  /* deeper water */
-  --color-abyss: 8 45 72;         /* deepest: hero base, footer */
-  --color-aqua: 74 200 219;       /* bright turquoise */
-  --color-foam: 224 247 251;      /* pale aqua background */
-  --color-ink: 14 42 59;          /* deep teal text */
-  --color-slate: 74 106 125;      /* muted text */
-  --color-coral: 255 118 98;      /* warm accent */
-  --color-coral-deep: 231 92 74;
-  --color-sunshine: 255 193 74;   /* warm pop */
+  --color-ocean: 8 126 219;       /* Splash Blue #087EDB */
+  --color-ocean-deep: 10 82 150;  /* deeper splash blue */
+  --color-abyss: 18 59 109;       /* Deep Pool Blue #123B6D: hero base, footer */
+  --color-aqua: 88 210 223;       /* Aqua #58D2DF */
+  --color-foam: 223 243 251;      /* pale aqua background */
+  --color-ink: 18 59 109;         /* Deep Pool Blue text #123B6D */
+  --color-slate: 90 112 137;      /* muted blue-grey text */
+  --color-coral: 233 105 145;     /* Gill Pink #E96991 (accent) */
+  --color-coral-deep: 209 78 120; /* deeper gill pink */
+  --color-sunshine: 246 167 189;  /* Axolotl Pink #F6A7BD (soft pop) */
   --color-surface: 255 255 255;
 }
 

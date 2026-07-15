@@ -17,7 +17,14 @@ const body = Nunito({
 export const metadata = {
   title: "SplashNSwim | Private 1-to-1 swimming lessons in Essex",
   description:
-    "Premium one-to-one swimming lessons at private pools in Eastwood, Benfleet and Ashingdon. Warm, expert teaching that builds confidence fast.",
+    "Confidence starts in the water. Premium one-to-one swimming lessons at private pools in Eastwood, Benfleet and Ashingdon. Warm, expert teaching that builds confidence fast.",
+  openGraph: {
+    title: "SplashNSwim | Private 1-to-1 swimming lessons in Essex",
+    description: "Confidence starts in the water. Premium one-to-one swimming lessons across south Essex.",
+    siteName: "SplashNSwim",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

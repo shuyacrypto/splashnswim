@@ -65,10 +65,9 @@ export function EnquiryForm() {
   if (status === "sent") {
     return (
       <div className="rounded-2xl border-2 border-foam bg-foam p-6 text-center">
-        <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-ocean text-surface">
-          <svg viewBox="0 0 20 20" aria-hidden className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 10.5l4 4 8-9" /></svg>
-        </span>
-        <p className="mt-4 font-display text-lg font-bold text-ink">Enquiry submitted</p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/brand/dylan-thumbsup.png" alt="" className="mx-auto h-28 w-auto" />
+        <p className="mt-2 font-display text-lg font-bold text-ink">Enquiry submitted</p>
         <p className="mt-2 text-sm leading-relaxed text-slate">
           Thank you. We have your enquiry and will be in touch soon
           {sentToEmail ? <> at <span className="font-semibold text-ink">{sentToEmail}</span></> : null}.

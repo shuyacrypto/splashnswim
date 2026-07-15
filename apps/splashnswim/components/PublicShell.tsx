@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { Logo, Waves } from "./Brand";
+import { Logo, WordmarkLight, Waves } from "./Brand";
 
 const BOOK_URL = "https://octoswim.co.uk/book/splashnswim";
 const TASTER_URL = "/contact?type=taster";
@@ -92,10 +92,11 @@ export function PublicShell({ children }: { children: ReactNode }) {
         </div>
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:grid-cols-[1.4fr_1fr_1fr] sm:px-8">
           <div>
-            <span className="inline-flex rounded-2xl bg-surface px-4 py-3 shadow-sm ring-1 ring-white/10">
-              <Logo className="h-10" />
-            </span>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-surface/70">
+            <WordmarkLight className="h-9" />
+            <p className="mt-3 font-display text-sm font-semibold text-aqua">
+              Confidence starts in the water.
+            </p>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-surface/70">
               Private one-to-one swimming lessons across south Essex. Warm, expert
               teaching that builds confidence fast.
             </p>

@@ -3,16 +3,15 @@
 export function Logo({ className = "" }: { className?: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src="/brand/logo.png" alt="SplashNSwim" className={`w-auto ${className}`} />
+    <img src="/brand/logo-horizontal.png" alt="SplashNSwim" className={`w-auto ${className}`} />
   );
 }
 
+/** The white wordmark, for dark backgrounds (e.g. the footer). */
 export function WordmarkLight({ className = "" }: { className?: string }) {
   return (
-    <span className={`font-display font-bold tracking-tight ${className}`} aria-label="SplashNSwim">
-      <span className="text-surface">SplashN</span>
-      <span className="text-aqua">Swim</span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src="/brand/wordmark-white.png" alt="SplashNSwim" className={`w-auto ${className}`} />
   );
 }
 

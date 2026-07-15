@@ -242,7 +242,13 @@ function renderBlock(block: Block, variant: RichVariant) {
       return (
         <Container>
           <div className="reveal mx-auto max-w-3xl">
-            {block.heading ? <Heading className="mb-8 text-center text-ink">{block.heading}</Heading> : null}
+            {block.heading ? (
+              <div className="mb-8 text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/dylan-thinking.png" alt="" className="mx-auto mb-3 h-24 w-auto" />
+                <Heading className="text-ink">{block.heading}</Heading>
+              </div>
+            ) : null}
             <div className="border-t border-foam">
               {block.items.map((item, index) => (
                 <details key={index} className="group border-b border-foam">
@@ -284,6 +290,8 @@ function renderBlock(block: Block, variant: RichVariant) {
       return (
         <div className="bg-gradient-to-br from-coral to-coral-deep">
           <div className="mx-auto max-w-4xl px-5 py-24 text-center sm:px-8 sm:py-28">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/dylan-confident.png" alt="" className="mx-auto mb-6 h-32 w-auto drop-shadow-lg" />
             <h2 className="text-balance font-display text-3xl font-bold leading-tight text-ink sm:text-5xl">{block.heading}</h2>
             {block.body ? <p className="mx-auto mt-4 max-w-xl text-lg text-ink/80">{block.body}</p> : null}
             <a href={block.cta.href} className="mt-9 inline-block rounded-full bg-ink px-8 py-4 font-bold text-surface shadow-lg transition-all hover:-translate-y-0.5 hover:bg-abyss">{block.cta.label}</a>
@@ -297,6 +305,8 @@ function renderBlock(block: Block, variant: RichVariant) {
           <Container>
             <div className="grid gap-12 md:grid-cols-2">
               <div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/dylan-wave.png" alt="" className="mb-4 h-28 w-auto" />
                 {block.heading ? <Heading className="text-ink">{block.heading}</Heading> : null}
                 <div className="mt-6 space-y-2 text-slate">
                   {block.address ? <p className="font-semibold text-ink">{block.address}</p> : null}
