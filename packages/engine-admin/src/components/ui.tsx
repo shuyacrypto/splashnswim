@@ -20,6 +20,13 @@ const BUTTON_STYLES: Record<ButtonVariant, string> = {
   danger: "border border-red-200 bg-white text-red-600 hover:bg-red-50",
 };
 
+/** The class string a `<Button variant>` renders with. Exported so plain
+ * links (e.g. the Home screen's quick actions) can look identical to a
+ * Button without nesting an interactive element inside an anchor. */
+export function buttonClassName(variant: ButtonVariant = "primary"): string {
+  return `inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${BUTTON_STYLES[variant]}`;
+}
+
 export function Button({
   children,
   onClick,
@@ -38,7 +45,7 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${BUTTON_STYLES[variant]}`}
+      className={buttonClassName(variant)}
     >
       {children}
     </button>
@@ -46,7 +53,7 @@ export function Button({
 }
 
 const INPUT_CLASS =
-  "block w-full rounded-xl border border-[var(--admin-border,#e2e8f0)] bg-[var(--admin-surface,#ffffff)] px-3.5 py-2.5 text-sm text-[var(--admin-text,#0f172a)] transition-colors focus:border-[var(--admin-primary,#0f172a)] focus:outline-none focus:ring-1 focus:ring-[var(--admin-primary,#0f172a)]";
+  "block w-full rounded-2xl border border-[var(--admin-border,#e2e8f0)] bg-[var(--admin-surface,#ffffff)] px-4 py-3 text-sm text-[var(--admin-text,#0f172a)] transition-colors focus:border-[var(--admin-primary,#0f172a)] focus:outline-none focus:ring-1 focus:ring-[var(--admin-primary,#0f172a)]";
 const LABEL_CLASS = "text-sm font-medium text-[var(--admin-muted,#64748b)]";
 
 export function TextField({
@@ -153,7 +160,7 @@ export function Toggle({
 
 export function Card({ children }: { children: ReactNode }) {
   return (
-    <div className="space-y-3.5 rounded-2xl border border-[var(--admin-border,#e2e8f0)] bg-[var(--admin-surface,#ffffff)] p-5 shadow-sm">
+    <div className="space-y-3.5 rounded-2xl border border-[var(--admin-border,#e2e8f0)] bg-[var(--admin-surface,#ffffff)] p-5 shadow-[0_2px_8px_rgba(15,23,42,0.05)]">
       {children}
     </div>
   );
