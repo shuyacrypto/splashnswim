@@ -3,6 +3,11 @@
 import { useState } from "react";
 import type { PagesScreenProps } from "../types.js";
 import { Button, Card, ErrorText, TextField } from "./ui.js";
+import { StatusBadge } from "./StatusBadge.js";
+import { EmptyState } from "./EmptyState.js";
+import { ConfirmDialog } from "./ConfirmDialog.js";
+import { useToast } from "./Toast.js";
+import { FileText } from "../icons.js";
 import { errorMessages } from "../helpers.js";
 
 export function PagesScreen({
@@ -16,6 +21,8 @@ export function PagesScreen({
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<{ id: string; title: string } | null>(null);
+  const { showToast } = useToast();
 
   async function run(action: () => Promise<void>) {
     setErrors([]);
@@ -32,14 +39,20 @@ export function PagesScreen({
   async function create() {
     await run(async () => {
       await onCreatePage({ slug, title });
+      showToast(`"${title}" created.`);
       setSlug("");
       setTitle("");
     });
   }
 
-  async function remove(id: string, name: string) {
-    if (!window.confirm(`Delete the page "${name}"? This cannot be undone.`)) return;
-    await run(() => onDeletePage(id));
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+    const { id } = deleteTarget;
+    setDeleteTarget(null);
+    await run(async () => {
+      await onDeletePage(id);
+      showToast("Page deleted.");
+    });
   }
 
   return (
@@ -50,28 +63,22 @@ export function PagesScreen({
 
       <Card>
         <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Create a new page</h2>
-        <TextField
-          label="Title"
-          value={title}
-          onChange={setTitle}
-          placeholder="About us"
-        />
-        <TextField
-          label="Page address"
-          value={slug}
-          onChange={setSlug}
-          placeholder="about-us"
-        />
+        <TextField label="Title" value={title} onChange={setTitle} placeholder="About us" />
+        <TextField label="Page address" value={slug} onChange={setSlug} placeholder="about-us" />
         <Button onClick={create} disabled={busy}>
           Create page
         </Button>
       </Card>
 
-      <div className="space-y-2">
-        {pages.length === 0 ? (
-          <p className="text-sm text-slate-500">No pages yet.</p>
-        ) : (
-          pages.map((page) => (
+      {pages.length === 0 ? (
+        <EmptyState
+          icon={FileText}
+          title="No pages yet"
+          description="Create your first page above to start building your site."
+        />
+      ) : (
+        <div className="space-y-2">
+          {pages.map((page) => (
             <Card key={page.id}>
               <div className="flex items-center justify-between gap-4">
                 <div>
@@ -84,15 +91,7 @@ export function PagesScreen({
                   <p className="text-xs text-[var(--admin-muted,#64748b)]">/{page.slug}</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span
-                    className={
-                      page.published
-                        ? "rounded-full bg-green-100 px-2 py-0.5 text-xs text-green-800"
-                        : "rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600"
-                    }
-                  >
-                    {page.published ? "Published" : "Draft"}
-                  </span>
+                  <StatusBadge status={page.published ? "published" : "draft"} />
                   <Button
                     variant="secondary"
                     disabled={busy}
@@ -103,16 +102,26 @@ export function PagesScreen({
                   <Button
                     variant="danger"
                     disabled={busy}
-                    onClick={() => remove(page.id, page.title)}
+                    onClick={() => setDeleteTarget({ id: page.id, title: page.title })}
                   >
                     Delete
                   </Button>
                 </div>
               </div>
             </Card>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
+
+      <ConfirmDialog
+        open={deleteTarget !== null}
+        title="Delete this page?"
+        message={deleteTarget ? `Delete the page "${deleteTarget.title}"? This cannot be undone.` : ""}
+        confirmLabel="Delete page"
+        danger
+        onConfirm={confirmDelete}
+        onCancel={() => setDeleteTarget(null)}
+      />
     </div>
   );
 }
