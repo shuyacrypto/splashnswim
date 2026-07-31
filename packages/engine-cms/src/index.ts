@@ -31,6 +31,7 @@ export {
   listMedia,
   getPublicUrl,
   uploadImage,
+  updateMediaAlt,
   deleteMedia,
 } from "./media.js";
 export type { MediaItem, UploadImageInput, UploadBody } from "./media.js";

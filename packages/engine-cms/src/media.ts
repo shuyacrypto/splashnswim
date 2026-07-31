@@ -73,6 +73,23 @@ export async function uploadImage(
   return rowToMedia(data);
 }
 
+/** Updates an uploaded image's alt text (its accessible description). */
+export async function updateMediaAlt(
+  client: EngineDbClient,
+  id: string,
+  alt: string,
+): Promise<MediaItem> {
+  const { data, error } = await client
+    .from("media")
+    .update({ alt })
+    .eq("id", id)
+    .select("*")
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  if (!data) throw new NotFoundError(`No image found with id ${id}.`);
+  return rowToMedia(data);
+}
+
 /** Deletes an image: first the stored file, then its record. */
 export async function deleteMedia(
   client: EngineDbClient,
