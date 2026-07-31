@@ -23,4 +23,5 @@ export {
   Users,
   Megaphone,
   Phone,
+  Clock,
 } from "lucide-react";

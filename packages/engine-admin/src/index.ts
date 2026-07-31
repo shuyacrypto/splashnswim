@@ -15,6 +15,8 @@ export { PageEditorScreen } from "./components/PageEditorScreen.js";
 export { SettingsScreen } from "./components/SettingsScreen.js";
 export { MediaScreen } from "./components/MediaScreen.js";
 export { BroadcastScreen } from "./components/BroadcastScreen.js";
+export { HomeScreen } from "./components/HomeScreen.js";
+export type { HomeScreenProps, HomeScreenStats } from "./components/HomeScreen.js";
 export { BlockEditor } from "./components/BlockEditor.js";
 
 export { BLOCK_LABELS, createBlock } from "./labels.js";
@@ -58,4 +60,5 @@ export {
   Users,
   Megaphone,
   Phone,
+  Clock,
 } from "./icons.js";
