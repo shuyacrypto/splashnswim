@@ -25,6 +25,9 @@ out/
 npm-debug.log*
 pnpm-debug.log*
 
+# Brainstorming visual companion scratch files
+.superpowers/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
