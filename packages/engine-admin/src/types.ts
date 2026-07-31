@@ -38,6 +38,7 @@ export interface MediaScreenProps {
   /** The public web address for a stored file, for use in image blocks. */
   publicUrl: (storagePath: string) => string;
   onUpload: (file: File) => Promise<void>;
+  onUpdateAlt: (id: string, alt: string) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
 }
 
