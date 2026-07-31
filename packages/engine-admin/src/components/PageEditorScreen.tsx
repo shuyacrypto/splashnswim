@@ -5,6 +5,8 @@ import type { Block } from "@swim-engine/engine-contracts";
 import type { PageEditorScreenProps } from "../types.js";
 import { BlockEditor } from "./BlockEditor.js";
 import { Button, Card, ErrorText, TextField } from "./ui.js";
+import { StatusBadge } from "./StatusBadge.js";
+import { useToast } from "./Toast.js";
 import { errorMessages } from "../helpers.js";
 
 export function PageEditorScreen({
@@ -22,7 +24,7 @@ export function PageEditorScreen({
   const [published, setPublished] = useState(page.published);
   const [errors, setErrors] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const { showToast } = useToast();
 
   async function run(action: () => Promise<void>) {
     setErrors([]);
@@ -36,12 +38,11 @@ export function PageEditorScreen({
     }
   }
 
-  // A single save for the whole page: details first, then content.
   async function saveAll() {
     await run(async () => {
       await onSaveMeta({ title, slug, metaTitle, metaDescription });
       await onSaveBlocks(blocks);
-      setSaved(true);
+      showToast("All changes saved.");
     });
   }
 
@@ -49,33 +50,21 @@ export function PageEditorScreen({
     await run(async () => {
       await onTogglePublished(!published);
       setPublished(!published);
+      showToast(published ? "Page unpublished." : "Page published.");
     });
-  }
-
-  // Any edit clears the "saved" note.
-  function edited<T>(setter: (value: T) => void) {
-    return (value: T) => {
-      setter(value);
-      setSaved(false);
-    };
   }
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <a href={backHref} className="text-sm font-medium text-[var(--admin-muted,#64748b)] hover:text-[var(--admin-text,#0f172a)]">
+        <a
+          href={backHref}
+          className="text-sm font-medium text-[var(--admin-muted,#64748b)] hover:text-[var(--admin-text,#0f172a)]"
+        >
           Back to pages
         </a>
         <div className="flex items-center gap-3">
-          <span
-            className={
-              published
-                ? "rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800"
-                : "rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-600"
-            }
-          >
-            {published ? "Published" : "Draft"}
-          </span>
+          <StatusBadge status={published ? "published" : "draft"} />
           <Button variant="secondary" disabled={busy} onClick={togglePublished}>
             {published ? "Unpublish" : "Publish"}
           </Button>
@@ -88,24 +77,22 @@ export function PageEditorScreen({
 
       <Card>
         <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Page details</h2>
-        <TextField label="Title" value={title} onChange={edited(setTitle)} />
-        <TextField label="Page address" value={slug} onChange={edited(setSlug)} />
-        <TextField label="Search engine title (optional)" value={metaTitle} onChange={edited(setMetaTitle)} />
+        <TextField label="Title" value={title} onChange={setTitle} />
+        <TextField label="Page address" value={slug} onChange={setSlug} />
+        <TextField label="Search engine title (optional)" value={metaTitle} onChange={setMetaTitle} />
         <TextField
           label="Search engine description (optional)"
           value={metaDescription}
-          onChange={edited(setMetaDescription)}
+          onChange={setMetaDescription}
         />
       </Card>
 
       <div>
         <h2 className="mb-2 text-sm font-semibold text-[var(--admin-text,#0f172a)]">Content</h2>
-        <BlockEditor blocks={blocks} onChange={edited(setBlocks)} />
+        <BlockEditor blocks={blocks} onChange={setBlocks} />
       </div>
 
-      {/* One clear Save for the whole page, always in reach. */}
       <div className="sticky bottom-4 z-10 flex items-center justify-end gap-3 rounded-2xl border border-[var(--admin-border,#e2e8f0)] bg-[var(--admin-surface,#ffffff)] p-3 shadow-lg">
-        {saved ? <span className="text-sm font-medium text-green-700">All changes saved.</span> : null}
         <Button onClick={saveAll} disabled={busy}>
           {busy ? "Saving..." : "Save changes"}
         </Button>
