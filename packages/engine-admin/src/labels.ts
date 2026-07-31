@@ -1,4 +1,16 @@
 import type { Block } from "@swim-engine/engine-contracts";
+import type { ComponentType } from "react";
+import {
+  ImageIcon,
+  FileText,
+  Images,
+  CalendarClock,
+  DollarSign,
+  HelpCircle,
+  Users,
+  Megaphone,
+  Phone,
+} from "./icons.js";
 
 /**
  * Friendly names for each block type, shown in the admin. The keys are the
@@ -70,3 +82,17 @@ export function createBlock(type: Block["type"], id: string): Block {
     }
   }
 }
+
+/** A small icon for each block type, so the block list is scannable at a glance. */
+export const BLOCK_ICONS: Record<Block["type"], ComponentType<{ className?: string }>> = {
+  hero: ImageIcon,
+  rich_text: FileText,
+  image: ImageIcon,
+  gallery: Images,
+  timetable: CalendarClock,
+  pricing_table: DollarSign,
+  faq: HelpCircle,
+  team: Users,
+  cta_banner: Megaphone,
+  contact: Phone,
+};
