@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { SettingsScreenProps } from "../types.js";
 import { Button, Card, ErrorText, TextField, Toggle } from "./ui.js";
+import { useToast } from "./Toast.js";
 import { errorMessages } from "../helpers.js";
 
 export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
@@ -15,17 +16,16 @@ export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
   const [tiktok, setTiktok] = useState(settings?.socialLinks?.tiktok ?? "");
   const [errors, setErrors] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const { showToast } = useToast();
 
   async function save() {
     setErrors([]);
-    setBusy(true);
-    setSaved(false);
     const socialLinks = {
       ...(facebook ? { facebook } : {}),
       ...(instagram ? { instagram } : {}),
       ...(tiktok ? { tiktok } : {}),
     };
+    setBusy(true);
     try {
       await onSave({
         schoolName,
@@ -34,7 +34,7 @@ export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
         bookingEnabled,
         socialLinks,
       });
-      setSaved(true);
+      showToast("Settings saved.");
     } catch (error) {
       setErrors(errorMessages(error));
     } finally {
@@ -64,25 +64,17 @@ export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
 
       <Card>
         <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Modules</h2>
-        <Toggle
-          label="Enable booking and billing"
-          checked={bookingEnabled}
-          onChange={setBookingEnabled}
-        />
+        <Toggle label="Enable booking and billing" checked={bookingEnabled} onChange={setBookingEnabled} />
         <p className="text-sm text-[var(--admin-muted,#64748b)]">
-          Booking and billing is an optional add-on set up separately for your
-          school. When it is switched on, the booking screens appear in the
-          admin. If nothing changes after enabling it, the module is not set up
-          for your school yet.
+          Booking and billing is an optional add-on set up separately for your school. When it is
+          switched on, the booking screens appear in the admin. If nothing changes after enabling
+          it, the module is not set up for your school yet.
         </p>
       </Card>
 
-      <div className="flex items-center gap-3">
-        <Button onClick={save} disabled={busy}>
-          {busy ? "Saving..." : "Save settings"}
-        </Button>
-        {saved ? <span className="text-sm text-green-700">Saved.</span> : null}
-      </div>
+      <Button onClick={save} disabled={busy}>
+        {busy ? "Saving..." : "Save settings"}
+      </Button>
     </div>
   );
 }
