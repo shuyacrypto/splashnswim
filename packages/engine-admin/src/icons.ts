@@ -19,6 +19,7 @@ export {
   Images,
   CalendarClock,
   DollarSign,
+  PoundSterling,
   HelpCircle,
   Users,
   Megaphone,

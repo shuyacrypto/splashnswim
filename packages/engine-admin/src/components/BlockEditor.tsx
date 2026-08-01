@@ -6,7 +6,8 @@ import { BLOCK_ICONS, BLOCK_LABELS, createBlock } from "../labels.js";
 import { BlockFields } from "./blocks/editors.js";
 import { Button, Card, SelectField } from "./ui.js";
 import { ConfirmDialog } from "./ConfirmDialog.js";
-import { ChevronUp, ChevronDown } from "../icons.js";
+import { EmptyState } from "./EmptyState.js";
+import { ChevronUp, ChevronDown, FileText } from "../icons.js";
 import { move, removeAt, replaceAt } from "../array.js";
 
 const BLOCK_TYPE_OPTIONS = (
@@ -79,9 +80,11 @@ export function BlockEditor({
       })}
 
       {blocks.length === 0 ? (
-        <p className="text-sm text-[var(--admin-muted,#64748b)]">
-          This page has no content blocks yet. Add one below.
-        </p>
+        <EmptyState
+          icon={FileText}
+          title="No content blocks yet"
+          description="Add one below to start building this page."
+        />
       ) : null}
 
       <Card>

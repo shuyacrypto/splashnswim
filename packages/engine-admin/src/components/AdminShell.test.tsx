@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { AdminShell } from "./AdminShell.js";
+import { useToast } from "./Toast.js";
 import { Home, Settings } from "../icons.js";
 
 const nav = [
@@ -46,14 +47,21 @@ describe("AdminShell", () => {
 
   it("lets a child screen show a toast (ToastProvider is included)", async () => {
     function ScreenWithToast() {
-      return <p>Page content</p>;
+      const { showToast } = useToast();
+      return (
+        <div>
+          <p>Page content</p>
+          <button onClick={() => showToast("Saved.")}>Trigger toast</button>
+        </div>
+      );
     }
+    const user = userEvent.setup();
     render(
       <AdminShell nav={nav}>
         <ScreenWithToast />
       </AdminShell>,
     );
-    // No error thrown means ToastProvider successfully wraps children.
-    expect(screen.getByText("Page content")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Trigger toast" }));
+    expect(screen.getByText("Saved.")).toBeInTheDocument();
   });
 });

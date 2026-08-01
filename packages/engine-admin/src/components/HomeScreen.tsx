@@ -27,7 +27,7 @@ export function HomeScreen({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-display text-2xl font-bold text-[var(--admin-text,#0f172a)]">
+        <h1 className="text-2xl font-bold text-[var(--admin-text,#0f172a)]">
           Welcome back
         </h1>
         <p className="text-sm text-[var(--admin-muted,#64748b)]">

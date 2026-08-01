@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { render } from "@testing-library/react";
 import { BLOCK_LABELS, BLOCK_ICONS } from "./labels.js";
 
 describe("BLOCK_ICONS", () => {
@@ -8,9 +9,10 @@ describe("BLOCK_ICONS", () => {
     expect(iconTypes).toEqual(labelTypes);
   });
 
-  it("maps each block type to a component function", () => {
-    for (const icon of Object.values(BLOCK_ICONS)) {
-      expect(typeof icon).toBe("object"); // lucide icons are forwardRef components
+  it("maps each block type to a component that renders an SVG icon", () => {
+    for (const Icon of Object.values(BLOCK_ICONS)) {
+      const { container } = render(<Icon />);
+      expect(container.querySelector("svg")).not.toBeNull();
     }
   });
 });

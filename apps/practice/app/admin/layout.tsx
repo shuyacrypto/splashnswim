@@ -25,8 +25,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AdminShell nav={nav}>
-      <div className="flex justify-end">
+    <AdminShell
+      nav={nav}
+      footer={
         <button
           type="button"
           onClick={signOut}
@@ -34,7 +35,8 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         >
           Sign out
         </button>
-      </div>
+      }
+    >
       {children}
     </AdminShell>
   );

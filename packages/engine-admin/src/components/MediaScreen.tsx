@@ -49,6 +49,14 @@ export function MediaScreen({ items, publicUrl, onUpload, onUpdateAlt, onDelete 
   }
 
   function selectFile(file: File) {
+    if (!file.type.startsWith("image/")) {
+      setErrors(["Please choose an image file."]);
+      return;
+    }
+    if (file.size > 8 * 1024 * 1024) {
+      setErrors(["Please choose an image under 8MB."]);
+      return;
+    }
     setPendingFile(file);
     setPendingPreview(URL.createObjectURL(file));
   }
@@ -83,6 +91,7 @@ export function MediaScreen({ items, publicUrl, onUpload, onUpdateAlt, onDelete 
   async function saveAlt(id: string, alt: string) {
     await run(async () => {
       await onUpdateAlt(id, alt);
+      showToast("Description saved.");
     });
   }
 
@@ -98,7 +107,7 @@ export function MediaScreen({ items, publicUrl, onUpload, onUpdateAlt, onDelete 
 
   return (
     <div className="space-y-6">
-      <h1 className="font-display text-2xl font-bold text-[var(--admin-text,#0f172a)]">Images</h1>
+      <h1 className="text-2xl font-bold text-[var(--admin-text,#0f172a)]">Images</h1>
 
       <ErrorText messages={errors} />
 

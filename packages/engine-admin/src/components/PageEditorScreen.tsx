@@ -71,7 +71,7 @@ export function PageEditorScreen({
         </div>
       </div>
 
-      <h1 className="font-display text-2xl font-bold text-[var(--admin-text,#0f172a)]">{title}</h1>
+      <h1 className="text-2xl font-bold text-[var(--admin-text,#0f172a)]">{title}</h1>
 
       <ErrorText messages={errors} />
 

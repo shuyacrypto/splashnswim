@@ -44,7 +44,7 @@ export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
 
   return (
     <div className="space-y-6">
-      <h1 className="font-display text-2xl font-bold text-[var(--admin-text,#0f172a)]">Site settings</h1>
+      <h1 className="text-2xl font-bold text-[var(--admin-text,#0f172a)]">Site settings</h1>
 
       <ErrorText messages={errors} />
 

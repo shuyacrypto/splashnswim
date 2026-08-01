@@ -43,7 +43,7 @@ export function BroadcastScreen({ recipientCount, audienceLabel, onSend }: Broad
 
   return (
     <div className="space-y-6">
-      <h1 className="font-display text-2xl font-bold text-[var(--admin-text,#0f172a)]">
+      <h1 className="text-2xl font-bold text-[var(--admin-text,#0f172a)]">
         Send a broadcast
       </h1>
       <p className="text-sm text-[var(--admin-muted,#64748b)]">
