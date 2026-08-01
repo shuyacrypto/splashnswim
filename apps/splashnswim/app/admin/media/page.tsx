@@ -6,6 +6,7 @@ import type { MediaItem } from "@swim-engine/engine-admin";
 import {
   listMedia,
   uploadImage,
+  updateMediaAlt,
   deleteMedia,
   getPublicUrl,
 } from "@swim-engine/engine-cms";
@@ -38,6 +39,10 @@ export default function AdminMediaPage() {
           contentType: file.type,
           alt: file.name,
         });
+        await refresh();
+      }}
+      onUpdateAlt={async (id, alt) => {
+        await updateMediaAlt(supabase, id, alt);
         await refresh();
       }}
       onDelete={async (id) => {

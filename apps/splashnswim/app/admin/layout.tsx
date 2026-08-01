@@ -3,7 +3,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { AdminShell } from "@swim-engine/engine-admin";
+import { AdminShell, Home, FileText, ImageIcon, Mail, Settings } from "@swim-engine/engine-admin";
 import { Logo } from "@/components/Brand";
 import { createClientSupabase } from "@/lib/supabase/client";
 
@@ -29,9 +29,11 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   const [supabase] = useState(() => createClientSupabase());
 
   const nav = [
-    { label: "Pages", href: "/admin/pages", active: pathname.startsWith("/admin/pages") },
-    { label: "Settings", href: "/admin/settings", active: pathname === "/admin/settings" },
-    { label: "Images", href: "/admin/media", active: pathname === "/admin/media" },
+    { label: "Home", href: "/admin", icon: Home, active: pathname === "/admin" },
+    { label: "Pages", href: "/admin/pages", icon: FileText, active: pathname.startsWith("/admin/pages") },
+    { label: "Images", href: "/admin/media", icon: ImageIcon, active: pathname === "/admin/media" },
+    { label: "Broadcast", href: "/admin/broadcast", icon: Mail, active: pathname === "/admin/broadcast" },
+    { label: "Settings", href: "/admin/settings", icon: Settings, active: pathname === "/admin/settings" },
   ];
 
   async function signOut() {
@@ -42,16 +44,19 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
   return (
     <div style={ADMIN_THEME}>
-      <AdminShell nav={nav} brand={<Logo className="h-11" />}>
-        <div className="flex justify-end">
+      <AdminShell
+        nav={nav}
+        brand={<Logo className="h-11" />}
+        footer={
           <button
             type="button"
             onClick={signOut}
-            className="text-sm font-medium text-[var(--admin-muted,#64748b)] hover:text-[var(--admin-text,#0f172a)]"
+            className="w-full rounded-xl px-3 py-2.5 text-left text-sm font-medium text-[var(--admin-muted,#64748b)] hover:bg-[var(--admin-bg,#f8fafc)] hover:text-[var(--admin-text,#0f172a)]"
           >
             Sign out
           </button>
-        </div>
+        }
+      >
         {children}
       </AdminShell>
     </div>
