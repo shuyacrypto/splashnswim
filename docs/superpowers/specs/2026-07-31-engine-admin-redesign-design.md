@@ -1,7 +1,7 @@
 # engine-admin visual & UX redesign
 
 Date: 2026-07-31
-Status: Approved, pending implementation plan
+Status: Implemented
 
 ## Context
 
