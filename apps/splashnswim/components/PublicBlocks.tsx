@@ -117,7 +117,7 @@ function renderBlock(block: Block, variant: RichVariant) {
                   </span>
                   <div>
                     <p className="font-display text-sm font-bold text-ink">Qualified and safe</p>
-                    <p className="text-xs text-slate">STA, DBS checked, first aid</p>
+                    <p className="text-xs text-slate">STA, Swim England, DBS checked, first aid</p>
                   </div>
                 </div>
               </div>
