@@ -71,6 +71,12 @@ values (
   true,
   '[
     {
+      "id": "blk_hero",
+      "type": "hero",
+      "heading": "What We Do",
+      "subheading": "Capital introduction and deal structuring for Web3 and DLT-driven businesses seeking institutional private credit."
+    },
+    {
       "id": "blk_how",
       "type": "feature_grid",
       "heading": "From first conversation to funded, in three moves",
@@ -106,6 +112,12 @@ values (
   'Our Work | Draupnir Capital',
   true,
   '[
+    {
+      "id": "blk_hero",
+      "type": "hero",
+      "heading": "Our Work",
+      "subheading": "A track record measured in mandates, not marketing."
+    },
     {
       "id": "blk_stats_repeat",
       "type": "stats",
@@ -146,12 +158,17 @@ values (
   true,
   '[
     {
+      "id": "blk_hero",
+      "type": "hero",
+      "heading": "Team",
+      "subheading": "The two people behind every mandate."
+    },
+    {
       "id": "blk_team",
       "type": "team",
-      "heading": "Two operators, one network",
       "members": [
-        { "name": "Boris Redfern", "role": "Head of Capital Markets", "bio": "Over a decade in structured finance, with a deep network of non-bank lenders across Europe. Previously Head of Capital Markets at Kasu." },
-        { "name": "Sebastian Cheek", "role": "Head of Operations & Investment", "bio": "Formerly Head of Investment at Faculty Group, where he led an active investment fund. Runs deal operations end to end at Draupnir." }
+        { "name": "Boris Redfern", "role": "Head of Capital Markets", "bio": "Over a decade in structured finance, with a deep network of non-bank lenders across Europe. Previously Head of Capital Markets at Kasu.", "photo": { "src": "/team/boris.jpg", "alt": "Boris Redfern" } },
+        { "name": "Sebastian Cheek", "role": "Head of Operations & Investment", "bio": "Formerly Head of Investment at Faculty Group, where he led an active investment fund. Runs deal operations end to end at Draupnir.", "photo": { "src": "/team/sebastian.jpg", "alt": "Sebastian Cheek" } }
       ]
     }
   ]'::jsonb
@@ -164,6 +181,12 @@ values (
   'Contact | Draupnir Capital',
   true,
   '[
+    {
+      "id": "blk_hero",
+      "type": "hero",
+      "heading": "Contact",
+      "subheading": "Tell us about your facility and timeline."
+    },
     {
       "id": "blk_contact",
       "type": "contact",

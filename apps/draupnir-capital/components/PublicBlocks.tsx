@@ -200,18 +200,18 @@ function renderBlock(block: Block) {
               {block.heading}
             </h2>
           ) : null}
-          <div className="mt-14 grid gap-14 sm:grid-cols-2 sm:gap-20">
+          <div className="mt-14 grid gap-16 sm:grid-cols-2 sm:gap-14">
             {block.members.map((member, index) => (
-              <div key={index} className="border-t border-ink/10 pt-8">
+              <div key={index}>
                 {member.photo ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={member.photo.src}
                     alt={member.photo.alt}
-                    className="h-16 w-16 rounded-full object-cover"
+                    className="aspect-[4/5] w-full max-w-[280px] object-cover grayscale"
                   />
                 ) : (
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-ink font-display text-lg text-surface">
+                  <div className="flex aspect-[4/5] w-full max-w-[280px] items-center justify-center bg-ink font-display text-2xl text-surface">
                     {member.name
                       .split(" ")
                       .map((part) => part[0])
@@ -219,13 +219,15 @@ function renderBlock(block: Block) {
                       .slice(0, 2)}
                   </div>
                 )}
-                <p className="mt-5 font-display text-xl font-medium text-ink">{member.name}</p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-brand-mid">
-                  {member.role}
-                </p>
-                {member.bio ? (
-                  <p className="mt-4 max-w-md text-[15px] leading-relaxed text-ink/60">{member.bio}</p>
-                ) : null}
+                <div className="mt-6 border-t border-ink/10 pt-5">
+                  <p className="font-display text-xl font-medium text-ink">{member.name}</p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-brand-mid">
+                    {member.role}
+                  </p>
+                  {member.bio ? (
+                    <p className="mt-4 max-w-md text-[15px] leading-relaxed text-ink/60">{member.bio}</p>
+                  ) : null}
+                </div>
               </div>
             ))}
           </div>
