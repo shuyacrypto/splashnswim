@@ -6,6 +6,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "splashnswim", "exec", "next", "dev", "-p", "3007"],
       "port": 3007
+    },
+    {
+      "name": "draupnir-capital",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "draupnir-capital", "exec", "next", "dev", "-p", "3008"],
+      "port": 3008
     }
   ]
 }

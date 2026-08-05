@@ -2,6 +2,7 @@
 
 import { createBrowserClient } from "@supabase/ssr";
 import type { Database } from "@swim-engine/engine-db";
+import { supabaseAnonKey, supabaseUrl } from "./env";
 
 /**
  * The browser Supabase client. It carries the signed-in admin's session, so
@@ -9,8 +10,5 @@ import type { Database } from "@swim-engine/engine-db";
  * what the admin screens use to read and change content.
  */
 export function createClientSupabase() {
-  return createBrowserClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  );
+  return createBrowserClient<Database>(supabaseUrl, supabaseAnonKey);
 }

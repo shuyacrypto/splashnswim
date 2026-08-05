@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPageBySlug, getSiteSettings } from "@swim-engine/engine-cms";
-import { getPublicClient } from "@/lib/supabase/public";
+import { getPageContent } from "@/lib/get-page-content";
 import { PublicShell } from "@/components/PublicShell";
 import { PublicBlocks } from "@/components/PublicBlocks";
 
@@ -12,11 +11,7 @@ export default async function MarketingPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const client = getPublicClient();
-  const [page, settings] = await Promise.all([
-    getPageBySlug(client, slug),
-    getSiteSettings(client),
-  ]);
+  const { page, settings } = await getPageContent(slug);
 
   if (!page) notFound();
 
