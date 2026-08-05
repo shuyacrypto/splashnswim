@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Draupnir Capital - official brand palette (Brand Guidelines, July 2026).
+ * Tokens are RGB channels so opacity modifiers work.
+ */
+:root {
+  --color-brand-dark: 79 12 32;    /* Bordeaux Dark #4F0C20 */
+  --color-brand-mid: 140 25 60;    /* Bordeaux Mid #8C193C */
+  --color-brand-light: 174 61 95;  /* Bordeaux Light #AE3D5F */
+  --color-ink: 25 25 28;           /* Near Black #19191C */
+  --color-surface: 255 255 255;
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
