@@ -32,13 +32,13 @@ export function EnquiryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md space-y-3">
+    <form onSubmit={handleSubmit} className="max-w-md space-y-6">
       <input
         aria-label="Your name"
         placeholder="Your name"
         value={name}
         onChange={(event) => setName(event.target.value)}
-        className="block w-full rounded border border-slate-300 px-3 py-2 text-sm"
+        className="block w-full border-0 border-b border-ink/20 bg-transparent px-0 py-2 text-[15px] placeholder:text-ink/40 focus:border-brand-mid focus:outline-none"
       />
       <input
         aria-label="Your email"
@@ -46,21 +46,21 @@ export function EnquiryForm() {
         placeholder="Your email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
-        className="block w-full rounded border border-slate-300 px-3 py-2 text-sm"
+        className="block w-full border-0 border-b border-ink/20 bg-transparent px-0 py-2 text-[15px] placeholder:text-ink/40 focus:border-brand-mid focus:outline-none"
       />
       <textarea
         aria-label="Your message"
         placeholder="Your message"
-        rows={4}
+        rows={3}
         value={message}
         onChange={(event) => setMessage(event.target.value)}
-        className="block w-full rounded border border-slate-300 px-3 py-2 text-sm"
+        className="block w-full resize-none border-0 border-b border-ink/20 bg-transparent px-0 py-2 text-[15px] placeholder:text-ink/40 focus:border-brand-mid focus:outline-none"
       />
       {error ? <p className="text-sm text-red-700">{error}</p> : null}
       <button
         type="submit"
         disabled={status === "sending"}
-        className="rounded-full bg-brand-mid px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-light disabled:opacity-50"
+        className="rounded-md bg-brand-mid px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-light disabled:opacity-50"
       >
         {status === "sending" ? "Sending..." : "Send enquiry"}
       </button>

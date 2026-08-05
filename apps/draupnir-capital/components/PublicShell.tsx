@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
-/** The public site frame: branded header with nav, plain footer with an admin link. */
+/** The public site frame: restrained header with tracked nav, plain footer with an admin link. */
 export function PublicShell({
   businessName,
   children,
@@ -18,14 +18,18 @@ export function PublicShell({
   return (
     <div className="min-h-screen bg-surface text-ink">
       <header className="border-b border-ink/10">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:px-10">
           <a href="/" className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/horisontal_logo_bordeaux_gold.svg" alt={businessName} className="h-8 w-auto" />
+            <img src="/brand/horisontal_logo_bordeaux_gold.svg" alt={businessName} className="h-7 w-auto" />
           </a>
-          <nav className="flex items-center gap-6 text-sm font-medium">
+          <nav className="flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.14em]">
             {NAV_LINKS.map((link) => (
-              <a key={link.href} href={link.href} className="hover:text-brand-mid">
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-ink/60 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-ink hover:decoration-brand-mid"
+              >
                 {link.label}
               </a>
             ))}
@@ -33,8 +37,8 @@ export function PublicShell({
         </div>
       </header>
       <main>{children}</main>
-      <footer className="border-t border-ink/10 py-8">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-5 text-xs text-ink/50">
+      <footer className="border-t border-ink/10">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8 text-xs text-ink/50 sm:px-10">
           <span>{businessName}</span>
           <a href="/admin" className="hover:text-ink">Admin</a>
         </div>
