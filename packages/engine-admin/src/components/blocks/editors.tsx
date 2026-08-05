@@ -49,6 +49,11 @@ function HeroEditor({
   return (
     <div className="space-y-3">
       <TextField
+        label="Eyebrow label (optional)"
+        value={block.eyebrow ?? ""}
+        onChange={(v) => onChange({ ...block, eyebrow: v === "" ? undefined : v })}
+      />
+      <TextField
         label="Heading"
         value={block.heading}
         onChange={(v) => onChange({ ...block, heading: v })}

@@ -22,6 +22,7 @@ values (
     {
       "id": "blk_hero",
       "type": "hero",
+      "eyebrow": "Institutional Private Credit for Web3",
       "heading": "Gateway to Private Credit",
       "subheading": "Connecting non-dilutive credit to the businesses building the next financial system.",
       "primaryCta": { "label": "Let'\''s talk", "href": "/contact" },
@@ -32,6 +33,31 @@ values (
       "type": "rich_text",
       "heading": "The bridge between institutional credit and Web3",
       "content": "Draupnir Capital connects institutional private credit markets with the Web3 and DLT-driven businesses ready to meet them. We structure non-bank credit, asset-backed facilities and DLT-enhanced deals, then put founders directly in front of the lenders who fund them.\n\nPrivate credit has grown into a $3.5 trillion asset class. Most fintech and Web3 businesses do not know they qualify for it. Most placement agents cannot speak both languages. We can."
+    },
+    {
+      "id": "blk_market",
+      "type": "stats",
+      "heading": "Private credit has already reached its largest size on record",
+      "items": [
+        { "value": "$0.5T", "label": "2016" },
+        { "value": "$0.8T", "label": "2018" },
+        { "value": "$1.0T", "label": "2020" },
+        { "value": "$1.6T", "label": "2022" },
+        { "value": "$2.6T", "label": "2024" },
+        { "value": "$3.5T", "label": "2026" }
+      ]
+    },
+    {
+      "id": "blk_why_now",
+      "type": "feature_grid",
+      "heading": "Why now",
+      "numbered": false,
+      "items": [
+        { "icon": "trending-up", "title": "Institutional capital needs yield", "description": "Rate-sensitive allocators are actively looking for structured, senior-secured credit outside traditional markets." },
+        { "icon": "handshake", "title": "Almost nobody bridges both", "description": "Traditional advisers do not understand Web3. Web3-native teams lack lender relationships." },
+        { "icon": "globe", "title": "Web3 assets are investable now", "description": "Tokenised real-world assets and on-chain receivables have matured enough for institutional diligence." },
+        { "icon": "shield", "title": "Draupnir sits in the middle", "description": "Structuring and introductions handled by people who speak both languages." }
+      ]
     },
     {
       "id": "blk_stats",
@@ -88,6 +114,16 @@ values (
       ]
     },
     {
+      "id": "blk_deal_terms",
+      "type": "stats",
+      "heading": "Deal terms",
+      "items": [
+        { "value": "$10M+", "label": "Facility size", "description": "Structured from $10 million upward." },
+        { "value": "ABF / ABS", "label": "Asset-backed", "description": "Secured through asset-based structures." },
+        { "value": "~3 Months", "label": "Kick-off to term sheet", "description": "Based on prior mandates. An estimate, not a guaranteed timeline." }
+      ]
+    },
+    {
       "id": "blk_facilities",
       "type": "feature_grid",
       "heading": "Facility types built around the deal, not a template",
@@ -100,6 +136,20 @@ values (
         { "title": "AR/AP Financing" },
         { "title": "Payments Financing" },
         { "title": "Equipment Financing" }
+      ]
+    },
+    {
+      "id": "blk_what_youll_need",
+      "type": "feature_grid",
+      "heading": "What you'\''ll need",
+      "numbered": false,
+      "items": [
+        { "icon": "file-text", "title": "Legal Counsel", "description": "Transaction and security documentation, negotiated alongside our own legal workstream." },
+        { "icon": "shield", "title": "KYC / Compliance", "description": "Standard verification and onboarding checks, run in parallel with lender due diligence." },
+        { "icon": "landmark", "title": "Escrow / Account Services", "description": "Collection and control accounts to hold and route facility cash flows." },
+        { "icon": "layers", "title": "Tax & Structuring Advice", "description": "Confirming the facility structure works cleanly for your entity and jurisdiction." },
+        { "icon": "check-circle", "title": "Audit / Financial Reporting", "description": "Up-to-date financials and reporting lenders will expect to see through diligence." },
+        { "icon": "key", "title": "Insurance", "description": "Cover appropriate to the asset class being financed, where applicable." }
       ]
     }
   ]'::jsonb
@@ -146,6 +196,15 @@ values (
         { "title": "MENA", "description": "Active lender relationships across the Gulf and wider region." },
         { "title": "APAC", "description": "Reach into Asia-Pacific'\''s institutional lender base." }
       ]
+    },
+    {
+      "id": "blk_partner",
+      "type": "feature_grid",
+      "heading": "Partnerships",
+      "numbered": false,
+      "items": [
+        { "icon": "handshake", "title": "Ava Labs", "description": "Capital Formation Partner. Draupnir works alongside Ava Labs to connect Web3 businesses building on Avalanche with institutional private credit." }
+      ]
     }
   ]'::jsonb
 )
@@ -191,8 +250,6 @@ values (
       "id": "blk_contact",
       "type": "contact",
       "heading": "Get in touch",
-      "address": "84 Eccleston Square, Pimlico, London, SW1V 1PX, England",
-      "email": "boris@draupnir.capital",
       "showEnquiryForm": true
     },
     {

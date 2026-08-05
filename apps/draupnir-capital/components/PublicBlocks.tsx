@@ -51,28 +51,6 @@ function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?:
   );
 }
 
-/**
- * Draupnir Capital's mark, used as a faint, oversized watermark. Echoes the
- * brand guide's "shine gradient as texture" and "concentric forms,
- * repetition" imagery direction, rather than stock photography.
- */
-function Watermark({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 1201 1267"
-      aria-hidden="true"
-      className={className}
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M1024.88 242.251C1259.19 476.567 1259.2 856.469 1024.88 1090.78C790.567 1325.1 410.676 1325.08 176.361 1090.77C-56.1215 858.29 -57.9544 482.493 170.891 247.769L417.985 0.603027L600.593 183.109L783.246 0.603027L1024.88 242.251ZM704.248 285.35L849.196 430.452C976.854 564.752 974.792 777.125 843.016 908.906C709.142 1042.78 492.089 1042.78 358.216 908.906C226.439 777.125 224.377 564.752 352.035 430.452L496.972 285.35L417.985 206.363L271.036 353.538C101.782 531.6 104.513 813.171 279.229 987.892C456.726 1165.39 744.506 1165.4 922.002 987.904C1099.5 810.408 1099.5 522.628 922.002 345.131L783.246 206.363L704.248 285.35ZM600.64 387.537L457.532 530.633C384.056 607.932 385.25 730.176 461.096 806.025C538.151 883.079 663.081 883.08 740.136 806.025C815.982 730.176 817.175 607.932 743.699 530.633L600.64 387.537Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
 /** Renders every block type in Draupnir Capital's bordeaux/near-black brand. */
 export function PublicBlocks({ blocks }: { blocks: Block[] }) {
   return (
@@ -88,10 +66,10 @@ function renderBlock(block: Block) {
   switch (block.type) {
     case "hero":
       return (
-        <div className="relative overflow-hidden bg-ink text-surface">
-          <Watermark className="pointer-events-none absolute -right-40 -top-40 h-[640px] w-[640px] text-brand-mid/10 sm:-right-24 sm:h-[720px] sm:w-[720px]" />
-          <Container className="relative py-28 sm:py-40">
-            <h1 className="max-w-3xl text-balance font-display text-5xl font-medium leading-[1.03] tracking-[-0.02em] sm:text-7xl">
+        <div className="bg-ink text-surface">
+          <Container className="py-28 sm:py-40">
+            {block.eyebrow ? <Eyebrow dark>{block.eyebrow}</Eyebrow> : null}
+            <h1 className="mt-4 max-w-3xl text-balance font-display text-5xl font-medium leading-[1.03] tracking-[-0.02em] sm:text-7xl">
               {block.heading}
             </h1>
             {block.subheading ? (
@@ -236,9 +214,8 @@ function renderBlock(block: Block) {
 
     case "cta_banner":
       return (
-        <div className="relative overflow-hidden bg-brand-dark text-surface">
-          <Watermark className="pointer-events-none absolute -bottom-32 -left-32 h-[420px] w-[420px] text-surface/[0.06]" />
-          <Container className="relative py-24 text-center sm:py-32">
+        <div className="bg-brand-dark text-surface">
+          <Container className="py-24 text-center sm:py-32">
             <h2 className="mx-auto max-w-xl text-balance font-display text-3xl font-medium tracking-[-0.01em] sm:text-4xl">
               {block.heading}
             </h2>
@@ -265,6 +242,10 @@ function renderBlock(block: Block) {
                   {block.heading}
                 </h2>
               ) : null}
+              <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-ink/60">
+                Tell us about your business, the facility you have in mind, and your timeline.
+                We reply directly, usually within a day.
+              </p>
               <div className="mt-6 space-y-2 text-[15px] text-ink/60">
                 {block.address ? <p>{block.address}</p> : null}
                 {block.phone ? <p>{block.phone}</p> : null}
