@@ -24,12 +24,12 @@ export interface EmailBranding {
  */
 export function EmailLayout({
   preview,
-  schoolName,
+  businessName,
   brandColor,
   children,
 }: {
   preview: string;
-  schoolName: string;
+  businessName: string;
   children: ReactNode;
 } & EmailBranding) {
   const header = brandColor ?? "#0f172a";
@@ -42,7 +42,7 @@ export function EmailLayout({
         <Container style={{ margin: "0 auto", maxWidth: "560px", padding: "24px" }}>
           <Section style={{ backgroundColor: header, borderRadius: "12px 12px 0 0", padding: "18px 24px" }}>
             <Text style={{ color: "#ffffff", fontSize: "18px", fontWeight: "bold", margin: 0 }}>
-              {schoolName}
+              {businessName}
             </Text>
           </Section>
           <Section
@@ -57,7 +57,7 @@ export function EmailLayout({
             {children}
           </Section>
           <Text style={{ color: "#94a3b8", fontSize: "12px", textAlign: "center", margin: "16px 0 0" }}>
-            {schoolName} · sent from the website
+            {businessName} · sent from the website
           </Text>
         </Container>
       </Body>

@@ -326,6 +326,48 @@ function renderBlock(block: Block, variant: RichVariant) {
         </div>
       );
 
+    case "stats":
+      return (
+        <div className="bg-ink">
+          <Container>
+            {block.heading ? <Heading className="text-surface">{block.heading}</Heading> : null}
+            <div className="mt-8 grid gap-8 sm:grid-cols-3">
+              {block.items.map((item, index) => (
+                <div key={index} className="text-center">
+                  <p className="font-display text-4xl font-bold text-surface">{item.value}</p>
+                  <p className="mt-2 text-sm text-surface/70">{item.label}</p>
+                  {item.description ? (
+                    <p className="mt-1 text-xs text-surface/50">{item.description}</p>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </Container>
+        </div>
+      );
+
+    case "feature_grid":
+      return (
+        <Container>
+          {block.heading ? <Heading className="text-ink">{block.heading}</Heading> : null}
+          <div className="mt-8 grid gap-6 sm:grid-cols-3">
+            {block.items.map((item, index) => (
+              <div key={index} className="rounded-3xl border-2 border-foam bg-surface p-6">
+                {block.numbered ? (
+                  <p className="font-display text-sm font-bold text-coral">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                ) : null}
+                <p className="mt-2 font-display text-lg font-bold text-ink">{item.title}</p>
+                {item.description ? (
+                  <p className="mt-2 text-sm text-slate">{item.description}</p>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </Container>
+      );
+
     default: {
       const unreachable: never = block;
       return unreachable;

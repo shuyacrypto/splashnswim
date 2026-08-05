@@ -6,7 +6,7 @@ describe("HomeScreen", () => {
   it("shows page, image and last-edited stats", () => {
     render(
       <HomeScreen
-        schoolName="SplashNSwim"
+        businessName="SplashNSwim"
         stats={{
           totalPages: 6,
           publishedPages: 5,
@@ -27,7 +27,7 @@ describe("HomeScreen", () => {
   it("shows a fallback when nothing has been edited yet", () => {
     render(
       <HomeScreen
-        schoolName="SplashNSwim"
+        businessName="SplashNSwim"
         stats={{ totalPages: 0, publishedPages: 0, totalImages: 0, lastEdited: null }}
         newPageHref="/admin/pages"
         uploadImagesHref="/admin/media"
@@ -40,7 +40,7 @@ describe("HomeScreen", () => {
   it("links each quick action to the right place", () => {
     render(
       <HomeScreen
-        schoolName="SplashNSwim"
+        businessName="SplashNSwim"
         stats={{ totalPages: 0, publishedPages: 0, totalImages: 0, lastEdited: null }}
         newPageHref="/admin/pages"
         uploadImagesHref="/admin/media"

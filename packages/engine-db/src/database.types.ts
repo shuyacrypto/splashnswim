@@ -1,4 +1,4 @@
-import type { Block, SiteSettings } from "@swim-engine/engine-contracts";
+import type { Block, Image, SiteSettings } from "@swim-engine/engine-contracts";
 
 /**
  * The database schema as TypeScript, used to make the Supabase client typed.
@@ -21,6 +21,7 @@ export interface Database {
           title: string;
           meta_title: string | null;
           meta_description: string | null;
+          social_image: Image | null;
           blocks: Block[];
           published: boolean;
           created_at: string;
@@ -32,6 +33,7 @@ export interface Database {
           title: string;
           meta_title?: string | null;
           meta_description?: string | null;
+          social_image?: Image | null;
           blocks?: Block[];
           published?: boolean;
           created_at?: string;
@@ -43,6 +45,7 @@ export interface Database {
           title?: string;
           meta_title?: string | null;
           meta_description?: string | null;
+          social_image?: Image | null;
           blocks?: Block[];
           published?: boolean;
           created_at?: string;
@@ -53,7 +56,7 @@ export interface Database {
       site_settings: {
         Row: {
           id: boolean;
-          school_name: string;
+          business_name: string;
           contact_email: string;
           contact_phone: string | null;
           booking_enabled: boolean;
@@ -62,7 +65,7 @@ export interface Database {
         };
         Insert: {
           id?: boolean;
-          school_name: string;
+          business_name: string;
           contact_email: string;
           contact_phone?: string | null;
           booking_enabled?: boolean;
@@ -71,7 +74,7 @@ export interface Database {
         };
         Update: {
           id?: boolean;
-          school_name?: string;
+          business_name?: string;
           contact_email?: string;
           contact_phone?: string | null;
           booking_enabled?: boolean;

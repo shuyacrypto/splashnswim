@@ -61,4 +61,13 @@ export {
   Megaphone,
   Phone,
   Clock,
+  TrendingUp,
+  LayoutGrid,
+  Key,
+  Landmark,
+  Shield,
+  Handshake,
+  CheckCircle,
+  Globe,
+  Layers,
 } from "./icons.js";

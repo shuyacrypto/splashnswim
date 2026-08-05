@@ -10,7 +10,7 @@ export interface HomeScreenStats {
 }
 
 export interface HomeScreenProps {
-  schoolName: string;
+  businessName: string;
   stats: HomeScreenStats;
   newPageHref: string;
   uploadImagesHref: string;
@@ -18,7 +18,7 @@ export interface HomeScreenProps {
 }
 
 export function HomeScreen({
-  schoolName,
+  businessName,
   stats,
   newPageHref,
   uploadImagesHref,
@@ -31,7 +31,7 @@ export function HomeScreen({
           Welcome back
         </h1>
         <p className="text-sm text-[var(--admin-muted,#64748b)]">
-          Here is how the {schoolName} website looks today.
+          Here is how the {businessName} website looks today.
         </p>
       </div>
 

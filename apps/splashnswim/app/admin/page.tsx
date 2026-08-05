@@ -41,7 +41,7 @@ export default function AdminHome() {
 
   return (
     <HomeScreen
-      schoolName="SplashNSwim"
+      businessName="SplashNSwim"
       stats={stats}
       newPageHref="/admin/pages"
       uploadImagesHref="/admin/media"

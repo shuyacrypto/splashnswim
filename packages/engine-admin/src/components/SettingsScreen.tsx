@@ -7,7 +7,7 @@ import { useToast } from "./Toast.js";
 import { errorMessages } from "../helpers.js";
 
 export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
-  const [schoolName, setSchoolName] = useState(settings?.schoolName ?? "");
+  const [businessName, setBusinessName] = useState(settings?.businessName ?? "");
   const [contactEmail, setContactEmail] = useState(settings?.contactEmail ?? "");
   const [contactPhone, setContactPhone] = useState(settings?.contactPhone ?? "");
   const [bookingEnabled, setBookingEnabled] = useState(settings?.bookingEnabled ?? false);
@@ -28,7 +28,7 @@ export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
     setBusy(true);
     try {
       await onSave({
-        schoolName,
+        businessName,
         contactEmail,
         contactPhone: contactPhone === "" ? undefined : contactPhone,
         bookingEnabled,
@@ -49,8 +49,8 @@ export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
       <ErrorText messages={errors} />
 
       <Card>
-        <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">School details</h2>
-        <TextField label="School name" value={schoolName} onChange={setSchoolName} />
+        <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Business details</h2>
+        <TextField label="Business name" value={businessName} onChange={setBusinessName} />
         <TextField label="Contact email" type="email" value={contactEmail} onChange={setContactEmail} />
         <TextField label="Contact phone (optional)" value={contactPhone} onChange={setContactPhone} />
       </Card>
@@ -66,9 +66,9 @@ export function SettingsScreen({ settings, onSave }: SettingsScreenProps) {
         <h2 className="text-sm font-semibold text-[var(--admin-text,#0f172a)]">Modules</h2>
         <Toggle label="Enable booking and billing" checked={bookingEnabled} onChange={setBookingEnabled} />
         <p className="text-sm text-[var(--admin-muted,#64748b)]">
-          Booking and billing is an optional add-on set up separately for your school. When it is
+          Booking and billing is an optional add-on set up separately for your business. When it is
           switched on, the booking screens appear in the admin. If nothing changes after enabling
-          it, the module is not set up for your school yet.
+          it, the module is not set up for your business yet.
         </p>
       </Card>
 

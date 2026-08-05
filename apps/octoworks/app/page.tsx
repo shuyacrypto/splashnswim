@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { getPageBySlug, getSiteSettings } from "@swim-engine/engine-cms";
 import { getPublicClient } from "@/lib/supabase/public";
 import { PublicShell } from "@/components/PublicShell";
@@ -6,23 +5,23 @@ import { PublicBlocks } from "@/components/PublicBlocks";
 
 export const dynamic = "force-dynamic";
 
-export default async function MarketingPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+export default async function HomePage() {
   const client = getPublicClient();
   const [page, settings] = await Promise.all([
-    getPageBySlug(client, slug),
+    getPageBySlug(client, "home"),
     getSiteSettings(client),
   ]);
-
-  if (!page) notFound();
+  const businessName = settings?.businessName ?? "OctoWorks";
 
   return (
-    <PublicShell businessName={settings?.businessName ?? "Practice School"}>
-      <PublicBlocks blocks={page.blocks} />
+    <PublicShell businessName={businessName}>
+      {page ? (
+        <PublicBlocks blocks={page.blocks} />
+      ) : (
+        <p className="text-slate-600">
+          No home page found yet. Sign in to the admin area to create one.
+        </p>
+      )}
     </PublicShell>
   );
 }

@@ -1,10 +1,10 @@
-# CLAUDE.md — Swim School Engine
+# CLAUDE.md — Business Site Engine
 
-You are working on a reusable engine that powers multiple swim school websites. This file is the source of truth. Read it fully before doing anything. If a request conflicts with the rules here, stop and say so rather than proceeding.
+You are working on a reusable engine that powers marketing sites for small and professional-services businesses. This file is the source of truth. Read it fully before doing anything. If a request conflicts with the rules here, stop and say so rather than proceeding.
 
 ## What this project is
 
-One reusable engine (the "70%") built once and shared across every swim school. Each individual school is a separate app that consumes the engine and wears its own bespoke design (the "skin"). The engine is design-agnostic. Bespoke design is never baked into the engine.
+One reusable engine (the "70%") built once and shared across every client. Each individual client is a separate app that consumes the engine and wears its own bespoke design (the "skin"). The engine is design-agnostic. Bespoke design is never baked into the engine. Vertical-specific needs (for example the swim schools' booking/billing module) are built as optional modules on top of the shared engine, switched on only for the clients that need them, never assumed universal.
 
 ## Golden rules (do not break these)
 
@@ -20,9 +20,9 @@ One reusable engine (the "70%") built once and shared across every swim school. 
 ## v1 scope (the ONLY things this engine does)
 
 1. Marketing pages — public pages rendered from CMS content blocks.
-2. Admin panel — a deliberately simple, constrained editor for non-technical school admins.
+2. Admin panel — a deliberately simple, constrained editor for non-technical client admins.
 3. Email — transactional sends plus one simple parent broadcast screen.
-4. Booking/billing — an OPTIONAL module, switched on per school, ported from an existing booking system.
+4. Booking/billing — an OPTIONAL module, switched on per client, ported from an existing booking system.
 
 ## Explicitly OUT of scope (never build in v1)
 
@@ -32,11 +32,11 @@ Customer/parent login accounts; multi-tenancy (one deployment per school, always
 
 - **Framework:** Next.js (App Router, latest LTS), TypeScript in strict mode.
 - **Monorepo:** pnpm workspaces + Turborepo.
-- **Database/auth/storage:** Supabase (one project per school).
-- **Payments:** Stripe, charging directly into each school's own Stripe account. Webhooks are the single source of truth. The engine never holds funds.
+- **Database/auth/storage:** Supabase (one project per client).
+- **Payments:** Stripe, charging directly into each client's own Stripe account. Webhooks are the single source of truth. The engine never holds funds.
 - **Email:** Resend + React Email templates.
 - **Styling:** Tailwind CSS consuming semantic design tokens. Skins never use raw hex values; they define tokens.
-- **Hosting:** Vercel (one project per school).
+- **Hosting:** Vercel (one project per client).
 
 No substitutions. In particular: do NOT introduce Payload, Sanity, Contentful, or any third-party CMS. The CMS is our own constrained block system.
 
@@ -52,18 +52,18 @@ swim-engine/
 │   ├── engine-admin/       # The constrained admin panel (generic-branded)
 │   └── engine-booking/     # Optional booking module (added later)
 ├── apps/
-│   └── (schools added later, each its own skin)
+│   └── (clients added later, each its own skin)
 ├── docs/
 └── package.json / pnpm-workspace.yaml / turbo.json
 ```
 
-## The ten CMS block types (the complete list — do not add more)
+## The twelve CMS block types (the complete list — do not add more)
 
-hero, rich_text, image, gallery, timetable, pricing_table, faq, team, cta_banner, contact. Each has a Zod schema in engine-contracts. Content that fails validation cannot be saved.
+hero, rich_text, image, gallery, timetable, pricing_table, faq, team, cta_banner, contact, stats, feature_grid. Each has a Zod schema in engine-contracts. Content that fails validation cannot be saved.
 
 ## Admin panel principles
 
-Admins can: edit block content, reorder blocks, toggle published state, upload images, edit site settings, send a broadcast, view bookings (if module enabled). Admins cannot: create block types, edit layout, change design/fonts/colours, or see any code. The admin UI is generic and identical across schools; never restyle it per client. Every destructive action confirms first.
+Admins can: edit block content, reorder blocks, toggle published state, upload images, edit site settings, send a broadcast, view bookings (if module enabled). Admins cannot: create block types, edit layout, change design/fonts/colours, or see any code. The admin UI is generic and identical across clients; never restyle it per client. Every destructive action confirms first.
 
 ## Locked build order
 

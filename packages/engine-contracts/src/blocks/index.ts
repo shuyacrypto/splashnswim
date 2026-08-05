@@ -10,6 +10,8 @@ import { faqBlockSchema } from "./faq.js";
 import { teamBlockSchema } from "./team.js";
 import { ctaBannerBlockSchema } from "./cta-banner.js";
 import { contactBlockSchema } from "./contact.js";
+import { statsBlockSchema } from "./stats.js";
+import { featureGridBlockSchema } from "./feature-grid.js";
 
 export * from "./hero.js";
 export * from "./rich-text.js";
@@ -21,10 +23,12 @@ export * from "./faq.js";
 export * from "./team.js";
 export * from "./cta-banner.js";
 export * from "./contact.js";
+export * from "./stats.js";
+export * from "./feature-grid.js";
 
 /**
- * The complete, closed list of block types. This is the whole set for v1.
- * New block types are a deliberate engine change, never added ad hoc.
+ * The complete, closed list of block types. Additions are a deliberate
+ * engine change, never added ad hoc.
  */
 export const BLOCK_TYPES = [
   "hero",
@@ -37,10 +41,12 @@ export const BLOCK_TYPES = [
   "team",
   "cta_banner",
   "contact",
+  "stats",
+  "feature_grid",
 ] as const;
 
 /**
- * A block is exactly one of the ten types, chosen by its `type` field.
+ * A block is exactly one of the twelve types, chosen by its `type` field.
  * Any content that does not match one of these cannot be saved.
  */
 export const blockSchema = z.discriminatedUnion("type", [
@@ -54,6 +60,8 @@ export const blockSchema = z.discriminatedUnion("type", [
   teamBlockSchema,
   ctaBannerBlockSchema,
   contactBlockSchema,
+  statsBlockSchema,
+  featureGridBlockSchema,
 ]);
 
 export type Block = z.infer<typeof blockSchema>;
