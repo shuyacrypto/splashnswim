@@ -25,7 +25,7 @@ export function PublicShell({
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:px-10">
           <a href="/" className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/horisontal_logo_bordeaux_gold.svg" alt={businessName} className="h-7 w-auto" />
+            <img src="/brand/horisontal_logo_bordeaux_gold.svg" alt={businessName} className="h-9 w-auto sm:h-10" />
           </a>
 
           <nav className="hidden items-center gap-8 text-xs font-semibold uppercase tracking-[0.14em] md:flex">

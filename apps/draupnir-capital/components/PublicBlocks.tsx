@@ -64,40 +64,67 @@ export function PublicBlocks({ blocks }: { blocks: Block[] }) {
 
 function renderBlock(block: Block) {
   switch (block.type) {
-    case "hero":
+    case "hero": {
+      // A hero with primary/secondary CTAs is the homepage's full moment; a
+      // hero without them is an inner page's shorter title band. Both show
+      // the brand mark, scaled to match.
+      const isHome = Boolean(block.primaryCta || block.secondaryCta);
       return (
         <div className="bg-ink text-surface">
-          <Container className="py-28 sm:py-40">
-            {block.eyebrow ? <Eyebrow dark>{block.eyebrow}</Eyebrow> : null}
-            <h1 className="mt-4 max-w-3xl text-balance font-display text-5xl font-medium leading-[1.03] tracking-[-0.02em] sm:text-7xl">
-              {block.heading}
-            </h1>
-            {block.subheading ? (
-              <p className="mt-7 max-w-lg text-lg leading-relaxed text-surface/60">
-                {block.subheading}
-              </p>
-            ) : null}
-            <div className="mt-10 flex flex-wrap items-center gap-8">
-              {block.primaryCta ? (
-                <a
-                  href={block.primaryCta.href}
-                  className="rounded-md bg-brand-mid px-7 py-3.5 text-sm font-semibold text-surface transition hover:bg-brand-light"
-                >
-                  {block.primaryCta.label}
-                </a>
+          <Container
+            className={
+              isHome
+                ? "flex flex-col items-center gap-16 py-24 sm:py-28 lg:min-h-[82vh] lg:flex-row lg:justify-between lg:gap-12 lg:py-0"
+                : "flex flex-col items-center gap-12 py-20 sm:py-28 lg:flex-row lg:justify-between"
+            }
+          >
+            <div className={`text-center lg:text-left ${isHome ? "max-w-xl" : "max-w-2xl"}`}>
+              {block.eyebrow ? <Eyebrow dark>{block.eyebrow}</Eyebrow> : null}
+              <h1
+                className={`mt-4 text-balance font-display font-medium leading-[1.03] tracking-[-0.02em] ${
+                  isHome ? "text-5xl sm:text-7xl" : "text-4xl sm:text-5xl"
+                }`}
+              >
+                {block.heading}
+              </h1>
+              {block.subheading ? (
+                <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-surface/60 lg:mx-0">
+                  {block.subheading}
+                </p>
               ) : null}
-              {block.secondaryCta ? (
-                <a
-                  href={block.secondaryCta.href}
-                  className="text-sm font-semibold text-surface underline decoration-surface/30 decoration-2 underline-offset-4 transition hover:decoration-surface"
-                >
-                  {block.secondaryCta.label} &rarr;
-                </a>
-              ) : null}
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-8 lg:justify-start">
+                {block.primaryCta ? (
+                  <a
+                    href={block.primaryCta.href}
+                    className="rounded-md bg-brand-mid px-7 py-3.5 text-sm font-semibold text-surface transition hover:bg-brand-light"
+                  >
+                    {block.primaryCta.label}
+                  </a>
+                ) : null}
+                {block.secondaryCta ? (
+                  <a
+                    href={block.secondaryCta.href}
+                    className="text-sm font-semibold text-surface underline decoration-surface/30 decoration-2 underline-offset-4 transition hover:decoration-surface"
+                  >
+                    {block.secondaryCta.label} &rarr;
+                  </a>
+                ) : null}
+              </div>
             </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/sign_gold_white.svg"
+              alt=""
+              className={
+                isHome
+                  ? "h-48 w-48 shrink-0 opacity-95 sm:h-64 sm:w-64 lg:h-80 lg:w-80"
+                  : "h-28 w-28 shrink-0 opacity-90 sm:h-36 sm:w-36"
+              }
+            />
           </Container>
         </div>
       );
+    }
 
     case "rich_text":
       return (
