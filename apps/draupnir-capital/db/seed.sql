@@ -129,13 +129,13 @@ values (
       "heading": "Facility types built around the deal, not a template",
       "numbered": false,
       "items": [
-        { "title": "Invoice Financing" },
-        { "title": "Supply-Chain Financing" },
-        { "title": "Trade Financing" },
-        { "title": "Receivables Financing" },
-        { "title": "AR/AP Financing" },
-        { "title": "Payments Financing" },
-        { "title": "Equipment Financing" }
+        { "icon": "file-text", "title": "Invoice Financing", "description": "Advance against outstanding invoices to unlock working capital immediately." },
+        { "icon": "layers", "title": "Supply-Chain Financing", "description": "Extend supplier payment terms while they are paid early, funded by the facility." },
+        { "icon": "globe", "title": "Trade Financing", "description": "Bridge the gap between shipment and payment on cross-border trade." },
+        { "icon": "trending-up", "title": "Receivables Financing", "description": "Convert future receivables, on-chain or off, into funding available today." },
+        { "icon": "check-circle", "title": "AR/AP Financing", "description": "Smooth the timing gap between accounts receivable and accounts payable." },
+        { "icon": "handshake", "title": "Payments Financing", "description": "Fund payment flows and settlement cycles at transaction scale." },
+        { "icon": "key", "title": "Equipment Financing", "description": "Fund equipment and infrastructure purchases secured against the asset itself." }
       ]
     },
     {
@@ -203,7 +203,7 @@ values (
       "heading": "Partnerships",
       "numbered": false,
       "items": [
-        { "icon": "handshake", "title": "Ava Labs", "description": "Capital Formation Partner. Draupnir works alongside Ava Labs to connect Web3 businesses building on Avalanche with institutional private credit." }
+        { "icon": "avalabs", "title": "Ava Labs", "description": "Capital Formation Partner. Draupnir works alongside Ava Labs to connect Web3 businesses building on Avalanche with institutional private credit." }
       ]
     }
   ]'::jsonb

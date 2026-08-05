@@ -113,7 +113,7 @@ function renderBlock(block: Block) {
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/brand/mark-on-dark.svg"
+              src="/brand/vertical_logo_white_bordeaux.svg"
               alt=""
               className={
                 isHome
@@ -179,10 +179,17 @@ function renderBlock(block: Block) {
           <div className="mt-14 grid gap-x-10 gap-y-14 sm:grid-cols-3">
             {block.items.map((item, index) => {
               const Icon = item.icon ? FEATURE_ICONS[item.icon] : undefined;
+              // "avalabs" is a Draupnir-specific extension of the icon key,
+              // not part of the shared engine's fixed icon set: it renders
+              // the real Ava Labs mark instead of a generic line icon.
+              const isAvaLabs = item.icon === "avalabs";
               return (
                 <div key={index} className="border-t border-ink/10 pt-6">
                   {block.numbered ? (
                     <Eyebrow>{String(index + 1).padStart(2, "0")}</Eyebrow>
+                  ) : isAvaLabs ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src="/brand/avalabs-mark.png" alt="Ava Labs" className="h-9 w-9" />
                   ) : Icon ? (
                     <Icon className="h-5 w-5 text-brand-mid" />
                   ) : null}
