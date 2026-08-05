@@ -13,6 +13,8 @@ import type {
   TeamBlock,
   CtaBannerBlock,
   ContactBlock,
+  StatsBlock,
+  FeatureGridBlock,
 } from "@swim-engine/engine-contracts";
 import {
   CtaFields,
@@ -25,6 +27,7 @@ import {
   Toggle,
 } from "../ui.js";
 import { removeAt, replaceAt } from "../../array.js";
+import { FEATURE_ICON_OPTIONS } from "../../labels.js";
 
 const DAY_OPTIONS: { value: string; label: string }[] = [
   { value: "monday", label: "Monday" },
@@ -439,6 +442,131 @@ function TeamEditor({
   );
 }
 
+function StatsEditor({
+  block,
+  onChange,
+}: {
+  block: StatsBlock;
+  onChange: (block: StatsBlock) => void;
+}) {
+  return (
+    <div className="space-y-3">
+      <TextField
+        label="Heading (optional)"
+        value={block.heading ?? ""}
+        onChange={(v) => onChange({ ...block, heading: v === "" ? undefined : v })}
+      />
+      <RowList
+        addLabel="Add stat"
+        onAdd={() =>
+          onChange({ ...block, items: [...block.items, { value: "100", label: "New stat" }] })
+        }
+      >
+        {block.items.map((item, index) => (
+          <Row
+            key={index}
+            onRemove={() => onChange({ ...block, items: removeAt(block.items, index) })}
+          >
+            <TextField
+              label="Value (as shown, for example $3.5Bn+)"
+              value={item.value}
+              onChange={(v) =>
+                onChange({ ...block, items: replaceAt(block.items, index, { ...item, value: v }) })
+              }
+            />
+            <TextField
+              label="Label"
+              value={item.label}
+              onChange={(v) =>
+                onChange({ ...block, items: replaceAt(block.items, index, { ...item, label: v }) })
+              }
+            />
+            <TextAreaField
+              label="Description (optional)"
+              value={item.description ?? ""}
+              onChange={(v) =>
+                onChange({
+                  ...block,
+                  items: replaceAt(block.items, index, {
+                    ...item,
+                    description: v === "" ? undefined : v,
+                  }),
+                })
+              }
+            />
+          </Row>
+        ))}
+      </RowList>
+    </div>
+  );
+}
+
+function FeatureGridEditor({
+  block,
+  onChange,
+}: {
+  block: FeatureGridBlock;
+  onChange: (block: FeatureGridBlock) => void;
+}) {
+  return (
+    <div className="space-y-3">
+      <TextField
+        label="Heading (optional)"
+        value={block.heading ?? ""}
+        onChange={(v) => onChange({ ...block, heading: v === "" ? undefined : v })}
+      />
+      <Toggle
+        label="Number these cards (for a step-by-step process)"
+        checked={block.numbered}
+        onChange={(checked) => onChange({ ...block, numbered: checked })}
+      />
+      <RowList
+        addLabel="Add card"
+        onAdd={() => onChange({ ...block, items: [...block.items, { title: "New feature" }] })}
+      >
+        {block.items.map((item, index) => (
+          <Row
+            key={index}
+            onRemove={() => onChange({ ...block, items: removeAt(block.items, index) })}
+          >
+            <SelectField
+              label="Icon (optional)"
+              value={item.icon ?? ""}
+              options={[{ value: "", label: "No icon" }, ...FEATURE_ICON_OPTIONS]}
+              onChange={(v) =>
+                onChange({
+                  ...block,
+                  items: replaceAt(block.items, index, { ...item, icon: v === "" ? undefined : v }),
+                })
+              }
+            />
+            <TextField
+              label="Title"
+              value={item.title}
+              onChange={(v) =>
+                onChange({ ...block, items: replaceAt(block.items, index, { ...item, title: v }) })
+              }
+            />
+            <TextAreaField
+              label="Description (optional)"
+              value={item.description ?? ""}
+              onChange={(v) =>
+                onChange({
+                  ...block,
+                  items: replaceAt(block.items, index, {
+                    ...item,
+                    description: v === "" ? undefined : v,
+                  }),
+                })
+              }
+            />
+          </Row>
+        ))}
+      </RowList>
+    </div>
+  );
+}
+
 function CtaBannerEditor({
   block,
   onChange,
@@ -546,6 +674,10 @@ export function BlockFields({
       return <CtaBannerEditor block={block} onChange={onChange} />;
     case "contact":
       return <ContactEditor block={block} onChange={onChange} />;
+    case "stats":
+      return <StatsEditor block={block} onChange={onChange} />;
+    case "feature_grid":
+      return <FeatureGridEditor block={block} onChange={onChange} />;
     default: {
       const unreachable: never = block;
       return unreachable;

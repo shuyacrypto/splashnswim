@@ -10,12 +10,28 @@ import {
   Users,
   Megaphone,
   Phone,
+  TrendingUp,
+  LayoutGrid,
 } from "./icons.js";
+
+/** The fixed set of icons an admin may choose for a feature_grid card. */
+export const FEATURE_ICON_OPTIONS: { value: string; label: string }[] = [
+  { value: "key", label: "Key" },
+  { value: "landmark", label: "Landmark" },
+  { value: "shield", label: "Shield" },
+  { value: "trending-up", label: "Trending up" },
+  { value: "handshake", label: "Handshake" },
+  { value: "check-circle", label: "Check" },
+  { value: "file-text", label: "Document" },
+  { value: "globe", label: "Globe" },
+  { value: "layers", label: "Layers" },
+  { value: "users", label: "People" },
+];
 
 /**
  * Friendly names for each block type, shown in the admin. The keys are the
- * complete, fixed set of ten block types; admins choose from these and cannot
- * invent new ones.
+ * complete, fixed set of twelve block types; admins choose from these and
+ * cannot invent new ones.
  */
 export const BLOCK_LABELS: Record<Block["type"], string> = {
   hero: "Hero banner",
@@ -28,6 +44,8 @@ export const BLOCK_LABELS: Record<Block["type"], string> = {
   team: "Team",
   cta_banner: "Call to action",
   contact: "Contact details",
+  stats: "Stats",
+  feature_grid: "Feature grid",
 };
 
 /**
@@ -76,6 +94,10 @@ export function createBlock(type: Block["type"], id: string): Block {
       };
     case "contact":
       return { id, type, showEnquiryForm: false };
+    case "stats":
+      return { id, type, items: [{ value: "100", label: "New stat" }] };
+    case "feature_grid":
+      return { id, type, numbered: false, items: [{ title: "New feature" }] };
     default: {
       const unreachable: never = type;
       return unreachable;
@@ -95,4 +117,6 @@ export const BLOCK_ICONS: Record<Block["type"], ComponentType<{ className?: stri
   team: Users,
   cta_banner: Megaphone,
   contact: Phone,
+  stats: TrendingUp,
+  feature_grid: LayoutGrid,
 };
