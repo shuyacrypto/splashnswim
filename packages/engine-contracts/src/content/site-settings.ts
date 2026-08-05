@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 /**
- * Site-wide settings a school admin can edit. Deliberately small: this is
+ * Site-wide settings a client admin can edit. Deliberately small: this is
  * not a design surface. Fonts, colours and layout are the skin's job, never
  * the admin's.
  */
 export const siteSettingsSchema = z.object({
-  schoolName: z.string().min(1),
+  businessName: z.string().min(1),
   contactEmail: z.string().email(),
   contactPhone: z.string().optional(),
   /** Whether the optional booking/billing module is switched on. */

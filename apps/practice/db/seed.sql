@@ -3,7 +3,7 @@
 -- after setup.sql. It is safe to run more than once (existing rows are kept).
 -- ==========================================================================
 
-insert into public.site_settings (id, school_name, contact_email, contact_phone, booking_enabled)
+insert into public.site_settings (id, business_name, contact_email, contact_phone, booking_enabled)
 values (
   true,
   'Riverside Swim School',

@@ -1,11 +1,11 @@
 -- ==========================================================================
--- Practice project setup: creates the engine's tables, security rules and
+-- OctoWorks project setup: creates the engine's tables, security rules and
 -- image storage. This is the Step 2 schema, combined into one script for a
 -- single paste into the Supabase SQL editor.
 --
 -- Running this creates EMPTY tables in this project only. It adds no content
--- (the sample Riverside data is a separate script, seed.sql). It does not
--- touch anything outside this Supabase project.
+-- (the sample data is a separate script, seed.sql). It does not touch
+-- anything outside this Supabase project.
 -- ==========================================================================
 
 create extension if not exists "pgcrypto";

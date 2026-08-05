@@ -22,7 +22,7 @@ const valueCell = {
 
 /** Sent to the school to tell them about a new website enquiry. */
 export function EnquiryNotificationEmail({
-  schoolName,
+  businessName,
   name,
   email,
   message,
@@ -31,7 +31,7 @@ export function EnquiryNotificationEmail({
   brandColor,
   accentColor,
 }: {
-  schoolName: string;
+  businessName: string;
   name: string;
   email: string;
   message: string;
@@ -47,7 +47,7 @@ export function EnquiryNotificationEmail({
   const accent = accentColor ?? brandColor ?? "#0f172a";
 
   return (
-    <EmailLayout preview={`New enquiry from ${name}`} schoolName={schoolName} brandColor={brandColor} accentColor={accentColor}>
+    <EmailLayout preview={`New enquiry from ${name}`} businessName={businessName} brandColor={brandColor} accentColor={accentColor}>
       <Text style={{ margin: "0 0 4px", color: accent, fontSize: "12px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px" }}>
         Website enquiry
       </Text>

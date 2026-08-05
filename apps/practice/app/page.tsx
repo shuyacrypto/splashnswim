@@ -11,10 +11,10 @@ export default async function HomePage() {
     getPageBySlug(client, "home"),
     getSiteSettings(client),
   ]);
-  const schoolName = settings?.schoolName ?? "Practice School";
+  const businessName = settings?.businessName ?? "Practice School";
 
   return (
-    <PublicShell schoolName={schoolName}>
+    <PublicShell businessName={businessName}>
       {page ? (
         <PublicBlocks blocks={page.blocks} />
       ) : (

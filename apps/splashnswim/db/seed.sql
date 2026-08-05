@@ -9,10 +9,10 @@
 -- safe inside single-quoted SQL. Please keep it that way when editing here.
 -- ==========================================================================
 
-insert into public.site_settings (id, school_name, contact_email, contact_phone, booking_enabled)
+insert into public.site_settings (id, business_name, contact_email, contact_phone, booking_enabled)
 values (true, 'SplashNSwim', 'info@splashnswim.net', null, false)
 on conflict (id) do update set
-  school_name = excluded.school_name,
+  business_name = excluded.business_name,
   contact_email = excluded.contact_email,
   contact_phone = excluded.contact_phone,
   booking_enabled = excluded.booking_enabled;

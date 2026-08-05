@@ -73,7 +73,7 @@ export function createEmailer(config: EmailConfig): Emailer {
   ): Promise<void> {
     const html = await render(
       <EnquiryReceivedEmail
-        schoolName={config.fromName}
+        businessName={config.fromName}
         name={enquiry.name}
         fields={enquiry.fields}
         {...brand}
@@ -95,7 +95,7 @@ export function createEmailer(config: EmailConfig): Emailer {
   ): Promise<void> {
     const html = await render(
       <EnquiryNotificationEmail
-        schoolName={config.fromName}
+        businessName={config.fromName}
         name={enquiry.name}
         email={enquiry.email}
         message={enquiry.message}
@@ -126,7 +126,7 @@ export function createEmailer(config: EmailConfig): Emailer {
     if (unique.length === 0) return { sent: 0 };
 
     const html = await render(
-      <BroadcastEmail schoolName={config.fromName} message={message} {...brand} />,
+      <BroadcastEmail businessName={config.fromName} message={message} {...brand} />,
     );
 
     let sent = 0;

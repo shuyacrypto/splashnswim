@@ -22,20 +22,20 @@ const valueCell = {
 
 /** Sent to a visitor to confirm their enquiry has been received. */
 export function EnquiryReceivedEmail({
-  schoolName,
+  businessName,
   name,
   fields,
   brandColor,
   accentColor,
 }: {
-  schoolName: string;
+  businessName: string;
   name: string;
   fields?: EnquiryField[];
 } & EmailBranding) {
   return (
     <EmailLayout
-      preview={`Thank you for contacting ${schoolName}`}
-      schoolName={schoolName}
+      preview={`Thank you for contacting ${businessName}`}
+      businessName={businessName}
       brandColor={brandColor}
       accentColor={accentColor}
     >
@@ -46,7 +46,7 @@ export function EnquiryReceivedEmail({
         Hello {name},
       </Text>
       <Text style={{ color: "#0f172a", fontSize: "14px", lineHeight: "1.55", margin: "0 0 12px" }}>
-        Thank you for your enquiry to {schoolName}. We have received it and one of
+        Thank you for your enquiry to {businessName}. We have received it and one of
         our team will be in touch very soon.
       </Text>
       {fields && fields.length > 0 ? (
@@ -69,7 +69,7 @@ export function EnquiryReceivedEmail({
       <Text style={{ color: "#0f172a", fontSize: "14px", lineHeight: "1.55", margin: "18px 0 0" }}>
         Warm wishes,
         <br />
-        The {schoolName} team
+        The {businessName} team
       </Text>
     </EmailLayout>
   );

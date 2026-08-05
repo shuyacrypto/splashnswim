@@ -9,7 +9,7 @@ type SettingsRow = Database["public"]["Tables"]["site_settings"]["Row"];
 
 function rowToSettings(row: SettingsRow): SiteSettings {
   return {
-    schoolName: row.school_name,
+    businessName: row.business_name,
     contactEmail: row.contact_email,
     contactPhone: row.contact_phone ?? undefined,
     bookingEnabled: row.booking_enabled,
@@ -42,7 +42,7 @@ export async function saveSiteSettings(
     .from("site_settings")
     .upsert({
       id: true,
-      school_name: value.schoolName,
+      business_name: value.businessName,
       contact_email: value.contactEmail,
       contact_phone: value.contactPhone ?? null,
       booking_enabled: value.bookingEnabled,

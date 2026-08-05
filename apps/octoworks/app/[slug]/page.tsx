@@ -21,7 +21,7 @@ export default async function MarketingPage({
   if (!page) notFound();
 
   return (
-    <PublicShell businessName={settings?.businessName ?? "Practice School"}>
+    <PublicShell businessName={settings?.businessName ?? "OctoWorks"}>
       <PublicBlocks blocks={page.blocks} />
     </PublicShell>
   );

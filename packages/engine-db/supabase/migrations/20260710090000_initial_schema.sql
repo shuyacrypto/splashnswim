@@ -48,7 +48,7 @@ create trigger pages_set_updated_at
 -- ---------------------------------------------------------------------------
 create table public.site_settings (
   id              boolean primary key default true,
-  school_name     text not null,
+  business_name     text not null,
   contact_email   text not null,
   contact_phone   text,
   booking_enabled boolean not null default false,
