@@ -71,10 +71,39 @@ export function PublicShell({
         ) : null}
       </header>
       <main>{children}</main>
-      <footer className="border-t border-ink/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8 text-xs text-ink/50 sm:px-10">
-          <span>{businessName}</span>
-          <a href="/admin" className="hover:text-ink">Admin</a>
+      <footer className="border-t border-ink/10 bg-ink text-surface">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 sm:grid-cols-[1.3fr_1fr_1fr] sm:px-10">
+          <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/horisontal_logo_white_bordeaux.svg" alt={businessName} className="h-8 w-auto" />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-surface/60">
+              Institutional private credit for Web3 and DLT-driven businesses.
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-surface/40">Site</p>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li><a href="/" className="text-surface/70 hover:text-surface">Home</a></li>
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-surface/70 hover:text-surface">{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-surface/40">Legal</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-surface/70">
+              <li>{businessName} Ltd</li>
+              <li>Company No. 16530781</li>
+              <li><a href="/admin" className="hover:text-surface">Admin</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-surface/10">
+          <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-surface/40 sm:px-10">
+            &copy; {new Date().getFullYear()} {businessName}. Not licensed or authorised to provide financial, investment, or tax advice.
+          </div>
         </div>
       </footer>
     </div>

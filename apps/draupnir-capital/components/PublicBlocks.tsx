@@ -113,12 +113,12 @@ function renderBlock(block: Block) {
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/brand/sign_gold_white.svg"
+              src="/brand/mark-on-dark.svg"
               alt=""
               className={
                 isHome
-                  ? "h-48 w-48 shrink-0 opacity-95 sm:h-64 sm:w-64 lg:h-80 lg:w-80"
-                  : "h-28 w-28 shrink-0 opacity-90 sm:h-36 sm:w-36"
+                  ? "h-48 w-48 shrink-0 sm:h-64 sm:w-64 lg:h-80 lg:w-80"
+                  : "h-28 w-28 shrink-0 sm:h-36 sm:w-36"
               }
             />
           </Container>
