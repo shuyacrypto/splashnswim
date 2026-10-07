@@ -9,6 +9,12 @@ const nextConfig = {
     "@swim-engine/engine-db",
     "@swim-engine/engine-email",
   ],
+  // Teacher invoice page: ship the PDF fonts with the API route and let
+  // @react-pdf/renderer run as a normal Node package.
+  outputFileTracingIncludes: {
+    "/api/teacher-invoice": ["./lib/teacher-invoice/fonts/**"],
+  },
+  serverExternalPackages: ["@react-pdf/renderer"],
 };
 
 export default nextConfig;

@@ -1,0 +1,728 @@
+/* SplashNSwim Brand Guidelines v1.1 (July 2026).
+   Six brand colours; Fredoka for headings and buttons, Nunito Sans for body.
+   Contrast rules from section 04: Aqua is accent only (never text on white);
+   body copy is Deep Pool Blue on Warm White; reversed copy is Warm White on Deep Pool Blue.
+   Splash Blue (4.2:1 on white) carries white text only at large sizes, so small
+   text on a filled state uses Deep Pool Blue as the fill instead. */
+.page {
+  --deep: #123b6d; /* Deep Pool Blue: headings, body */
+  --splash: #087edb; /* Splash Blue: primary */
+  --aqua: #58d2df; /* Aqua: accent only */
+  --axolotl: #f6a7bd; /* Axolotl Pink: soft warmth */
+  --gill: #e96991; /* Gill Pink: highlight */
+  --warm: #fafcfd; /* Warm White: backgrounds */
+  --white: #ffffff;
+  --slate: #5a6c86; /* secondary text, 5.3:1 on Warm White */
+  --rule: #d8e3ef;
+  --tint: #eff6fd;
+  --field: #7c8da5; /* input borders, 3.3:1 on white */
+  --error: #b42343;
+  --display: var(--font-fredoka, "Fredoka"), "Fredoka", ui-rounded, system-ui, sans-serif;
+  --body: var(--font-nunito-sans, "Nunito Sans"), "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  min-height: 100vh;
+  background: var(--warm);
+  color: var(--deep);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  padding: clamp(24px, 5vw, 56px) 16px 80px;
+}
+
+.shell {
+  max-width: 680px;
+  margin: 0 auto;
+  scroll-margin-top: 16px;
+}
+
+/* ---------- masthead ---------- */
+.masthead {
+  margin-bottom: 28px;
+}
+.logo {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: 100%;
+}
+.waves {
+  display: block;
+  width: 100%;
+  height: 14px;
+  margin: 20px 0 28px;
+  fill: none;
+  stroke-width: 2;
+}
+.waves path:first-child {
+  stroke: var(--aqua);
+}
+.waves path:last-child {
+  stroke: var(--axolotl);
+}
+.title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(30px, 6vw, 42px);
+  line-height: 1.1;
+  margin: 0;
+}
+.lede {
+  margin: 12px 0 0;
+  color: var(--slate);
+  max-width: 52ch;
+}
+
+/* ---------- form ---------- */
+.form {
+  display: grid;
+  gap: 20px;
+}
+.step {
+  background: var(--white);
+  border: 2px solid var(--rule);
+  border-radius: 24px;
+  padding: clamp(20px, 4vw, 32px);
+  display: grid;
+  gap: 18px;
+}
+.stepTitle {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 23px;
+  margin: 0 0 2px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.stepNo {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--axolotl);
+  color: var(--deep);
+  font-size: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+.label {
+  font-weight: 700;
+  font-size: 15px;
+}
+.hint {
+  color: var(--slate);
+  font-size: 14px;
+  margin-top: -2px;
+}
+.field input,
+.field textarea {
+  font: inherit;
+  color: var(--deep);
+  background: var(--white);
+  border: 2px solid var(--field);
+  border-radius: 14px;
+  padding: 10px 14px;
+  width: 100%;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+.field textarea {
+  resize: vertical;
+}
+.field input::placeholder {
+  color: #767676;
+}
+.short {
+  max-width: 260px;
+}
+.money {
+  position: relative;
+  display: block;
+}
+.money > span {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  pointer-events: none;
+}
+.money input {
+  padding-left: 30px;
+}
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--error);
+}
+.error {
+  color: var(--error);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+.help {
+  color: var(--slate);
+  margin: 0;
+  font-size: 15px;
+}
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Splash Blue focus ring: 4.2:1 on white, above the 3:1 needed for focus indicators. */
+.page :is(input, textarea, button):focus-visible,
+.page [data-error="true"]:focus-visible {
+  outline: 3px solid var(--splash);
+  outline-offset: 2px;
+}
+
+/* ---------- calendar ---------- */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+.dow {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--slate);
+  padding-bottom: 2px;
+}
+.dayCell {
+  aspect-ratio: 1;
+  min-height: 42px;
+  border: 2px solid var(--rule);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--deep);
+  font: inherit;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 0;
+  transition: background-color 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
+}
+.dayCell:hover {
+  border-color: var(--splash);
+}
+.dayCell:active {
+  transform: scale(0.94);
+}
+.dayCell[aria-pressed="true"] {
+  background: var(--deep);
+  border-color: var(--aqua);
+  color: var(--warm);
+}
+.dayNum {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(15px, 3.6vw, 19px);
+  line-height: 1;
+}
+.dayHrs {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.dayList {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.dayRow {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.dayName {
+  font-weight: 600;
+}
+.timeField {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--slate);
+  font-size: 14px;
+}
+.timeField input,
+.timeField select {
+  font: inherit;
+  font-size: 16px; /* stops iOS zooming */
+  color: var(--deep);
+  background: var(--white);
+  min-height: 44px;
+  padding: 8px;
+  border: 2px solid var(--field);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+.timeField input {
+  width: 56px;
+  text-align: right;
+}
+.timeField select {
+  width: 66px;
+}
+.timeField [aria-invalid="true"] {
+  border-color: var(--error);
+}
+.remove {
+  font: inherit;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--slate);
+  background: none;
+  border: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.remove:hover {
+  background: var(--tint);
+  color: var(--deep);
+}
+
+/* The running total: reversed Warm White on Deep Pool Blue, with an Aqua accent. */
+.totalBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--deep);
+  color: var(--warm);
+  border-radius: 20px;
+  padding: 16px 20px;
+}
+.totalCalc {
+  display: grid;
+  gap: 2px;
+  font-size: 15px;
+}
+.totalCalc b {
+  color: var(--aqua);
+}
+.totalMonth {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 18px;
+}
+.totalDue {
+  display: grid;
+  justify-items: end;
+}
+.totalDue span {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--aqua);
+}
+.totalDue strong {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.05;
+}
+
+/* ---------- actions ---------- */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.primary,
+.secondary {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 20px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 2px solid var(--deep);
+  color: var(--deep);
+}
+.primary {
+  background: var(--splash);
+  border-color: var(--splash);
+  color: var(--white);
+}
+.primary:hover:not(:disabled) {
+  background: var(--deep);
+  border-color: var(--deep);
+}
+.secondary {
+  background: var(--white);
+}
+.secondary:hover:not(:disabled) {
+  background: var(--tint);
+}
+.primary:disabled,
+.secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.banner {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #fdecee;
+  color: var(--error);
+  font-weight: 600;
+}
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---------- preview: mirrors the PDF ---------- */
+.previewStage {
+  display: grid;
+  gap: 24px;
+}
+.paper {
+  background: var(--warm);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(18, 59, 109, 0.06), 0 12px 32px rgba(18, 59, 109, 0.08);
+  padding: clamp(20px, 5vw, 40px);
+  font-size: 14px;
+}
+.paper p {
+  margin: 0;
+}
+.paperHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.wordmark {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1;
+  margin-top: 6px !important;
+  white-space: nowrap;
+}
+.wmSplash {
+  color: var(--splash);
+}
+.wmN {
+  color: var(--aqua);
+  font-size: 0.62em;
+}
+.wmSwim {
+  color: var(--gill);
+}
+.paper .waves {
+  margin: 16px 0 0;
+}
+.paperMeta {
+  text-align: right;
+}
+.paperTitle {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.1;
+  margin-bottom: 6px !important;
+}
+.paperMeta dl {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2px 10px;
+  margin: 0;
+  font-size: 13px;
+}
+.paperMeta dt {
+  color: var(--slate);
+}
+.paperMeta dd {
+  margin: 0;
+  font-weight: 700;
+}
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 18px 0 22px;
+}
+.paperH {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px !important;
+}
+.preLine {
+  white-space: pre-line;
+}
+.muted {
+  color: var(--slate);
+}
+.ni {
+  margin-top: 8px !important;
+}
+.paperTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.paperTable th,
+.paperTable td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.paperTable th {
+  color: var(--slate);
+  font-size: 12px;
+  border-top: 1px solid var(--rule);
+}
+.paperTable :is(th, td):last-child {
+  text-align: right;
+}
+.closing {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 22px;
+  align-items: start;
+}
+.bankBox,
+.summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin: 0;
+}
+.bankBox {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--axolotl);
+  border-radius: 6px;
+  padding: 8px 12px;
+  gap: 4px 12px;
+}
+.bankBox dt,
+.summary dt {
+  color: var(--slate);
+}
+.bankBox dd,
+.summary dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.summary dt,
+.summary dd {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.due {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--deep);
+  color: var(--warm);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 8px !important;
+  font-family: var(--display);
+  font-weight: 600;
+}
+.due strong {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.sendPanel {
+  display: grid;
+  gap: 16px;
+  background: var(--white);
+  border: 2px solid var(--rule);
+  border-radius: 24px;
+  padding: clamp(20px, 4vw, 28px);
+}
+.sendNote {
+  margin: 0;
+  color: var(--slate);
+  font-size: 15px;
+}
+.sendNote strong {
+  color: var(--deep);
+}
+
+/* ---------- sent ---------- */
+.sent {
+  background: var(--white);
+  border: 2px solid var(--rule);
+  border-radius: 24px;
+  padding: 32px;
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+.sent p {
+  margin: 0;
+  font-size: 17px;
+}
+.mascot {
+  width: 130px;
+  height: auto;
+}
+
+@media (max-width: 560px) {
+  .pair,
+  .parties,
+  .closing {
+    grid-template-columns: 1fr;
+  }
+  .paperHead {
+    flex-direction: column;
+  }
+  .paperMeta {
+    text-align: left;
+  }
+  .calendar {
+    gap: 4px;
+  }
+  .totalDue {
+    justify-items: start;
+  }
+  .actions > button {
+    flex: 1 1 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dayCell {
+    transition: none;
+  }
+  .dayCell:active {
+    transform: none;
+  }
+}
+
+/* ---------- school choice ---------- */
+.schools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.schoolOption {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding: 16px 16px 16px 48px;
+  border: 2px solid var(--rule);
+  border-radius: 18px;
+  background: var(--white);
+  cursor: pointer;
+}
+.schoolOption:hover {
+  border-color: var(--splash);
+}
+.schoolOption input {
+  position: absolute;
+  left: 16px;
+  top: 19px;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--deep);
+}
+.schoolOption:has(input:checked) {
+  border-color: var(--deep);
+  background: var(--tint);
+  box-shadow: inset 0 0 0 1px var(--deep);
+}
+.schoolOption:has(input:focus-visible) {
+  outline: 3px solid var(--splash);
+  outline-offset: 2px;
+}
+.schools[data-error="true"] .schoolOption {
+  border-color: var(--error);
+}
+.schoolName {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.2;
+}
+.schoolAddr {
+  color: var(--slate);
+  font-size: 14px;
+}
+.plainName {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.15;
+  margin-top: 6px !important;
+}
+.plainRule {
+  border: 0;
+  border-top: 2px solid var(--deep);
+  margin: 16px 0 0;
+}
+@media (max-width: 560px) {
+  .schools {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- privacy notice and clear button ---------- */
+.notice {
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: var(--tint);
+  border-left: 4px solid var(--aqua);
+  font-weight: 600;
+}
+.textButton {
+  font: inherit;
+  font-weight: 600;
+  color: var(--slate);
+  background: none;
+  border: 0;
+  padding: 0 12px;
+  min-height: 52px;
+  margin-right: auto;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.textButton:hover {
+  color: var(--deep);
+}
+@media (max-width: 560px) {
+  .dayName {
+    font-size: 14px;
+  }
+  .textButton {
+    order: 2;
+    flex: 1 1 100%;
+    margin: 0;
+  }
+}
