@@ -10,9 +10,14 @@ const nextConfig = {
     "@swim-engine/engine-email",
   ],
   // Teacher invoice page: ship the PDF fonts with the API route and let
-  // @react-pdf/renderer run as a normal Node package.
+  // @react-pdf/renderer run as a normal Node package. pdfkit loads its
+  // built-in fonts (Helvetica etc.) dynamically, so the file tracer misses
+  // them; they live in the pnpm store at the monorepo root.
   outputFileTracingIncludes: {
-    "/api/teacher-invoice": ["./lib/teacher-invoice/fonts/**"],
+    "/api/teacher-invoice": [
+      "./lib/teacher-invoice/fonts/**",
+      "../../node_modules/.pnpm/pdfkit@*/node_modules/pdfkit/js/**",
+    ],
   },
   serverExternalPackages: ["@react-pdf/renderer"],
 };
